@@ -1,11 +1,12 @@
 <?php
 // include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
 function loadWPT($UsrDef){
+	//$_SESSION = array();
 	$content = '<div class="col-md-12" role="main">';
     $content .= '<div class="page-title">';
 	$content .= '<div id="title-left" align="center" class="col-md-12"><h3>WPT</h3></div>';
 	$content .= "</div>";
-	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formWPT">';
+	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formWPT" name="formWPT">';
 	$content .= LocalWPTForm($UsrDef, '0');
 	$content .= "</form>";
 	$content .= "</div>";
@@ -18,14 +19,21 @@ function LocalWPTForm($UsrDef, $limit)
 	$content .= '<div id="content" class="col-md-6 col-md-offset-3" >';
 	$content .= '<table class="table table-bordered">';
 	
-	$qsoal = sql_query("SELECT no_soal, question, answer, img FROM soal_wpt ORDER BY no_soal 
+	$qsoal = sql_query("SELECT no_soal, question, answer, multi_ans, img FROM soal_wpt ORDER BY no_soal 
 							LIMIT ".$limit.",10");
 	while($soal = sql_fetchassoc($qsoal)){
 		$no = $soal['no_soal'];
 		$content .= '<tr>';
 		$content .= '<td class="col-md-1" style="vertical-align:middle; text-align:center; font-weight:bold;">'.$no.'</td>';
 		$content .= '<td class="col-md-9">'.$soal['question'].'</td>';
-		$content .= '<td class="col-md-2"><input class="textbox" type="text" size=5 id="txtans'.$no.'"  name="txtans'.$no.'" ></td>';
+		$content .= '<td class="col-md-2"><input class="textbox" type="text" size=5 id="txtans'.$no.'"  name="txtans'.$no.'" ';
+		if(isset($_SESSION['ans'][$no])){
+			$content .= 'value="'.$_SESSION['ans'][$no].'"';
+		}
+		$content .= '>';
+		$content .= "<input type=hidden name='hdans_".$no."' id='hdans_".$no."' value='".$soal['answer']."'>";
+		$content .= "<input type=hidden name='hdmulti_".$no."' id='hdmulti_".$no."' value='".$soal['multi_ans']."'>";
+		$content .= "<input type=hidden name='hdstatus_".$no."' id='hdstatus_".$no."' value='0'></td>";
 		$content .= '</tr>';
 	}
 	$content .= '</table>';
@@ -33,7 +41,7 @@ function LocalWPTForm($UsrDef, $limit)
 	$qnext = sql_query("SELECT no_soal, question, answer, img FROM soal_wpt ORDER BY no_soal 
 							LIMIT ".$limit.",10");
 	// echo "SELECT no_soal, question, answer, img FROM soal_wpt ORDER BY no_soal LIMIT ".$limit.",10";
-	print (sql_numrows($qnext));
+	// print (sql_numrows($qnext));
 	if($limit>0){
 	}
 	if(sql_numrows($qnext)>0){

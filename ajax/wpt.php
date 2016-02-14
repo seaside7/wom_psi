@@ -4,52 +4,53 @@
 require("../controller/wpt.php");
 	include('../function/sqlfunction.php');
 $po   = $_GET['po'];
-if($po=="nextPage") {
-	$limit = $_GET['limit'] + 10;
-	echo LocalWPTForm($_GET['id'],$limit);
-}
-if($po=="previousPage") {
-	$limit = $_GET['limit'] - 10;
-	echo LocalWPTForm($_GET['id'],$limit);
-}
-if($po=="saveHasilWPT") {
-	$ans = $_GET['ans'];
-	$id = $_GET['id'];
-	$G = substr_count($ans, 'G');
-	$L = substr_count($ans, 'L');
-	$I = substr_count($ans, 'I');
-	$T = substr_count($ans, 'T');
-	$V = substr_count($ans, 'V');
-	$S = substr_count($ans, 'S');
-	$R = substr_count($ans, 'R');
-	$D = substr_count($ans, 'D');
-	$C = substr_count($ans, 'C');
-	$E = substr_count($ans, 'E');
-	$N = substr_count($ans, 'N');
-	$A = substr_count($ans, 'A');
-	$P = substr_count($ans, 'P');
-	$X = substr_count($ans, 'X');
-	$B = substr_count($ans, 'B');
-	$O = substr_count($ans, 'O');
-	$Z = substr_count($ans, 'Z');
-	$K = substr_count($ans, 'K');
-	$F = substr_count($ans, 'F');
-	$W = substr_count($ans, 'W');
+if($po=="nextPage" || $po=="previousPage" || $po=="saveHasilWPT") {
+	$limit = $_GET['limit'];
+	$benar = 0;
+	for($x=$limit+1;$x<=$limit+10;$x++){
+		$_SESSION['ans'][$x] = $_GET['txtans'.$x];
+		if($_GET['hdmulti_'.$x]){
+
+			$ans = explode(',', $_GET['hdans_'.$x]);
+			$user_ans = explode(',', $_GET['txtans'.$x]);
+			// echo count(array_diff($ans, $user_ans));
+			if(count(array_diff($ans, $user_ans))==0){
+				$benar = $benar + 1;
+			}
+		}else{
+			if(str_replace(' ','',strtolower($_GET['txtans'.$x])) == str_replace(' ','',strtolower($_GET['hdans_'.$x]))){
+				$benar = $benar + 1;
+			}
+		}
+		
+	}
+	$_SESSION['benar'][$limit]=$benar;
+	// print_r($_SESSION);
+	if($po=="previousPage") {
+		$limit = $_GET['limit'] - 10;
+		echo LocalWPTForm($_GET['id'],$limit);
+	}else if($po=="nextPage") {
+		$limit = $_GET['limit'] + 10;
+		echo LocalWPTForm($_GET['id'],$limit);
+	}else if($po=="saveHasilWPT") {
+		$totalbenar = 0;
+		for($y=0;$y<=40;$y+=10){
+			$totalbenar = $totalbenar + $_SESSION['benar'][$y];
+		}
+		list($wpt_iq) = sql_fetchrow(sql_query("SELECT wpt_iq FROM wpt_mapping WHERE wpt_skor = '".$totalbenar."'"));
+		sql_query("INSERT INTO `wom_psi`.`hasil_wpt` 
+					(`userid`, 
+					`wpt_skor`, 
+					`wpt_iq`
+					)
+					VALUES
+					('".$_GET['id']."', 
+					'".$totalbenar."', 
+					'".$wpt_iq."'
+					);");
+		echo $totalbenar;
+	}
 	
-	$qInsert = "INSERT INTO `wom_psi`.`hasil_papi` 
-	(`userid`, 
-	`G`, `L`, `I`, `T`, `V`, `S`, `R`, `D`, `C`, `E`, 
-	`N`, `A`, `P`, `X`, `B`, `O`, `Z`, `K`, `F`, `W`
-	)
-	VALUES
-	('$id', 
-	'$G', '$L', '$I', '$T', '$V', '$S', '$R', '$D', '$C', '$E', 
-	'$N', '$A', '$P', '$X', '$B', '$O', '$Z', '$K', '$F', '$W'
-	);";
-	echo $qInsert;
-	sql_query($qInsert);
-	
-	return true;
-	
 }
+
 ?>

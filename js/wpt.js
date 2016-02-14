@@ -4,11 +4,15 @@ var ans = '';
 function nextPage(form, id, limit)
 {	
 	if(limit+10<50){
-		new Ajax.Updater(form,'ajax/wpt.php?po=nextPage&limit='+limit+'&form='+form+'&id='+id);
+		var temp = $('formWPT').serialize();
+		//console.log(temp);
+		new Ajax.Updater(form,'ajax/wpt.php?po=nextPage&limit='+limit+'&form='+form+'&id='+id+'&'+temp);
 	}else{
 		jQuery("#btnNext").prop('disabled',true);
+		// console.log(form.serialize());
+		var temp = $('formWPT').serialize();
 		jQuery.ajax({
-            url: "/wom_psi/ajax/wpt.php?po=saveHasilWPT&ans="+ans+"&id="+jQuery('#hduserid').val(),
+            url: "/wom_psi/ajax/wpt.php?po=saveHasilWPT&limit="+limit+"&id="+id+"&"+temp,
 	            type: "POST",
 	            success: function(data)
 	            {
@@ -25,8 +29,8 @@ function nextPage(form, id, limit)
 }
 function previousPage(form, id, limit)
 {	
-	
-	new Ajax.Updater(form,'ajax/wpt.php?po=previousPage&limit='+limit+'&form='+form+'&id='+id);
+	var temp = $('formWPT').serialize();
+	new Ajax.Updater(form,'ajax/wpt.php?po=previousPage&limit='+limit+'&form='+form+'&id='+id+'&'+temp);
 	
 }
 function gelsnm(el) { return document.getElementsByName(el); }
