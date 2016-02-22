@@ -15,8 +15,8 @@ require_once('function/mainfunction.php');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title>Psikotest Online</title>
-	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<title>WOM Finance | Psikotest Online</title>
+	<link href="css/custom2.css" rel="stylesheet" type="text/css">
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
@@ -68,6 +68,14 @@ require_once('function/mainfunction.php');
 </head>
 
 <body>
+
+	<div id="hheaderCont">
+	<div id="hheader">
+    <div class="headerLogo" >
+		<a href="?"><img src="images/logo-WOM.png" width="86" height="45"></a>
+	</div>
+		
+		</div></div>
 	<div id="content">
 		<?php showpage('',$act);?>
 	</div>

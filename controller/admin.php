@@ -9,16 +9,16 @@ function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAP
 		
 		$content = 
 		'<div id="title" align="center" style="font-weight:bold; font-size:23px;">Data Peserta</div><br /><br /><br />
-		<div id="body" align="center" style="width: 1000px; margin: auto;">
-		<table width="1000px" class="display" id="tableatendee" >
+		<div id="body" align="center" style="width: 900px; margin: auto;">
+		<table width="900px" class="display" id="tableatendee" >
 		<thead>
 			<tr align="center">
-				<th>Tanggal Tes</th>
-				<th>Kondisi</th>
-				<th>No. KTP</th>
-				<th>Posisi yang<br />Dilamar</th>
-				<th>Tahapan<br />Tes</th>
-				<th>Tindakan</th>
+				<th style="text-align:center;">Tanggal Tes</th>
+				<th style="text-align:center;">No. KTP</th>
+				<th style="text-align:center;">Nama Peserta</th>
+				<th style="text-align:center;">Posisi yang<br />Dilamar</th>
+				<th style="text-align:center;">Tahapan<br />Tes</th>
+				<th style="text-align:center;">Tindakan</th>
 			</tr></thead>';
 			$content .= '<tbody>';
 		$i=0;
