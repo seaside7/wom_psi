@@ -1,6 +1,6 @@
 var tinggi = {};
 
-$( document ).ready(function() { // alert("a");
+$( document ).ready(function() { 
 	// $(function() {
         // $(this).bind("contextmenu", function(e) {
             // e.preventDefault();
