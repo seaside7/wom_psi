@@ -8,12 +8,14 @@ $( document ).ready(function() {
     // }); 
     // $( "#txtans_1_1" ).focus();
 
+
 $("#btnstart").click(function(){
 	$("#tbSheet").show();
 	$("#countdown").show();
 	$(".txtansrow"+currentRow).prop('disabled',false);
 	$("#txtans_1_1").focus();
 	$("#btnstart").hide();
+	$("#rules").hide();
 	timer.play();
 });
 

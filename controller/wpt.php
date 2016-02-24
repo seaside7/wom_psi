@@ -1,11 +1,19 @@
 <?php
 // include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
 function loadWPT($UsrDef){
-	//$_SESSION = array();
 	$content = '<div class="col-md-12" role="main">';
     $content .= '<div class="page-title">';
 	$content .= '<div id="title-left" align="center" class="col-md-12"><h3>WPT</h3></div>';
 	$content .= "</div>";
+	$content .= "<div class='col-md-6 col-md-offset-3' style='padding-bottom: 10px;' id='rules'><fieldset class=contentInfo style='margin-top:0 '>
+				<center><h4>Ketentuan Pengerjaan Tes WPT</h4></center>
+						<div class='col-md-12'><ol>
+							<li>Tes WPT terdiri dari 50 soal.</li>
+							<li>Tuliskan jawaban setiap pertanyaan pada kotak yang telah disediakan.</li>
+							<li>Waktu pengerjaan tes dibatasi 15 menit.</li>
+							<li>Klik tombol start untuk memulai tes.</li>
+						</ol></div></fieldset></div>";
+	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formWPT" name="formWPT">';
 	$content .= LocalWPTForm($UsrDef, '0');
 	$content .= "</form>";
@@ -17,7 +25,7 @@ function LocalWPTForm($UsrDef, $limit)
 	
 	$content = '<input type="hidden" name="hduserid" id="hduserid" value="'.$_SESSION['userid'].'">';
 	$content .= '<div id="content" class="col-md-6 col-md-offset-3" >';
-	$content .= '<table class="table table-bordered">';
+	$content .= '<table class="table table-bordered" id="tableWPT">';
 	
 	$qsoal = sql_query("SELECT no_soal, question, answer, multi_ans, img FROM soal_wpt ORDER BY no_soal 
 							LIMIT ".$limit.",10");

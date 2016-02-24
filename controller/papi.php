@@ -5,6 +5,14 @@ function loadPAPI($UsrDef){
     $content .= '<div class="page-title">';
 	$content .= '<div id="title-left" align="center" class="col-md-12"><h3>PAPI</h3></div>';
 	$content .= "</div>";
+	$content .= "<div class='col-md-6 col-md-offset-3' style='padding-bottom: 10px;' id='rules'><fieldset class=contentInfo style='margin-top:0 '>
+				<center><h4>Ketentuan Pengerjaan Tes PAPI</h4></center>
+						<div class='col-md-12'><ol>
+							<li>Tes PAPI terdiri dari 90 soal.</li>
+							<li>Setiap soal berisi 2 pernyataan, pilih salah satu pernyataan yang paling menggambarkan diri anda.</li>
+							<li>Klik tombol start untuk memulai tes.</li>
+						</ol></div></fieldset></div>";
+	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formPAPI">';
 	$content .= LocalPAPIForm($UsrDef, '0');
 	$content .= "</form>";
@@ -16,7 +24,7 @@ function LocalPAPIForm($UsrDef, $limit)
 	
 	$content = '<input type="hidden" name="hduserid" id="hduserid" value="'.$_SESSION['userid'].'">';
 	$content .= '<div id="content" class="col-md-6 col-md-offset-3" role="main">';
-	$content .= '<table class="table table-bordered">';
+	$content .= '<table class="table table-bordered" id="tablePAPI">';
 	
 	$qsoal = sql_query("SELECT a.no_soal, b1.pernyataan AS pernyataan1, b1.tipe AS tipe1, b2.pernyataan AS pernyataan2, b2.tipe AS tipe2
 							FROM soal_papi a LEFT JOIN pernyataan b1 ON a.pernyataan_A = b1.id_pernyataan
@@ -27,8 +35,8 @@ function LocalPAPIForm($UsrDef, $limit)
 		$no = $soal['no_soal'];
 		$content .= '<tr>';
 		$content .= '<td rowspan="2" class="col-md-1" style="vertical-align:middle; text-align:center; font-weight:bold;">'.$no.'</td>';
-		$content .= '<td class="col-md-11"><input type="radio" id="rdsoalA'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe1'].'">&nbsp;&nbsp;'.$soal['pernyataan1'].'</td></tr>';
-		$content .= '<tr><td class="col-md-11"><input type="radio" id="rdsoalB'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe2'].'">&nbsp;&nbsp;'.$soal['pernyataan2'].'</td></tr>';
+		$content .= '<td class="col-md-11 ansrowA"><input type="radio" id="rdsoalA'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe1'].'">&nbsp;&nbsp;'.$soal['pernyataan1'].'</td></tr>';
+		$content .= '<tr><td class="col-md-11 ansrowB"><input type="radio" id="rdsoalB'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe2'].'">&nbsp;&nbsp;'.$soal['pernyataan2'].'</td></tr>';
 		$content .= '</tr>';
 	}
 	$content .= '</table>';

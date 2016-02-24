@@ -1,20 +1,19 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 3.1.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 14, 2016 at 03:03 AM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.5.30
+-- Host: localhost
+-- Generation Time: Feb 22, 2016 at 10:32 PM
+-- Server version: 5.1.30
+-- PHP Version: 5.2.8
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `wom_psi`
@@ -26,7 +25,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `hasil_papi`
 --
 
-CREATE TABLE `hasil_papi` (
+CREATE TABLE IF NOT EXISTS `hasil_papi` (
   `userid` varchar(16) DEFAULT NULL,
   `G` int(2) DEFAULT NULL,
   `L` int(2) DEFAULT NULL,
@@ -55,9 +54,7 @@ CREATE TABLE `hasil_papi` (
 --
 
 INSERT INTO `hasil_papi` (`userid`, `G`, `L`, `I`, `T`, `V`, `S`, `R`, `D`, `C`, `E`, `N`, `A`, `P`, `X`, `B`, `O`, `Z`, `K`, `F`, `W`) VALUES
-('3174040104880001', 4, 7, 6, 8, 7, 5, 3, 2, 3, 3, 5, 2, 3, 3, 3, 3, 5, 6, 6, 6),
-('8237981724897817', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-('8237981724897817', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+('3174040104880001', 4, 7, 6, 8, 7, 5, 3, 2, 3, 3, 5, 2, 3, 3, 3, 3, 5, 6, 6, 6);
 
 -- --------------------------------------------------------
 
@@ -65,7 +62,7 @@ INSERT INTO `hasil_papi` (`userid`, `G`, `L`, `I`, `T`, `V`, `S`, `R`, `D`, `C`,
 -- Table structure for table `hasil_wpt`
 --
 
-CREATE TABLE `hasil_wpt` (
+CREATE TABLE IF NOT EXISTS `hasil_wpt` (
   `userid` varchar(16) NOT NULL,
   `wpt_skor` int(2) NOT NULL,
   `wpt_iq` int(3) NOT NULL
@@ -76,7 +73,7 @@ CREATE TABLE `hasil_wpt` (
 --
 
 INSERT INTO `hasil_wpt` (`userid`, `wpt_skor`, `wpt_iq`) VALUES
-('8237981724897817', 11, 81);
+('8237981724897817', 3, 64);
 
 -- --------------------------------------------------------
 
@@ -84,7 +81,7 @@ INSERT INTO `hasil_wpt` (`userid`, `wpt_skor`, `wpt_iq`) VALUES
 -- Table structure for table `pernyataan`
 --
 
-CREATE TABLE `pernyataan` (
+CREATE TABLE IF NOT EXISTS `pernyataan` (
   `id_pernyataan` int(3) DEFAULT NULL,
   `pernyataan` varchar(100) DEFAULT NULL,
   `tipe` varchar(1) DEFAULT NULL
@@ -282,7 +279,7 @@ INSERT INTO `pernyataan` (`id_pernyataan`, `pernyataan`, `tipe`) VALUES
 -- Table structure for table `salah`
 --
 
-CREATE TABLE `salah` (
+CREATE TABLE IF NOT EXISTS `salah` (
   `userid` varchar(16) NOT NULL,
   `x` int(2) DEFAULT NULL,
   `y` int(2) DEFAULT NULL,
@@ -448,7 +445,7 @@ INSERT INTO `salah` (`userid`, `x`, `y`, `answer`, `sequence`, `status`) VALUES
 -- Table structure for table `soal_papi`
 --
 
-CREATE TABLE `soal_papi` (
+CREATE TABLE IF NOT EXISTS `soal_papi` (
   `no_soal` int(3) DEFAULT NULL,
   `pernyataan_A` varchar(3) DEFAULT NULL,
   `pernyataan_B` varchar(3) DEFAULT NULL
@@ -556,7 +553,7 @@ INSERT INTO `soal_papi` (`no_soal`, `pernyataan_A`, `pernyataan_B`) VALUES
 -- Table structure for table `soal_wpt`
 --
 
-CREATE TABLE `soal_wpt` (
+CREATE TABLE IF NOT EXISTS `soal_wpt` (
   `no_soal` int(2) NOT NULL,
   `question` text NOT NULL,
   `answer` varchar(5) NOT NULL,
@@ -571,7 +568,7 @@ CREATE TABLE `soal_wpt` (
 INSERT INTO `soal_wpt` (`no_soal`, `question`, `answer`, `multi_ans`, `img`) VALUES
 (1, 'Bulan lalu pada awal tahun ini adalah 1. Januari 2. Maret 3. Juli 4. Desember 5. Oktober', '4', 0, ''),
 (2, 'Menangkap adalah lawan kata dari <br /> 1. meletakkan 2. membebaskan 3. beresiko 4. berusaha 5. turun tingkat', '2', 0, ''),
-(3, 'Sebagian besar hal dibawah ini serupa satu sama lain. Manakah salah satu diantaranya yang <br/> kurang serupa dengan yang lain? <br /> 1. januari 2. Agustus 3. Rabu 4. Oktober 5. Desember', '3', 0, ''),
+(3, 'Sebagian besar hal dibawah ini serupa satu sama lain. Manakah salah satu diantaranya yang <br/> kurang serupa dengan yang lain? <br /> 1. Januari 2. Agustus 3. Rabu 4. Oktober 5. Desember', '3', 0, ''),
 (4, 'Jawablah dengan menuliskan YA atau TIDAK. Apakah RSVP berarti ''jawaban yang tidak perlu''', 'TIDAK', 0, ''),
 (5, 'Dalam kelompok kata berikut, manakah kata yang berbeda dari kata yang lain? <br /> 1. pasukan 2. liga 3. berpartisipasi 4. pak 5. kelompok', '3', 0, ''),
 (6, 'BIASA adalah lawan kata dari 1. jarang 2. terbiasa 3. tetap 4. berhenti 5. selalu', '1', 0, ''),
@@ -591,7 +588,7 @@ INSERT INTO `soal_wpt` (`no_soal`, `question`, `answer`, `multi_ans`, `img`) VAL
 (20, 'Anggaplah dua pernyataan pertama adalah benar, Apakah pernyataan terakhir:<br />1. benar 2. salah 3. tidak tahu.<br />John seusia dengan Sally. Sally lebih muda dari Bill. John lebih muda dari Bill.', '1', 0, ''),
 (21, 'Seorang pedagan membeli beberapa barrel seharga 4.000 rupiah. Ia menjual dengan harga 5.000 rupiah, mendapat untung 50 rupiah setiap barrel. Berapa banyak barel yang dijual?', '20', 0, ''),
 (22, 'Misalkan Anda menyusun kata-kata berikut sehingga menjadi kalimat lengkap. Jika kalimat itu benar, tulislah (B). Jika salah, tulislah (S). <br /><i>telur menghasilkan semua ayam</i>', 'S', 0, ''),
-(23, 'Dua dari peribahasa berikut ini memiliki arti sama. Manakah itu?<br />1. Semakin banyak memiliki sapi, akan memiliki satu anak sapi yang buruk.<br />2. Anak seperti Ayahnya.<br />3. Bila tertinggal sama jauhnya dengan satu mil<br />4. Seorang dikenal dari persahabatan yang dijalin<br />5. Mereka adalah benih dari mangkuk yang sama.', '2,5', 1, ''),
+(23, 'Dua dari peribahasa berikut ini memiliki arti sama. Manakah itu?<br />1. Semakin banyak memiliki sapi, akan memiliki satu anak sapi yang buruk.<br />2. Anak seperti Ayahnya.<br />3. Bila tertinggal sama jauhnya dengan satu mil<br />4. Seorang dikenal dari persahabatan yang dijalin<br />5. Mereka adalah benih dari mangkuk yang sama.<br />Pisahkan jawaban dengan tanda koma (,).', '2,5', 1, ''),
 (24, 'Sebuah jam terlambat 1 menit 18 detik dalam 39 hari. Berapa detik ia terlambat dalam sehari?', '2', 0, ''),
 (25, 'CANVASS CANVAS<br/>Apakah kata-kata ini :<br />1. memiliki arti yang sama 2. memiliki arti yang berlawanan 3. tidak memiliki arti yang sama atau berlawanan', '3', 0, ''),
 (26, 'Anggaplah dua pernyataan pertama adalah benar. Pernyataan terakhir:<br />1. benar 2. salah 3. tidak tahu.<br />Semua siswa mengikuti ujian. Beberapa orang di ruangan ini adalah siswa. Beberapa orang di ruangan ini mengikuti ujian.', '1', 0, ''),
@@ -606,11 +603,11 @@ INSERT INTO `soal_wpt` (`no_soal`, `question`, `answer`, `multi_ans`, `img`) VAL
 (35, 'Sebuah jam menunjuk tepat pada pukul 12 siang hari pada hari Senin. Pada pukul 2 siang, hari <br/> rabu, jam itu terlambat 26 detik. Pada rata-rata yang sama, berapa banyak jam itu terlambat <br/>dalam 1/2 jam?', '1/4', 0, ''),
 (36, 'Tim bisbol kami kalah 9 permainan dalam musim ini. Ini merupakan 3/8 bagian dari semua<br/> pertandingan mereka. Berapa banyak pertandingan yang mereka mainkan dalam musim<br/> kompetisi saat ini?', '24', 0, ''),
 (37, 'Apakah angka selanjutnya dari seri ini? 1 .5 .25 .125', '.0625', 0, ''),
-(38, 'Bentuk geometris ini dapat dibagi oleh suatu garis lurus menjadi dua bagian yang dapat <br/> disatukan dengan suatu cara hingga membentuk bujur sangkar yang sempurna. Gambarlah<br/> garis yang menghubungkan dua dari angka-angka yang ada. Lalu tuliskan angka tersebut <br/> sebagai jawaban.', '6,9', 1, ''),
+(38, 'Bentuk geometris ini dapat dibagi oleh suatu garis lurus menjadi dua bagian yang dapat <br/> disatukan dengan suatu cara hingga membentuk bujur sangkar yang sempurna. Gambarlah<br/> garis yang menghubungkan dua dari angka-angka yang ada. Lalu tuliskan angka tersebut sebagai jawaban.<br />Pisahkan jawaban dengan tanda koma (,).', '6,9', 1, ''),
 (39, 'Apakah arti dari kalimat berikut: 1. sama 2. berlawanan 3. tidak sama atau berlawanan? <br/> Sebuah sapu yang baru menyapu dengan bersih. Sepatu yang sudah lama sifatnya makin lunak.', '2', 0, ''),
 (40, 'Berapa duplikasi pasangan kata berikut ini?<br/>&nbsp;&nbsp;&nbsp; Rexford, J.D.&nbsp;&nbsp;Rockford, J.D<br/>&nbsp;&nbsp;&nbsp; Richards, W.E.&nbsp;&nbsp;Richad, W.E.<br/>&nbsp;&nbsp;&nbsp; Wood, A.O.&nbsp;&nbsp;Wood, A.O<br/>&nbsp;&nbsp;&nbsp; Siegel, A.B.&nbsp;&nbsp;Siegel, A.B.<br/>&nbsp;&nbsp;&nbsp; Singleton, M.O.&nbsp;&nbsp;Simbleten, M.O.', '1', 0, ''),
-(41, 'Dari dua peribahasa ini memiliki makna yang serupa. Manakah itu?<br/>&nbsp;&nbsp;&nbsp; 1. Anda tidak dapat membuat dompet sutra dari kuping babi betina <br/>&nbsp;&nbsp;&nbsp; 2. Orang yang mencuri telur akan mencuri sapi<br/>&nbsp;&nbsp;&nbsp; 3. Batu yang berguling tidak akan mengumpulkan lumut<br/>&nbsp;&nbsp;&nbsp; 4. Anda tidak mungkin menghancurkan kapal yang sudah rusak.<br/>&nbsp;&nbsp;&nbsp; 5. Ini ketidakmungkinan yang terjadi', '1,4', 0, ''),
-(42, 'Gambar geometris ini dapat dibagi dengan garis lurus menjadi dua bagian yang dapat <br/>disatukan untuk membentuk sebuah bujur sangkar yang sempurna. Gambarlah suatu garis dengan<br/> menghubungkan dua angka yang ada. Lalu tulislah angka itu sebagai jawaban<br/>', '3,22', 1, ''),
+(41, 'Dari dua peribahasa ini memiliki makna yang serupa. Manakah itu?<br/>&nbsp;&nbsp;&nbsp; 1. Anda tidak dapat membuat dompet sutra dari kuping babi betina <br/>&nbsp;&nbsp;&nbsp; 2. Orang yang mencuri telur akan mencuri sapi<br/>&nbsp;&nbsp;&nbsp; 3. Batu yang berguling tidak akan mengumpulkan lumut<br/>&nbsp;&nbsp;&nbsp; 4. Anda tidak mungkin menghancurkan kapal yang sudah rusak.<br/>&nbsp;&nbsp;&nbsp; 5. Ini ketidakmungkinan yang terjadi<br />Pisahkan jawaban dengan tanda koma (,).', '1,4', 0, ''),
+(42, 'Gambar geometris ini dapat dibagi dengan garis lurus menjadi dua bagian yang dapat <br/>disatukan untuk membentuk sebuah bujur sangkar yang sempurna. Gambarlah suatu garis dengan<br/> menghubungkan dua angka yang ada. Lalu tulislah angka itu sebagai jawaban.<br />Pisahkan jawaban dengan tanda koma (,).', '3,22', 1, ''),
 (43, 'Dalam kelompok angka berikut ini, manakah angka yang terkecil? 10 1 .999 .33 11', '.33', 0, ''),
 (44, 'Apakah makna dari kalimat berikut: 1. sama 2. berlawanan 3. tidak sama atau berlawanan? <br/> Tidak ada orang jujur meminta maaf atas kejujurannya. Kejujuran dihormati dan lapar pujian.', '2', 0, ''),
 (45, 'Dengan harga 1.80 dolar, seorang grosir membeli satu kardus buah yang berisi 12 lusin. Ia tahu<br/> dua lusin akan busuk sebelum dia menjualnya. Dengan harga berapa per lusin dia harus <br/> menjual jeruk itu untuk mendapat 1/3 hari harga seluruhnya?', '24', 0, ''),
@@ -626,7 +623,7 @@ INSERT INTO `soal_wpt` (`no_soal`, `question`, `answer`, `multi_ans`, `img`) VAL
 -- Table structure for table `template`
 --
 
-CREATE TABLE `template` (
+CREATE TABLE IF NOT EXISTS `template` (
   `template_id` int(1) DEFAULT NULL,
   `x` int(2) DEFAULT NULL,
   `y` int(2) DEFAULT NULL,
@@ -3388,34 +3385,10 @@ INSERT INTO `template` (`template_id`, `x`, `y`, `value`, `answer`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test`
---
-
-CREATE TABLE `test` (
-  `test` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `test`
---
-
-INSERT INTO `test` (`test`) VALUES
-('John'),
-('DOW'),
-('s'),
-('s'),
-('s'),
-('6'),
-('9'),
-('6');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tinggi`
 --
 
-CREATE TABLE `tinggi` (
+CREATE TABLE IF NOT EXISTS `tinggi` (
   `userid` varchar(16) NOT NULL,
   `x` int(2) NOT NULL,
   `y` int(2) NOT NULL
@@ -3478,14 +3451,15 @@ INSERT INTO `tinggi` (`userid`, `x`, `y`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `no_ktp` varchar(16) NOT NULL,
   `tanggal_tes` datetime DEFAULT NULL,
   `nama_peserta` varchar(30) DEFAULT NULL,
   `posisi` varchar(30) DEFAULT NULL,
   `alamat` text,
   `no_hp` varchar(12) DEFAULT NULL,
-  `tahapan_tes` varchar(1) DEFAULT NULL
+  `tahapan_tes` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`no_ktp`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -3504,7 +3478,7 @@ INSERT INTO `user` (`no_ktp`, `tanggal_tes`, `nama_peserta`, `posisi`, `alamat`,
 -- Table structure for table `wpt_mapping`
 --
 
-CREATE TABLE `wpt_mapping` (
+CREATE TABLE IF NOT EXISTS `wpt_mapping` (
   `wpt_skor` int(2) NOT NULL,
   `wpt_iq` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -3565,17 +3539,3 @@ INSERT INTO `wpt_mapping` (`wpt_skor`, `wpt_iq`) VALUES
 (48, 146),
 (49, 146),
 (50, 146);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`no_ktp`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

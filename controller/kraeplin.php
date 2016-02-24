@@ -35,8 +35,19 @@ function LocalKraeplinForm($UsrDef)
 							-moz-appearance:textfield;
 						}
 				</style>';
-	$content .= '<div id="title" align="center">Kraeplin</div>
-		<div id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
+	$content .= '<div id="title" align="center"><h3>Kraepelin</h3></div>';
+	$content .= "<div class='col-md-6 col-md-offset-3' style='padding-bottom: 10px;' id='rules'><fieldset class=contentInfo style='margin-top:0 '>
+				<center><h4>Ketentuan Pengerjaan Tes Kraepelin</h4></center>
+				<img class='col-md-8 col-md-offset-2' src='images/kraepelin-guide.png' />
+						<div class='col-md-12'><ol>
+							<li>Pengerjaan dilakukan dari bawah ke atas.</li>
+							<li>Klik area di antara dua angka, jumlahkan dua angka tersebut.</li>
+							<li>Misalnya 8+1=9, maka ditulis angka 9.</li>
+							<li>Bila angka yang dijumlahkan lebih dari 10, maka tuliskan angka belakangnya saja. Misalnya 17, tuliskan angka 7.</li>
+							<li>Waktu pengerjaan setiap lajur dibatasi 30 detik.</li>
+							<li>Klik tombol start untuk memulai tes.</li>
+						</ol></div></fieldset></div>";
+	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formKraeplin">';
 	$content .= '<input type="hidden" name="hduserid" id="hduserid" value="'.$_SESSION['userid'].'">';
 	$content .= '<input type="hidden" name="hdmaxX" id="hdmaxX" value="'.$maxX.'">';
