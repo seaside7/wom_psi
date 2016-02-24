@@ -24,14 +24,13 @@ function LocalKraeplinForm($UsrDef)
 	// echo '</pre>';
 
 	// echo $_SESSION['userid'];
-	$content = '<style> input[type="number"]{ width:30px; text-align:center;}
-						input[type=number]::-webkit-outer-spin-button,
-						input[type=number]::-webkit-inner-spin-button {
+	$content = '<style> input[type="text"]{ width:30px; text-align:center; border: 0;}
+						input[type=text]::-webkit-outer-spin-button,
+						input[type=text]::-webkit-inner-spin-button {
 							-webkit-appearance: none;
 							margin: 0;
 						}
-
-						input[type=number] {
+						input[type=text] {
 							-moz-appearance:textfield;
 						}
 				</style>';
@@ -41,7 +40,7 @@ function LocalKraeplinForm($UsrDef)
 				<img class='col-md-8 col-md-offset-2' src='images/kraepelin-guide.png' />
 						<div class='col-md-12'><ol>
 							<li>Pengerjaan dilakukan dari bawah ke atas.</li>
-							<li>Klik area di antara dua angka, jumlahkan dua angka tersebut.</li>
+							<li>Tekan panah atas untuk ke field selanjutnya.</li>
 							<li>Misalnya 8+1=9, maka ditulis angka 9.</li>
 							<li>Bila angka yang dijumlahkan lebih dari 10, maka tuliskan angka belakangnya saja. Misalnya 17, tuliskan angka 7.</li>
 							<li>Waktu pengerjaan setiap lajur dibatasi 30 detik.</li>
@@ -65,7 +64,7 @@ function LocalKraeplinForm($UsrDef)
 				$content .= "</tr><tr>";
 				for($xpp=1;$xpp<=$maxX;$xpp++){ $ypp = $yp-1;
 					$content .= "<td>&nbsp;</td>";
-					$content .= "<td><input tabindex='-1' type='number' min='0' max='9' maxlength = '1' class='txtans txtansrow".$xpp."' name='txtans_".$xpp."_".$ypp."' size=1 id='txtans_".$xpp."_".$ypp."' onkeyup='nextText($xpp, $ypp, (this).value)' oninput='maxLengthCheck(this)' onClick='this.select();' onfocus='this.oldvalue = this.value;' onChange='check($xpp, $ypp, this)' this.oldvalue = this.value; disabled>";
+					$content .= "<td><input tabindex='-1' type='text' maxlength = '1' class='txtans txtansrow".$xpp."' name='txtans_".$xpp."_".$ypp."' size=1 id='txtans_".$xpp."_".$ypp."' onkeyup='nextText($xpp, $ypp, (this).value)' oninput='maxLengthCheck(this)' onClick='this.select();' onfocus='this.oldvalue = this.value;' onChange='check($xpp, $ypp, this)' this.oldvalue = this.value; disabled>";
 					$content .= "<input type=hidden name='hdinput_".$xpp."_".$ypp."' id='hdinput_".$xpp."_".$ypp."' ></td>";
 					$content .= "<input type=hidden name='hdans_".$xpp."_".$ypp."' id='hdans_".$xpp."_".$ypp."' value='".$cell[$xpp][$ypp]['ans']."'></td>";
 					$content .= "<input type=hidden name='hdstatus_".$xpp."_".$ypp."' id='hdstatus_".$xpp."_".$ypp."' value='1'></td>";

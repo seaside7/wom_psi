@@ -1,7 +1,9 @@
 <?php
 global $urlsite;
 
-$localPageName = $_GET['act'];
+if(!empty($_GET['act'])){
+	$localPageName = $_GET['act']; 
+}
 
 include("controller/home.php");
 

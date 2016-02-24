@@ -1,6 +1,11 @@
 <?php
+if(!empty($_REQUEST['act'])){
+	$act = $_REQUEST['act']; 
+}else
+{
+	$act = 'home';
+}
 
-$act = $_REQUEST['act'];  if(empty($act)) {$act = 'home';}
 session_start();
 //$_SESSION['usersessid'] = 'admin';
 include('config/conn.php');

@@ -82,18 +82,34 @@ var timer = $.timer(function() {
 
 function nextText(x, y, val, correct){
 	var nextVal = parseInt(y)+1;
+	var prevVal = parseInt(y)-1;
 	if($.isNumeric(val))
 	{	
+		$('input').keyup(function (e) {
+ 
+		    if (e.which == 39) { // right arrow
+		      return false;
+		 
+		    } else if (e.which == 37) { // left arrow
+		      return false;
+		 
+		    } else if (e.which == 40) { // down arrow
+		      if(y > 1){
+	      		$( "#txtans_"+x+"_" + prevVal).focus();
+		      }
+		 
+		    } else if (e.which == 38) { // up arrow
+		      $( "#txtans_"+x+"_" + nextVal).focus();
+		    }
+	  	});
+
 		$("#hdinput_"+x+"_"+y).val($("#txtans_"+x+"_"+y).val());
 		$("#hdtinggi_"+x).val(y);
 		if($("#txtans_"+x+"_"+y).val() != $("#hdans_"+x+"_"+y).val()){
 			$("#hdstatus_"+x+"_"+y).val("1");
-			// data['salah'][x][y]=y;
-			// data['salah'][x][y]=y;
 		}
 		else
 			$("#hdstatus_"+x+"_"+y).val("0");
-		$( "#txtans_"+x+"_" + nextVal).focus();
 		currentRow = x;
 			
 	}
