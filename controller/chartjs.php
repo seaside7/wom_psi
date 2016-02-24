@@ -67,8 +67,20 @@ function showChart()
     $content .= '</div>';
     $content .= '</div>';
     $content .= '</div>';
-    $content .= '<div class="col-md-4 col-sm-4">';
-                // tabel analisa
+    $content .= '<div class="col-md-6 col-sm-6">';
+    $content .= '<div class="x_panel">';
+    $content .= '<div class="x_title">';
+    $content .= '<h2>WPT<small>&nbsp;</small></h2>';
+    $content .= '<div class="clearfix"></div>';
+    $content .= '</div>';
+    $content .= '<table class="table table-bordered" style="text-align:center;">';
+	$content .= '<thead>';
+	$content .= '<tr><th class="col-md-2">WPT SKOR</th><th class="col-md-2">WPT IQ</th><th class="col-md-2">WPT CLASSIFICATION</th></tr>';
+	$content .= '</thead>';
+	$content .= '<tbody>';
+	$content .= '<tr><td><label id="lblWptSkor" /></td><td><label id="lblWptIQ" /></td><td><label id="lblWptClass" /></td></tr>';
+	$content .= '</tbody>';
+	$content .= '</table>';
     $content .= '</div>';
     $content .= '</div>';
 	
@@ -78,6 +90,30 @@ function showChart()
     $content .= '</div>';
 	
 	echo $content;
+}
+
+function getWPTClass($skor){
+	if($skor>=130) {
+		$cat = "Very Superior";
+	}else if($skor >= 120 && $skor <= 129){
+		 $cat = "Superior";
+	}
+	else if($skor >= 110 && $skor <= 119){
+		 $cat = "High Average";
+	}
+	else if($skor >= 90 && $skor <= 109){
+		 $cat = "Average";
+	}
+	else if($skor >= 80 && $skor <= 89){
+		 $cat = "Low Average";
+	}
+	else if($skor >= 70 && $skor <= 79){
+		 $cat = "Borderline";
+	}
+	else{
+		$cat = "Extremely Low";
+	}
+	return $cat;
 }
 
 function getPankerCat($skor){

@@ -4,6 +4,14 @@
 	require("../controller/chartjs.php");
 	$po = $_GET['po'];
 	
+	if($po=="getWPT"){
+		$data = $_GET;
+		list($wptSkor, $wptIQ) = sql_fetchrow(sql_query("SELECT wpt_skor, wpt_iq from hasil_wpt where userid = '".$data['data']."';"));
+		$result['wptSkor'] = $wptSkor;
+		$result['wptIQ'] = $wptIQ;
+		$result['wptClass'] = getWPTClass($wptIQ);
+		echo json_encode($result);
+	}
 	if($po=="getLineChart"){
 		$data = $_GET;
 		$qCell = sql_query("SELECT x,y FROM tinggi WHERE userid = '".$data['data']."' order by x;");
@@ -27,7 +35,7 @@
 		$result['jankerCat'] = $janker['cat'];
 		
 		$result['tinker'] = $qTinker;
-		$tinker = getJankerCat($qTinker);
+		$tinker = getTinkerCat($qTinker);
 		$result['tinkerPP'] = $tinker['PP'];
 		$result['tinkerCat'] = $tinker['cat'];
 		
@@ -36,10 +44,11 @@
 		echo json_encode($result);
 	}
 	if($po=="getRadarChart"){
+		$data = $_GET;
 		$qRadar = sql_fetchrow(sql_query("SELECT	`userid`, 
 							`G`, `L`, `I`, `T`, `V`, `S`, `R`, `D`, `C`, `E`, 
 							`N`, `A`, `P`, `X`, `B`, `O`, `Z`, `K`, `F`, `W`
-							 FROM `wom_psi`.`hasil_papi` "));
+							 FROM `wom_psi`.`hasil_papi` WHERE userid = '".$data['data']."';"));
 		$result['cell'][] = $qRadar['N'];
 		$result['cell'][] = $qRadar['G'];
 		$result['cell'][] = $qRadar['A'];

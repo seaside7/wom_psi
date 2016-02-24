@@ -89,6 +89,24 @@ $(document).ready(function () {
 				}
 			}
 		});
+
+	$.ajax({
+		url: "ajax/chartjs.php",
+			type: "GET",
+			data: 'data='+param+'&po=getWPT',
+			dataType: 'json',
+			cache: false,
+			async:false,
+			success: function(data)
+			{
+				if(data)
+				{
+					$('#lblWptSkor').text(data.wptSkor);
+					$('#lblWptIQ').text(data.wptIQ);
+					$('#lblWptClass').text(data.wptClass);
+				}
+			}
+		});
 		
 	var radarChartData = {
 		/* labels: ["need to finish a task", 
