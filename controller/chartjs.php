@@ -27,6 +27,7 @@ function showChart()
     $content .= '<h2>Kraepelin<small>&nbsp;</small></h2>';
     $content .= '<div class="clearfix"></div>';
     $content .= '</div>';
+	
     $content .= '<div class="row">';
     $content .= '<div class="col-md-6 col-sm-6 col-xs-12">';
     $content .= '<div class="x_panel">';
@@ -35,8 +36,8 @@ function showChart()
     $content .= '</div>';
     $content .= '</div>';
     $content .= '</div>';
+	
 	$content .= '<div class="col-md-6 col-sm-6 col-xs-12">';
-				// tabel analisa
 	$content .= '<div class="table-responsive col-md-12">';
 	$content .= '<table class="table table-bordered" style="text-align:center;">';
 	$content .= '<thead>';
@@ -48,26 +49,80 @@ function showChart()
 	$content .= '<tr><td style="font-weight:bold;">Keajekan</td><td><label id="lblJankerScore" /></td><td><label id="lblJankerPP" /></td><td><label id="lblJankerCat" /></td></tr>';
 	$content .= '</tbody>';
 	$content .= '</table>';
-	
 	$content .= '</div>';
 	$content .= '</div>';
     $content .= '</div>';
 	
     $content .= '<div class="clearfix"></div>';
+	
+    $content .= '<div class="x_title col-md-12">';
+    $content .= '<h2>PAPI<small>&nbsp;</small></h2>';
+    $content .= '<div class="clearfix"></div>';
+    $content .= '</div>';
 	
     $content .= '<div class="row">';
     $content .= '<div class="col-md-6 col-sm-6">';
     $content .= '<div class="x_panel">';
-    $content .= '<div class="x_title">';
-    $content .= '<h2>PAPI<small>&nbsp;</small></h2>';
-    $content .= '<div class="clearfix"></div>';
-    $content .= '</div>';
     $content .= '<div class="x_content canvasradar">';
     $content .= '<canvas id="canvas_radar" class=""></canvas>';
     $content .= '</div>';
     $content .= '</div>';
     $content .= '</div>';
-    $content .= '<div class="col-md-6 col-sm-6">';
+	
+	$content .= '<div class="col-md-6 col-sm-6 col-xs-12">';
+	$content .= '<div class="table-responsive col-md-12">';
+	$qPAPI = sql_fetchrow(sql_query("SELECT `G`,`L`,`I`,`T`,`V`,`S`,`R`,`D`,`C`,`E`,`N`,`A`,`P`,`X`,`B`,`O`,`Z`,`K`,`F`,`W`
+									FROM `hasil_papi` WHERE userid = '".$id."'"));
+	$content .= '<table class="table table-bordered" style="text-align:center;">';
+	$content .= '<thead>';
+	$content .= '<tr>';
+	$content .= '<th width="10%">G</th><th width="10%">L</th><th width="10%">I</th><th width="10%">T</th><th width="10%">V</th>';
+	$content .= '<th width="10%">S</th><th width="10%">R</th><th width="10%">D</th><th width="10%">C</th><th width="10%">E</th>';
+	$content .= '</tr>';
+	$content .= '</thead>';
+	$content .= '<tbody>';
+	$content .= '<tr>';
+	$content .= '<td>'.$qPAPI['G'].'</td><td>'.$qPAPI['L'].'</td><td>'.$qPAPI['I'].'</td><td>'.$qPAPI['T'].'</td><td>'.$qPAPI['V'].'</td>';
+	$content .= '<td>'.$qPAPI['S'].'</td><td>'.$qPAPI['R'].'</td><td>'.$qPAPI['D'].'</td><td>'.$qPAPI['C'].'</td><td>'.$qPAPI['E'].'</td>';
+	$content .= '</tr>';
+	$content .= '</tbody>';
+	$content .= '</table>';
+	$content .= '<table class="table table-bordered" style="text-align:center;">';
+	$content .= '<thead>';
+	$content .= '<tr>';
+	$content .= '<th width="10%">N</th><th width="10%">A</th><th width="10%">P</th><th width="10%">X</th><th width="10%">B</th>';
+	$content .= '<th width="10%">O</th><th width="10%">Z</th><th width="10%">K</th><th width="10%">F</th><th width="10%">W</th>';
+	$content .= '</tr>';
+	$content .= '</thead>';
+	$content .= '<tbody>';
+	$content .= '<tr>';
+	$content .= '<td>'.$qPAPI['N'].'</td><td>'.$qPAPI['A'].'</td><td>'.$qPAPI['P'].'</td><td>'.$qPAPI['X'].'</td><td>'.$qPAPI['B'].'</td>';
+	$content .= '<td>'.$qPAPI['O'].'</td><td>'.$qPAPI['Z'].'</td><td>'.$qPAPI['K'].'</td><td>'.$qPAPI['F'].'</td><td>'.$qPAPI['W'].'</td>';
+	$content .= '</tr>';
+	$content .= '</tbody>';
+	$content .= '</table>';
+	$content .= '</div>';
+	$content .= '</div>';
+    $content .= '</div>';
+    
+	
+    $content .= '<div class="clearfix"></div>';
+	
+	$content .= '<div class="row">';
+	$content .= '<div class="col-md-6 col-sm-6">';
+    $content .= '<div class="x_panel">';
+    $content .= '<div class="x_title">';
+    $content .= '<h2>DISC<small>&nbsp;</small></h2>';
+    $content .= '<div class="clearfix"></div>';
+    $content .= '</div>';
+    /* 
+		 GRAFIK DISC 
+						*/
+    $content .= '</div>';
+    $content .= '</div>';
+	
+	
+	$content .= '<div class="col-md-6 col-sm-6">';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_title">';
     $content .= '<h2>WPT<small>&nbsp;</small></h2>';
@@ -83,8 +138,7 @@ function showChart()
 	$content .= '</table>';
     $content .= '</div>';
     $content .= '</div>';
-	
-    $content .= '<div class="clearfix"></div>';
+	$content .= '</div>';
 	
     $content .= '</div>';
     $content .= '</div>';

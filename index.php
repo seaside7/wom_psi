@@ -25,14 +25,14 @@ require_once('function/mainfunction.php');
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
-	<link href="css/tooltipster.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/jquery.timer.js"></script>
 	<script type="text/javascript" src="js/jquery.msgbox.js"></script>
-	<script type="text/javascript" src="js/jquery.tooltipster.min.js"></script>
 	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 	<!--<script type="text/javascript" src="js/dataTables.tableTools.js"></script>-->
 	<script type="text/javascript" src="js/jquery.dataTables.columnFilter.js"></script>
+	<link href="css/tooltipster.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="js/jquery.tooltipster.min.js"></script>
 	<script>
   	function maxLengthCheck(object) {
 	    if (object.value.length > object.maxLength)

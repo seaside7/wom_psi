@@ -44,9 +44,10 @@ function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAP
 function UserAction($id, $tahapan)
 {
 	$content='';	
-	if($tahapan=='5'){
-		$content.="<a href=\"javascript:\" onclick=\"window.open('index.php?act=chartjs&id=".$id."', '_blank')\" ><img src='images/view.gif' style='cursor:pointer' class='tooltip' title=\"Lihat Data Peserta\" '> </a>";	
+	if($tahapan=='5'){//$content .= $tahapan;
+		$content.="<a href=\"javascript:\" onclick=\"window.open('index.php?act=chartjs&id=".$id."', '_blank')\" ><img src='images/view.gif' style='cursor:pointer' title=\"Lihat Data Peserta\" '> </a>";	
 	}
+	// }
 	
 		
 	return $content;

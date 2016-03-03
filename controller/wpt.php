@@ -33,11 +33,7 @@ function LocalWPTForm($UsrDef, $limit)
 		$no = $soal['no_soal'];
 		$content .= '<tr>';
 		$content .= '<td class="col-md-1" style="vertical-align:middle; text-align:center; font-weight:bold;">'.$no.'</td>';
-		$content .= '<td class="col-md-9">'.$soal['question'];
-		if($soal['img'] == "1"){
-			$content .= ' <br> <img src="images/'.$no.'.png" />';
-		}
-		$content .= '</td> ';
+		$content .= '<td class="col-md-9">'.$soal['question'].'</td>';
 		$content .= '<td class="col-md-2"><input class="textbox" type="text" size=5 id="txtans'.$no.'"  name="txtans'.$no.'" ';
 		if(isset($_SESSION['ans'][$no])){
 			$content .= 'value="'.$_SESSION['ans'][$no].'"';
@@ -50,22 +46,16 @@ function LocalWPTForm($UsrDef, $limit)
 	}
 	$content .= '</table>';
 	
-	$qnext = sql_query("SELECT no_soal, question, answer, img FROM soal_wpt ORDER BY no_soal 
-							LIMIT ".$limit.",10");
-	// echo "SELECT no_soal, question, answer, img FROM soal_wpt ORDER BY no_soal LIMIT ".$limit.",10";
-	// print (sql_numrows($qnext));
-	if($limit>0){
+	
+	$content .= "<div align='center' class='col-md-3 col-md-offset-3' ><input type='button' class='button ' id='btnPrevious' onclick='previousPage(\"formWPT\",\"".$_SESSION['userid']."\",".($limit)."); return false;' value='Sebelumnya' ";
+	if($limit==0){
+	$content .= "disabled";
 	}
-	if(sql_numrows($qnext)>0){
-		$content .= "<div align='center' class='col-md-3 col-md-offset-3' ><input type='button' class='button ' id='btnPrevious' onclick='previousPage(\"formWPT\",\"".$_SESSION['userid']."\",".($limit)."); return false;' value='Sebelumnya' ";
-		if($limit==0){
-		$content .= "disabled";
-		}
-		$content .= "/></div>";
-		$content .= "<div align='center' class='col-md-3' ><input type='button' class='button ' id='btnNext' onclick='nextPage(\"formWPT\",\"".$_SESSION['userid']."\",".($limit)."); return false;' ";
-		if($limit==40) $content .= "value='Selesai' "; else $content .= "value='Berikutnya' ";
-		$content .= "/></div>";
-	}
+	$content .= "/></div>";
+	$content .= "<div align='center' class='col-md-3' ><input type='button' class='button ' id='btnNext' onclick='nextPage(\"formWPT\",\"".$_SESSION['userid']."\",".($limit)."); return false;' ";
+	if($limit==40) $content .= "value='Selesai' "; else $content .= "value='Berikutnya' ";
+	$content .= "/></div>";
+	
 	$content .= "</div>";
 	
 	return $content;

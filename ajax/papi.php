@@ -4,12 +4,29 @@
 require("../controller/papi.php");
 	include('../function/sqlfunction.php');
 $po   = $_GET['po'];
-if($po=="nextPage") {
-	$limit = $_GET['limit'] + 15;
+if($po=="nextPage" || $po=="previousPage") {
+	
+	$limit = $_GET['limit'];
+	for($x=$limit+1;$x<=$limit+15;$x++){
+		$_SESSION['anspapi'][$x] = $_GET['rdsoal'.$x];
+		
+	}
+	
+	if($po=="nextPage") {$limit = $_GET['limit'] + 15;}
+	else if($po=="previousPage") {$limit = $_GET['limit'] - 15;}
 	echo LocalPAPIForm($_GET['id'],$limit);
 }
 if($po=="saveHasilPAPI") {
-	$ans = $_GET['ans'];
+	$ans='';
+	$limit = $_GET['limit'];
+	for($x=$limit+1;$x<=$limit+15;$x++){
+		$_SESSION['anspapi'][$x] = $_GET['rdsoal'.$x];
+	}
+	
+	for($no=1;$no<=90;$no++){
+		$ans .=  $_SESSION['anspapi'][$no];
+	}
+	//$ans = $_GET['ans'];
 	$id = $_GET['id'];
 	$G = substr_count($ans, 'G');
 	$L = substr_count($ans, 'L');
@@ -44,7 +61,8 @@ if($po=="saveHasilPAPI") {
 	);";
 	echo $qInsert;
 	sql_query($qInsert);
-	
+	unset($_SESSION['anspapi']);
+	sql_query("UPDATE user SET tahapan_tes = '3' WHERE no_ktp = '".$id."'");
 	return true;
 	
 }

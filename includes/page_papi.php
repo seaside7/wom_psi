@@ -4,7 +4,8 @@ global $urlsite;
 $localPageName = $_GET['act'];
 
 include("controller/".$localPageName.".php");
-
+unset($_SESSION['ans']);
+unset($_SESSION['benar']);
 // if(!isset($_SESSION['usersessid'])){
     // echo"<br><br><center><span class=notFound>"._PLEASELOGINUSER."</span></center><br><br>
 	// <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>";

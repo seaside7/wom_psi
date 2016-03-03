@@ -14,6 +14,7 @@
 			}
 		}
 	}
+	sql_query("UPDATE user SET tahapan_tes = '2' WHERE no_ktp = '".$id."'");
 	return true;
 	// echo "<pre>";
 	// print_r ($_POST);

@@ -21,7 +21,7 @@ function loadPAPI($UsrDef){
 }
 function LocalPAPIForm($UsrDef, $limit)
 {	
-	
+	// print_r($_SESSION);
 	$content = '<input type="hidden" name="hduserid" id="hduserid" value="'.$_SESSION['userid'].'">';
 	$content .= '<div id="content" class="col-md-6 col-md-offset-3" role="main">';
 	$content .= '<table class="table table-bordered" id="tablePAPI">';
@@ -35,21 +35,30 @@ function LocalPAPIForm($UsrDef, $limit)
 		$no = $soal['no_soal'];
 		$content .= '<tr>';
 		$content .= '<td rowspan="2" class="col-md-1" style="vertical-align:middle; text-align:center; font-weight:bold;">'.$no.'</td>';
-		$content .= '<td class="col-md-11 ansrowA"><input type="radio" id="rdsoalA'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe1'].'">&nbsp;&nbsp;'.$soal['pernyataan1'].'</td></tr>';
-		$content .= '<tr><td class="col-md-11 ansrowB"><input type="radio" id="rdsoalB'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe2'].'">&nbsp;&nbsp;'.$soal['pernyataan2'].'</td></tr>';
+		$content .= '<td class="col-md-11 ansrowA"><input type="radio" id="rdsoalA'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe1'].'" '.chsel($soal['tipe1'], $_SESSION['anspapi'][$no]).'>&nbsp;&nbsp;'.$soal['pernyataan1'].'</td></tr>';
+		$content .= '<tr><td class="col-md-11 ansrowB"><input type="radio" id="rdsoalB'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe2'].'" '.chsel($soal['tipe2'], $_SESSION['anspapi'][$no]).'>&nbsp;&nbsp;'.$soal['pernyataan2'].'</td></tr>';
 		$content .= '</tr>';
 	}
 	$content .= '</table>';
 	
-	$qnext = sql_query("SELECT a.no_soal, b1.pernyataan AS pernyataan1, b1.tipe AS tipe1, b2.pernyataan AS pernyataan2, b2.tipe AS tipe2
-							FROM soal_papi a LEFT JOIN pernyataan b1 ON a.pernyataan_A = b1.id_pernyataan
-							LEFT JOIN pernyataan b2 ON a.pernyataan_B = b2.id_pernyataan
-							ORDER BY a.no_soal
-							LIMIT ".$limit.",15");
-	if(sql_numrows($qnext)>0)
-	$content .= "<div align='center' class='col-md-6 col-md-offset-3' ><input type='button' class='button col-md-6 col-md-offset-3' id='btnNext' onclick='nextPage(\"formPAPI\",\"".$_SESSION['userid']."\",".($limit)."); return false;' value='Berikutnya' /></div>";
+	// $content .= "<div align='center' class='col-md-6 col-md-offset-3' ><input type='button' class='button col-md-6 col-md-offset-3' id='btnNext' onclick='nextPage(\"formPAPI\",\"".$_SESSION['userid']."\",".($limit)."); return false;' value='Berikutnya' /></div>";
+	
+	$content .= "<div align='center' class='col-md-3 col-md-offset-3' ><input type='button' class='button ' id='btnPrevious' onclick='previousPage(\"formPAPI\",\"".$_SESSION['userid']."\",".($limit)."); return false;' value='Sebelumnya' ";
+	if($limit==0){
+	$content .= "disabled";
+	}
+	$content .= "/></div>";
+	$content .= "<div align='center' class='col-md-3' ><input type='button' class='button ' id='btnNext' onclick='nextPage(\"formPAPI\",\"".$_SESSION['userid']."\",".($limit)."); return false;' ";
+	if($limit==75) $content .= "value='Selesai' "; else $content .= "value='Berikutnya' ";
+	$content .= "/></div>";
+	
 	$content .= "</div>";
 	
 	return $content;
-};
+}
+function chsel($val,$inp)
+  {	if($val==$inp) {  $ya='checked'; }
+  	else $ya=='';
+	return $ya;
+  }
 ?>

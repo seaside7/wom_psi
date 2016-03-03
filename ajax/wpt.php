@@ -48,6 +48,9 @@ if($po=="nextPage" || $po=="previousPage" || $po=="saveHasilWPT") {
 					'".$totalbenar."', 
 					'".$wpt_iq."'
 					);");
+		unset($_SESSION['ans']);
+		unset($_SESSION['benar']);
+		sql_query("UPDATE user SET tahapan_tes = '5' WHERE no_ktp = '".$id."'");
 		echo $totalbenar;
 	}
 	
