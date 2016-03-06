@@ -109,7 +109,7 @@ function showChart()
     $content .= '<div class="clearfix"></div>';
 	
 	$content .= '<div class="row">';
-	$content .= '<div class="col-md-6 col-sm-6">';
+	$content .= '<div class="col-md-3 col-sm-4>';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_title">';
     $content .= '<h2>DISC<small>&nbsp;</small></h2>';
@@ -118,10 +118,56 @@ function showChart()
     /* 
 		 GRAFIK DISC 
 						*/
+	
+    $content .= '<div class="x_panel">';
+    $content .= '<div class="x_content">';
+    $content .= '<canvas id="canvasDISC1" height="400" ></canvas>';
+    $content .= '</div>';
+    $content .= '</div>';
+    
+
+    $content .= '</div>';
+    $content .= '<div class="col-md-3 col-sm-4>';
+    $content .= '<div class="x_panel">';
+    $content .= '<div class="x_title">';
+    $content .= '<h2>DISC<small>&nbsp;</small></h2>';
+    $content .= '<div class="clearfix"></div>';
+    $content .= '</div>';
+    /* 
+		 GRAFIK DISC 
+						*/
+	
+    $content .= '<div class="x_panel">';
+    $content .= '<div class="x_content">';
+    $content .= '<canvas id="canvasDISC2" height="400" ></canvas>';
+    $content .= '</div>';
+    $content .= '</div>';
+    
+
+    $content .= '</div>';
+    $content .= '<div class="col-md-3 col-sm-4>';
+    $content .= '<div class="x_panel">';
+    $content .= '<div class="x_title">';
+    $content .= '<h2>DISC<small>&nbsp;</small></h2>';
+    $content .= '<div class="clearfix"></div>';
+    $content .= '</div>';
+    /* 
+		 GRAFIK DISC 
+						*/
+	
+    $content .= '<div class="x_panel">';
+    $content .= '<div class="x_content">';
+    $content .= '<canvas id="canvasDISC3" height="400" ></canvas>';
+    $content .= '</div>';
+    $content .= '</div>';
+    
+
     $content .= '</div>';
     $content .= '</div>';
 	
+	$content .= '</div>';
 	
+	$content .= '<div class="row">';
 	$content .= '<div class="col-md-6 col-sm-6">';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_title">';
@@ -138,8 +184,7 @@ function showChart()
 	$content .= '</table>';
     $content .= '</div>';
     $content .= '</div>';
-	$content .= '</div>';
-	
+
     $content .= '</div>';
     $content .= '</div>';
 	

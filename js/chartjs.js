@@ -4,7 +4,7 @@ $(document).ready(function () {
 	$.ajax({
 		url: "ajax/chartjs.php",
 			type: "GET",
-			data: 'data='+param+'&po=getLineChart',
+			data: 'userid='+param+'&po=getLineChart',
 			dataType: 'json',
 			cache: false,
 			async:false,
@@ -77,7 +77,7 @@ $(document).ready(function () {
 	$.ajax({
 		url: "ajax/chartjs.php",
 			type: "GET",
-			data: 'data='+param+'&po=getRadarChart',
+			data: 'userid='+param+'&po=getRadarChart',
 			dataType: 'json',
 			cache: false,
 			async:false,
@@ -93,7 +93,7 @@ $(document).ready(function () {
 	$.ajax({
 		url: "ajax/chartjs.php",
 			type: "GET",
-			data: 'data='+param+'&po=getWPT',
+			data: 'userid='+param+'&po=getWPT',
 			dataType: 'json',
 			cache: false,
 			async:false,
@@ -153,6 +153,122 @@ $(document).ready(function () {
 		tooltipFillColor: "rgba(51, 51, 51, 0.55)"
 		
 	});
+
+
+	var dataLineDISC1, dataLineDISC2, dataLineDISC3;
+	$.ajax({
+		url: "ajax/chartjs.php",
+			type: "GET",
+			data: 'userid='+param+'&po=getLineDISC',
+			dataType: 'json',
+			cache: false,
+			async:false,
+			success: function(data)
+			{
+				if(data)
+				{
+					dataLineDISC1 = data.graph1;
+					dataLineDISC2 = data.graph2;
+					dataLineDISC3 = data.graph3;
+					console.log(data);
+				}
+			}
+		});
+	var labelDISC = ['D', 'I', 'S', 'C'];
+	
+	var lineChartDataDISC1 = {
+		labels: labelDISC,
+		datasets: [
+			{
+				label: "My Second dataset",
+				fillColor : "#fff", //rgba(151,187,205,0.2)
+				strokeColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1
+				pointStrokeColor: "#fff",
+				data: [45]
+		},
+		{
+				label: "My Second dataset",
+				fillColor: "#fff", //rgba(151,187,205,0.2)
+				strokeColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1)
+				pointColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1)
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(151,187,205,1)",
+				data: dataLineDISC1
+		}
+	]
+	}
+
+		new Chart(document.getElementById("canvasDISC1").getContext("2d")).Line(lineChartDataDISC1, {
+			responsive: true,
+				showTooltips: false,
+				bezierCurve : false,
+			showScale: false,
+			scaleOverride: true, scaleStartValue: 0, scaleStepWidth: 1, scaleSteps: 45,
+			tooltipFillColor: "rgba(51, 51, 51, 0.55)"
+		});
+	var lineChartDataDISC2 = {
+		labels: labelDISC,
+		datasets: [
+			{
+				label: "My Second dataset",
+				fillColor : "#fff", //rgba(151,187,205,0.2)
+				strokeColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1
+				pointStrokeColor: "#fff",
+				data: [45]
+		},
+		{
+				label: "My Second dataset",
+				fillColor: "#fff", //rgba(151,187,205,0.2)
+				strokeColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1)
+				pointColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1)
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(151,187,205,1)",
+				data: dataLineDISC2
+		}
+	]
+	}
+
+		new Chart(document.getElementById("canvasDISC2").getContext("2d")).Line(lineChartDataDISC2, {
+			responsive: true,
+				showTooltips: false,
+				bezierCurve : false,
+			showScale: false,
+			scaleOverride: true, scaleStartValue: 0, scaleStepWidth: 1, scaleSteps: 45,
+			tooltipFillColor: "rgba(51, 51, 51, 0.55)"
+		});
+	var lineChartDataDISC3 = {
+		labels: labelDISC,
+		datasets: [
+			{
+				label: "My Second dataset",
+				fillColor : "#fff", //rgba(151,187,205,0.2)
+				strokeColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1
+				pointStrokeColor: "#fff",
+				data: [45]
+		},
+		{
+				label: "My Second dataset",
+				fillColor: "#fff", //rgba(151,187,205,0.2)
+				strokeColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1)
+				pointColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1)
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(151,187,205,1)",
+				data: dataLineDISC3
+		}
+	]
+	}
+
+		new Chart(document.getElementById("canvasDISC3").getContext("2d")).Line(lineChartDataDISC3, {
+			responsive: true,
+				showTooltips: false,
+				bezierCurve : false,
+			showScale: false,
+			scaleOverride: true, scaleStartValue: 0, scaleStepWidth: 1, scaleSteps: 45,
+			tooltipFillColor: "rgba(51, 51, 51, 0.55)"
+		});
 });
 
 	

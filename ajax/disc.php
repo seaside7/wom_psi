@@ -12,7 +12,7 @@ if($po=="saveHasilDISC") {
 				`SM`, `SL`, `CM`, `CL`
 				)
 				VALUES
-				('userid', 
+				('".$id."', 
 				'".$_GET['DM']."', '".$_GET['DL']."', '".$_GET['IM']."', '".$_GET['IL']."', 
 				'".$_GET['SM']."', '".$_GET['SL']."', '".$_GET['CM']."', '".$_GET['CL']."'
 				);";
