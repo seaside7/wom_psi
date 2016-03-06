@@ -24,6 +24,7 @@ function localJsSaveDetail(form)
 	var Posisi = $('#txtPosisi').val(); 		
 	var Alamat = $('#txtAlamat').val(); 		
 	var NoHP = $('#txtNoHP').val(); 	
+	var thpn = 0;
 	
 	
 	if(!NoKTP){ alert('Nomor KTP belum diisi!'); return false; }
@@ -32,60 +33,56 @@ function localJsSaveDetail(form)
 	$.ajax({
 	 type: 'POST',
              dataType: "json",
+             async:false,
              url: 'ajax/home.php?po=localAjGetRowDetail&id='+$('#txtNoKTP').val(),
              success: function(data) {
 			if(data.row>0){
-				
+				thpn = 1;
 				switch(data.tahapan_tes)
 					{	
-						case '1': window.location.href = 'index.php?act=kraeplin';
-								  window.reload();  break;
-						case '2': window.location.href = 'index.php?act=papi';
-								  window.reload();  break;
-						case '3': window.location.href = 'index.php?act=disc';
-								  window.reload();  break;
-						case '4': window.location.href = 'index.php?act=wpt';
-								  window.reload();  break;
+						case '1': window.location.href = 'index.php?act=kraeplin';break; 
+						case '2': window.location.href = 'index.php?act=papi';break;
+						case '3': window.location.href = 'index.php?act=disc';break;
+						case '4': window.location.href = 'index.php?act=wpt';break;
 						case '5': alert('Peserta dengan nomor KTP '+NoKTP+' sudah menyelesaikan tahapan psikotes.'); break;
 					}
-				
 				}
 		}			
 	});
 	
-	if(!Nama){ alert('Nama belum diisi!'); return false; }
-	if(!Posisi){ alert('Posisi yang dilamar belum diisi!'); return false; }
-	if(!Alamat){ alert('Alamat belum diisi!'); return false; }
-	if(!NoHP){ alert('Nomor HP belum diisi!'); return false; }
-
-	if(!confirm(strConfirm)) { return false; }
-	else
-	{   
-		$('#btnSaveDetail').disable;
-		$('#btnSaveDetail').val("Sedang Dalam Proses Simpan");
-		// $(form).submit();
-		console.log($('#'+form).serialize());
-		$.ajax({
-		 type: 'POST',
-		 url: 'ajax/home.php?&po=localAjSaveDetail',
-		 data: $('#'+form).serialize(),
-		
-        success:function(request){
-            // var hasils = request.responseText;
-			console.log(request);
-			switch(request)
-			{	case '0': alert('Gagal menyimpan data.'); break;	
-				case '1': alert('Sukses menyimpan data'); 
-						  window.location.href = 'index.php?act=kraeplin';
-						  window.reload();  break;
+	if(thpn == 0){
+		if(!Nama){ alert('Nama belum diisi!'); return false; }
+		if(!Posisi){ alert('Posisi yang dilamar belum diisi!'); return false; }
+		if(!Alamat){ alert('Alamat belum diisi!'); return false; }
+		if(!NoHP){ alert('Nomor HP belum diisi!'); return false; }	
+		if(!confirm(strConfirm)){ 
+			return false; 
+		}else{   
+			$('#btnSaveDetail').disable;
+			$('#btnSaveDetail').val("Sedang Dalam Proses Simpan");
+			// $(form).submit();
+			console.log($('#'+form).serialize());
+			$.ajax({
+			 type: 'POST',
+			 url: 'ajax/home.php?&po=localAjSaveDetail',
+			 data: $('#'+form).serialize(),
+			
+	        success:function(request){
+	            // var hasils = request.responseText;
+				console.log(request);
+				switch(request)
+				{	case '0': alert('Gagal menyimpan data.'); break;	
+					case '1': alert('Sukses menyimpan data'); 
+							  window.location.href = 'index.php?act=kraeplin';
+							  window.reload();  break;
+				}
+				$('#btnSaveDetail').enable;
+				$('#btnSaveDetail').val("Simpan");
 			}
-			$('#btnSaveDetail').enable;
-			$('#btnSaveDetail').val("Simpan");
+			 }); return false;
+			
 		}
-		 }); return false;
-		
 	}
-	
 }
 function trim(str, chars) {	return ltrim(rtrim(str, chars), chars);} 
 function ltrim(str, chars) {	chars = chars || "\\s";	return str.replace(new RegExp("^[" + chars + "]+", "g"), "");}
