@@ -107,62 +107,50 @@ function showChart()
     
 	
     $content .= '<div class="clearfix"></div>';
-	
-	$content .= '<div class="row">';
-	$content .= '<div class="col-md-3 col-sm-4>';
-    $content .= '<div class="x_panel">';
-    $content .= '<div class="x_title">';
+	$content .= '<div class="x_title col-md-12">';
     $content .= '<h2>DISC<small>&nbsp;</small></h2>';
     $content .= '<div class="clearfix"></div>';
     $content .= '</div>';
-    /* 
-		 GRAFIK DISC 
-						*/
 	
+	$content .= '<div class="row">';
+	
+	$content .= '<div class="col-md-3 col-sm-3">';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_content">';
     $content .= '<canvas id="canvasDISC1" height="400" ></canvas>';
     $content .= '</div>';
     $content .= '</div>';
-    
-
     $content .= '</div>';
-    $content .= '<div class="col-md-3 col-sm-4>';
-    $content .= '<div class="x_panel">';
-    $content .= '<div class="x_title">';
-    $content .= '<h2>DISC<small>&nbsp;</small></h2>';
-    $content .= '<div class="clearfix"></div>';
-    $content .= '</div>';
-    /* 
-		 GRAFIK DISC 
-						*/
 	
+    $content .= '<div class="col-md-3 col-sm-3">';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_content">';
     $content .= '<canvas id="canvasDISC2" height="400" ></canvas>';
     $content .= '</div>';
     $content .= '</div>';
-    
-
     $content .= '</div>';
-    $content .= '<div class="col-md-3 col-sm-4>';
-    $content .= '<div class="x_panel">';
-    $content .= '<div class="x_title">';
-    $content .= '<h2>DISC<small>&nbsp;</small></h2>';
-    $content .= '<div class="clearfix"></div>';
-    $content .= '</div>';
-    /* 
-		 GRAFIK DISC 
-						*/
 	
+    $content .= '<div class="col-md-3 col-sm-3">';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_content">';
     $content .= '<canvas id="canvasDISC3" height="400" ></canvas>';
     $content .= '</div>';
     $content .= '</div>';
-    
-
     $content .= '</div>';
+	
+    $content .= '<div class="col-md-3 col-sm-3">';
+    $content .= '<table class="table table-bordered" style="text-align:center;">';
+	$rDISC = sql_fetchrow(sql_query("SELECT DM, DL, DM-DL AS D3, IM, IL, IM-IL AS I3, SM, SL, SM-SL AS S3, CM, CL, CM-CL AS C3 FROM hasil_disc WHERE userid='$id'"));
+    $content .= '<thead><tr><th width="25%">&nbsp;</th><th width="25%">Graph I</th><th width="25%">Graph II</th><th width="25%">Graph III</th></tr></thead>';
+	$content .= '<tbody>';
+	$content .= '<tr style="color:purple; font-weight:bold;"><td>D</td><td>'.$rDISC['DM'].'</td><td>'.$rDISC['DL'].'</td><td>'.$rDISC['D3'].'</td></tr>';
+	$content .= '<tr style="color:red; font-weight:bold;"><td>I</td><td>'.$rDISC['IM'].'</td><td>'.$rDISC['IL'].'</td><td>'.$rDISC['I3'].'</td></tr>';
+	$content .= '<tr style="color:blue; font-weight:bold;"><td>S</td><td>'.$rDISC['SM'].'</td><td>'.$rDISC['SL'].'</td><td>'.$rDISC['S3'].'</td></tr>';
+	$content .= '<tr style="color:green; font-weight:bold;"><td>C</td><td>'.$rDISC['CM'].'</td><td>'.$rDISC['CL'].'</td><td>'.$rDISC['C3'].'</td></tr>';
+	$content .= '</tbody>';
+	$content .= '</table>';
+    $content .= '</div>';
+	
     $content .= '</div>';
 	
 	$content .= '</div>';

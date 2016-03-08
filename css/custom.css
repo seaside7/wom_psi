@@ -229,6 +229,27 @@ body.nav-md .container.body .right_col {
 	
 	height:450px !important;
 }
+#canvasDISC1 {
+	background-image:url(../images/bg-disc-1.jpg); 
+	background-repeat: no-repeat; 
+	background-position: center; 
+	
+	height:450px !important;
+}
+#canvasDISC2 {
+	background-image:url(../images/bg-disc-2.jpg); 
+	background-repeat: no-repeat; 
+	background-position: center; 
+	
+	height:450px !important;
+}
+#canvasDISC3 {
+	background-image:url(../images/bg-disc-3.jpg); 
+	background-repeat: no-repeat; 
+	background-position: center; 
+	
+	height:450px !important;
+}
 #canvas_radar {
 	margin-top:77;
 	margin-left:-5px;

@@ -174,7 +174,7 @@ $(document).ready(function () {
 				}
 			}
 		});
-	var labelDISC = ['D', 'I', 'S', 'C'];
+	var labelDISC = [' ', ' ', ' ', ' '];
 	
 	var lineChartDataDISC1 = {
 		labels: labelDISC,
@@ -184,6 +184,7 @@ $(document).ready(function () {
 				fillColor : "#fff", //rgba(151,187,205,0.2)
 				strokeColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1
 				pointStrokeColor: "#fff",
+				pointColor: "#fff",
 				data: [45]
 		},
 		{
@@ -201,9 +202,11 @@ $(document).ready(function () {
 
 		new Chart(document.getElementById("canvasDISC1").getContext("2d")).Line(lineChartDataDISC1, {
 			responsive: true,
-				showTooltips: false,
-				bezierCurve : false,
-			showScale: false,
+			showTooltips: false,
+			bezierCurve : false,
+			datasetFill : false,
+			scaleFontColor: "#fff",
+			showScale: true,
 			scaleOverride: true, scaleStartValue: 0, scaleStepWidth: 1, scaleSteps: 45,
 			tooltipFillColor: "rgba(51, 51, 51, 0.55)"
 		});
@@ -215,6 +218,7 @@ $(document).ready(function () {
 				fillColor : "#fff", //rgba(151,187,205,0.2)
 				strokeColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1
 				pointStrokeColor: "#fff",
+				pointColor: "#fff",
 				data: [45]
 		},
 		{
@@ -232,9 +236,11 @@ $(document).ready(function () {
 
 		new Chart(document.getElementById("canvasDISC2").getContext("2d")).Line(lineChartDataDISC2, {
 			responsive: true,
-				showTooltips: false,
-				bezierCurve : false,
-			showScale: false,
+			showTooltips: false,
+			bezierCurve : false,
+			datasetFill : false,
+			scaleFontColor: "#fff",
+			showScale: true,
 			scaleOverride: true, scaleStartValue: 0, scaleStepWidth: 1, scaleSteps: 45,
 			tooltipFillColor: "rgba(51, 51, 51, 0.55)"
 		});
@@ -246,6 +252,7 @@ $(document).ready(function () {
 				fillColor : "#fff", //rgba(151,187,205,0.2)
 				strokeColor: "rgba(3, 88, 106, 0.70)", //rgba(151,187,205,1
 				pointStrokeColor: "#fff",
+				pointColor: "#fff",
 				data: [45]
 		},
 		{
@@ -263,9 +270,11 @@ $(document).ready(function () {
 
 		new Chart(document.getElementById("canvasDISC3").getContext("2d")).Line(lineChartDataDISC3, {
 			responsive: true,
-				showTooltips: false,
-				bezierCurve : false,
-			showScale: false,
+			showTooltips: false,
+			bezierCurve : false,
+			datasetFill : false,
+			scaleFontColor: "#fff",
+			showScale: true,
 			scaleOverride: true, scaleStartValue: 0, scaleStepWidth: 1, scaleSteps: 45,
 			tooltipFillColor: "rgba(51, 51, 51, 0.55)"
 		});
