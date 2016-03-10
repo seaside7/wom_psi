@@ -22,6 +22,7 @@ function localJsSaveDetail(form)
 	var NoKTP = $('#txtNoKTP').val(); 		
 	var Nama = $('#txtNama').val(); 		
 	var Posisi = $('#txtPosisi').val(); 		
+	var Usia = $('#txtUsia').val(); 		
 	var Alamat = $('#txtAlamat').val(); 		
 	var NoHP = $('#txtNoHP').val(); 	
 	var thpn = 0;
@@ -52,6 +53,7 @@ function localJsSaveDetail(form)
 	
 	if(thpn == 0){
 		if(!Nama){ alert('Nama belum diisi!'); return false; }
+		if(!Usia){ alert('Usia belum diisi!'); return false; }
 		if(!Posisi){ alert('Posisi yang dilamar belum diisi!'); return false; }
 		if(!Alamat){ alert('Alamat belum diisi!'); return false; }
 		if(!NoHP){ alert('Nomor HP belum diisi!'); return false; }	

@@ -77,7 +77,7 @@ require_once('function/mainfunction.php');
 	<div id="hheaderCont">
 	<div id="hheader">
     <div class="headerLogo" >
-		<a href="?"><img src="images/logo-WOM.png" width="86" height="45"></a>
+		<a href="?"><img src="images/logo-WOM.png" width="235" height="45"></a>
 	</div>
 		
 		</div></div>

@@ -37,6 +37,13 @@ if($po=="nextPage" || $po=="previousPage" || $po=="saveHasilWPT") {
 		for($y=0;$y<=40;$y+=10){
 			$totalbenar = $totalbenar + $_SESSION['benar'][$y];
 		}
+		
+		
+		list($usia) = sql_fetchrow(sql_query("SELECT usia FROM user WHERE no_ktp = '".$id."'"));
+		if($usia > 40) $totalbenar = $totalbenar + 2;
+		else if($usia > 30) $totalbenar = $totalbenar + 1;
+			
+		
 		list($wpt_iq) = sql_fetchrow(sql_query("SELECT wpt_iq FROM wpt_mapping WHERE wpt_skor = '".$totalbenar."'"));
 		sql_query("INSERT INTO `wom_psi`.`hasil_wpt` 
 					(`userid`, 
