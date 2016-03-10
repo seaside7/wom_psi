@@ -3,10 +3,10 @@
 function loadDISC($UsrDef){
 	$content = '<div class="col-md-12" role="main">';
     $content .= '<div class="page-title">';
-	$content .= '<div id="title-left" align="center" class="col-md-12"><h3>WPT</h3></div>';
+	$content .= '<div id="title-left" align="center" class="col-md-12"><h3>DISC</h3></div>';
 	$content .= "</div>";
 	$content .= "<div class='col-md-6 col-md-offset-3' style='padding-bottom: 10px;' id='rules'><fieldset class=contentInfo style='margin-top:0 '>
-				<center><h4>Ketentuan Pengerjaan Tes WPT</h4></center>
+				<center><h4>Ketentuan Pengerjaan Tes DISC</h4></center>
 						<div class='col-md-12'><ol>
 							<li>Posisikan diri Anda dalam situasi pekerjaan Anda saat ini (dalam jabatan Anda saat ini).</li>
 							<li>Kerjakan baris demi baris.</li>
