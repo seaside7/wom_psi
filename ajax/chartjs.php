@@ -101,26 +101,30 @@
 							`G`, `L`, `I`, `T`, `V`, `S`, `R`, `D`, `C`, `E`, 
 							`N`, `A`, `P`, `X`, `B`, `O`, `Z`, `K`, `F`, `W`
 							 FROM `wom_psi`.`hasil_papi` WHERE userid = '".$data['userid']."';"));
-		$result['cell'][] = $qRadar['N'];
-		$result['cell'][] = $qRadar['G'];
-		$result['cell'][] = $qRadar['A'];
-		$result['cell'][] = $qRadar['L'];
-		$result['cell'][] = $qRadar['P'];
-		$result['cell'][] = $qRadar['I'];
-		$result['cell'][] = $qRadar['T'];
-		$result['cell'][] = $qRadar['V'];
-		$result['cell'][] = $qRadar['X'];
-		$result['cell'][] = $qRadar['S'];
-		$result['cell'][] = $qRadar['B'];
-		$result['cell'][] = $qRadar['O'];
-		$result['cell'][] = $qRadar['R'];
-		$result['cell'][] = $qRadar['D'];
-		$result['cell'][] = $qRadar['C'];
-		$result['cell'][] = reverseValue($qRadar['Z']);
-		$result['cell'][] = $qRadar['E'];
-		$result['cell'][] = reverseValue($qRadar['K']);
-		$result['cell'][] = $qRadar['F'];
-		$result['cell'][] = $qRadar['W'];
+		if($qRadar){
+			$result['cell'][] = $qRadar['N'];
+			$result['cell'][] = $qRadar['G'];
+			$result['cell'][] = $qRadar['A'];
+			$result['cell'][] = $qRadar['L'];
+			$result['cell'][] = $qRadar['P'];
+			$result['cell'][] = $qRadar['I'];
+			$result['cell'][] = $qRadar['T'];
+			$result['cell'][] = $qRadar['V'];
+			$result['cell'][] = $qRadar['X'];
+			$result['cell'][] = $qRadar['S'];
+			$result['cell'][] = $qRadar['B'];
+			$result['cell'][] = $qRadar['O'];
+			$result['cell'][] = $qRadar['R'];
+			$result['cell'][] = $qRadar['D'];
+			$result['cell'][] = $qRadar['C'];
+			$result['cell'][] = reverseValue($qRadar['Z']);
+			$result['cell'][] = $qRadar['E'];
+			$result['cell'][] = reverseValue($qRadar['K']);
+			$result['cell'][] = $qRadar['F'];
+			$result['cell'][] = $qRadar['W'];
+		}else{
+			$result['cell'][]="";
+		}
 		
 		echo json_encode($result);
 		
