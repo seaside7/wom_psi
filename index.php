@@ -29,6 +29,8 @@ require_once('function/mainfunction.php');
 	<script type="text/javascript" src="js/jquery.timer.js"></script>
 	<script type="text/javascript" src="js/jquery.msgbox.js"></script>
 	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollTo-2.1.2/jquery.scrollTo.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollTo-2.1.2/jquery.scrollTo.min.js"></script>
 	<!--<script type="text/javascript" src="js/dataTables.tableTools.js"></script>-->
 	<script type="text/javascript" src="js/jquery.dataTables.columnFilter.js"></script>
 	<link href="css/tooltipster.css" rel="stylesheet" type="text/css">

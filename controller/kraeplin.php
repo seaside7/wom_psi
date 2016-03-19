@@ -47,6 +47,7 @@ function LocalKraeplinForm($UsrDef)
 							<li>Klik tombol start untuk memulai tes.</li>
 						</ol></div></fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
+	// $content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnup" value="Up" onclick="up();"></div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formKraeplin">';
 	$content .= '<input type="hidden" name="hduserid" id="hduserid" value="'.$_SESSION['userid'].'">';
 	$content .= '<input type="hidden" name="hdmaxX" id="hdmaxX" value="'.$maxX.'">';
@@ -64,7 +65,7 @@ function LocalKraeplinForm($UsrDef)
 				$content .= "</tr><tr>";
 				for($xpp=1;$xpp<=$maxX;$xpp++){ $ypp = $yp-1;
 					$content .= "<td>&nbsp;</td>";
-					$content .= "<td><input tabindex='-1' type='text' maxlength = '1' class='txtans txtansrow".$xpp."' name='txtans_".$xpp."_".$ypp."' size=1 id='txtans_".$xpp."_".$ypp."' onkeyup='nextText($xpp, $ypp, (this).value)' oninput='maxLengthCheck(this)' onClick='this.select();' onfocus='this.oldvalue = this.value;' onChange='check($xpp, $ypp, this)' this.oldvalue = this.value; >";
+					$content .= "<td><input tabindex='-1' type='text' maxlength = '1' data-x='".$xpp."' data-y='".$ypp."' class='txtans txtansrow".$xpp."' name='txtans_".$xpp."_".$ypp."' size=1 id='txtans_".$xpp."_".$ypp."' onkeyup='nextText($xpp, $ypp, (this).value); ' onClick='this.select(); scrollright($xpp);' onfocus='this.oldvalue = this.value;' onChange='check($xpp, $ypp, this)' this.oldvalue = this.value; >";
 					$content .= "<input type=hidden name='hdinput_".$xpp."_".$ypp."' id='hdinput_".$xpp."_".$ypp."' ></td>";
 					$content .= "<input type=hidden name='hdans_".$xpp."_".$ypp."' id='hdans_".$xpp."_".$ypp."' value='".$cell[$xpp][$ypp]['ans']."'></td>";
 					$content .= "<input type=hidden name='hdstatus_".$xpp."_".$ypp."' id='hdstatus_".$xpp."_".$ypp."' value='1'></td>";
