@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	var param = $('#hdid').val();
-	var dataLine, dataSpeed, dataRadar;
+	var dataLine, dataSpeed, dataTimbang, dataRadar;
 	$.ajax({
 		url: "ajax/chartjs.php",
 			type: "GET",
@@ -15,17 +15,23 @@ $(document).ready(function () {
 					dataLine = data.cell;
 					dataTimbang = data.timbang;
 					
+					//kecepatan
 					$('#lblPankerScore').text(data.speed);
 					$('#lblPankerPP').text(data.speedPP);
 					$('#lblPankerCat').text(data.speedCat);
 					
+					//ketelitian
 					$('#lblJankerScore').text(data.janker);
 					$('#lblJankerPP').text(data.jankerPP);
 					$('#lblJankerCat').text(data.jankerCat);
 					
+					//keajekan
 					$('#lblTinkerScore').text(data.tinker);
 					$('#lblTinkerPP').text(data.tinkerPP);
 					$('#lblTinkerCat').text(data.tinkerCat);
+
+					$('#lblTotalScore').text(data.total);
+					$('#lblKesalahanScore').text(data.salah);
 					// console.log(data);
 				}
 			}

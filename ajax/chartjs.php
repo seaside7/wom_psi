@@ -15,8 +15,14 @@
 	if($po=="getLineChart"){
 		$data = $_GET;
 		$qCell = sql_query("SELECT x,y FROM tinggi WHERE userid = '".$data['userid']."' order by x;");
-		list($qSpeed, $qTimbang, $qJanker) = sql_fetchrow(sql_query("SELECT ROUND(AVG(Y)) AS speed, ROUND((MAX(Y)+MIN(Y))/2) AS timbang, MAX(Y)-MIN(Y) AS janker FROM tinggi WHERE userid = '".$data['userid']."'; "));
-		list($qTinker) = sql_fetchrow(sql_query("SELECT COUNT(1) AS tinker FROM salah WHERE userid = '".$data['userid']."'; "));
+		list($qSpeed, $qTimbang, $qJanker, $qTotal) = sql_fetchrow(sql_query("SELECT ROUND(AVG(Y)) AS speed, ROUND((MAX(Y)+MIN(Y))/2) AS timbang, MAX(Y)-MIN(Y) AS janker, MAX(Y)+MIN(Y) AS total FROM tinggi WHERE userid = '".$data['userid']."'; "));
+		list($qSpeed) = sql_fetchrow(sql_query("SELECT ROUND(AVG(Y)) AS speed FROM tinggi WHERE userid = '".$data['userid']."' AND x BETWEEN 6 AND 40; "));
+		list($qTinker) = sql_fetchrow(sql_query("SELECT COUNT(1) AS tinker FROM salah WHERE userid = '".$data['userid']."' and x BETWEEN 6 AND 40; "));
+		list($salah) = sql_fetchrow(sql_query("select (A.sums+B.sums+C.sums) as jumlahsalah
+						from 
+						(SELECT COUNT(1) as sums FROM `salah` WHERE userid='".$data['userid']."' and x BETWEEN 6 and 10) A,
+						(SELECT COUNT(1) as sums FROM `salah` WHERE userid='".$data['userid']."' and x BETWEEN 21 and 25) B,
+						(SELECT COUNT(1) as sums FROM `salah` WHERE userid='".$data['userid']."' and x BETWEEN 36 and 40) C;"));
 
 		$result = array();
 		$i = 1;
@@ -40,6 +46,9 @@
 		$result['tinkerCat'] = $tinker['cat'];
 		
 		$result['timbang'] = $qTimbang;
+
+		$result['total'] = $qTotal;
+		$result['salah'] = $salah;
 		
 		echo json_encode($result);
 	}
