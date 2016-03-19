@@ -39,7 +39,7 @@ if($po=="nextPage" || $po=="previousPage" || $po=="saveHasilWPT") {
 		}
 		
 		
-		list($usia) = sql_fetchrow(sql_query("SELECT usia FROM user WHERE no_ktp = '".$id."'"));
+		list($usia) = sql_fetchrow(sql_query("SELECT usia FROM user WHERE no_ktp = '".$_GET['id']."'"));
 		if($usia > 40) $totalbenar = $totalbenar + 2;
 		else if($usia > 30) $totalbenar = $totalbenar + 1;
 			
@@ -57,7 +57,7 @@ if($po=="nextPage" || $po=="previousPage" || $po=="saveHasilWPT") {
 					);");
 		unset($_SESSION['ans']);
 		unset($_SESSION['benar']);
-		sql_query("UPDATE user SET tahapan_tes = '5' WHERE no_ktp = '".$id."'");
+		sql_query("UPDATE user SET tahapan_tes = '5' WHERE no_ktp = '".$_GET['id']."'");
 		echo $totalbenar;
 	}
 	

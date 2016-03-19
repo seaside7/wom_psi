@@ -35,8 +35,16 @@ function LocalPAPIForm($UsrDef, $limit)
 		$no = $soal['no_soal'];
 		$content .= '<tr>';
 		$content .= '<td rowspan="2" class="col-md-1" style="vertical-align:middle; text-align:center; font-weight:bold;">'.$no.'</td>';
-		$content .= '<td class="col-md-11 ansrowA"><input type="radio" id="rdsoalA'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe1'].'" '.chsel($soal['tipe1'], $_SESSION['anspapi'][$no]).'>&nbsp;&nbsp;'.$soal['pernyataan1'].'</td></tr>';
-		$content .= '<tr><td class="col-md-11 ansrowB"><input type="radio" id="rdsoalB'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe2'].'" '.chsel($soal['tipe2'], $_SESSION['anspapi'][$no]).'>&nbsp;&nbsp;'.$soal['pernyataan2'].'</td></tr>';
+		$content .= '<td class="col-md-11 ansrowA"><input type="radio" id="rdsoalA'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe1'].'" ';
+		if(isset($_SESSION['anspapi'][$no])){
+			$content .= chsel($soal['tipe1'], $_SESSION['anspapi'][$no]);
+		}
+		$content .= '>&nbsp;&nbsp;'.$soal['pernyataan1'].'</td></tr>';
+		$content .= '<tr><td class="col-md-11 ansrowB"><input type="radio" id="rdsoalB'.$no.'" name="rdsoal'.$no.'" value="'.$soal['tipe2'].'" ';
+		if(isset($_SESSION['anspapi'][$no])){
+			$content .= chsel($soal['tipe2'], $_SESSION['anspapi'][$no]);
+		}
+		$content .= '>&nbsp;&nbsp;'.$soal['pernyataan2'].'</td></tr>';
 		$content .= '</tr>';
 	}
 	$content .= '</table>';
@@ -57,7 +65,8 @@ function LocalPAPIForm($UsrDef, $limit)
 	return $content;
 }
 function chsel($val,$inp)
-  {	if($val==$inp) {  $ya='checked'; }
+  {	$ya='';
+	if($val==$inp) {  $ya='checked'; }
   	else $ya=='';
 	return $ya;
   }

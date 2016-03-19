@@ -33,7 +33,11 @@ function LocalWPTForm($UsrDef, $limit)
 		$no = $soal['no_soal'];
 		$content .= '<tr>';
 		$content .= '<td class="col-md-1" style="vertical-align:middle; text-align:center; font-weight:bold;">'.$no.'</td>';
-		$content .= '<td class="col-md-9">'.$soal['question'].'</td>';
+		$content .= '<td class="col-md-9">'.$soal['question'];
+		if($soal['img']=='1'){
+			$content .= '<br /><img src="images/'.$no.'.png">';
+		}
+		$content .= '</td>';
 		$content .= '<td class="col-md-2"><input class="textbox" type="text" size=5 id="txtans'.$no.'"  name="txtans'.$no.'" ';
 		if(isset($_SESSION['ans'][$no])){
 			$content .= 'value="'.$_SESSION['ans'][$no].'"';

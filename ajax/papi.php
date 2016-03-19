@@ -8,7 +8,9 @@ if($po=="nextPage" || $po=="previousPage") {
 	
 	$limit = $_GET['limit'];
 	for($x=$limit+1;$x<=$limit+15;$x++){
-		$_SESSION['anspapi'][$x] = $_GET['rdsoal'.$x];
+		if(isset($_GET['rdsoal'.$x])){
+			$_SESSION['anspapi'][$x] = $_GET['rdsoal'.$x];
+		}
 		
 	}
 	

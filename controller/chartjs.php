@@ -119,7 +119,7 @@ function showChart()
 	$content .= '<div class="col-md-3 col-sm-3">';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_content">';
-    $content .= '<canvas id="canvasDISC1" height="400" ></canvas>';
+    $content .= '<canvas id="canvasDISC1" height="450" ></canvas>';
     $content .= '</div>';
     $content .= '</div>';
     $content .= '</div>';
