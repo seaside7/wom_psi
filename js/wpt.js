@@ -79,5 +79,5 @@ var timer = jQuery.timer(function() {
 	});
 	
 	
-}, 900000);
+}, 720000);
 });	
