@@ -2,7 +2,7 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
 function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'WPT', 'Completed')))) AS tahapan
 		$UserQuery="SELECT tanggal_tes, no_ktp, nama_peserta, posisi, tahapan_tes,
-						IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'WPT', 'Completed')))) AS tahapan
+						IF(tahapan_tes='1', 'WPT', IF(tahapan_tes='2', 'Kraeplin', IF(tahapan_tes='3', 'PAPI', IF(tahapan_tes='4', 'DISC', 'Completed')))) AS tahapan
 						FROM USER  ";
 		$UserQuery .= " ORDER BY tanggal_tes DESC ";					
 		$stmt = sql_query($UserQuery);
@@ -44,7 +44,11 @@ function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAP
 function UserAction($id, $tahapan)
 {
 	$content='';	
-	if($tahapan=='5'){//$content .= $tahapan;
+	$cekWPT = sql_numrows(sql_query("SELECT DISTINCT userid FROM hasil_wpt WHERE userid='$id'"));
+	$cekKraeplin = sql_numrows(sql_query("SELECT DISTINCT userid FROM tinggi WHERE userid='$id'"));
+	$cekPAPI = sql_numrows(sql_query("SELECT DISTINCT userid FROM hasil_papi WHERE userid='$id'"));
+	$cekDISC = sql_numrows(sql_query("SELECT DISTINCT userid FROM hasil_disc WHERE userid='$id'"));
+	if($cekWPT>0 && $cekKraeplin>0 && $cekPAPI>0 && $cekDISC>0){//$content .= $tahapan;
 		$content.="<a href=\"javascript:\" onclick=\"window.open('index.php?act=chartjs&id=".$id."', '_blank')\" ><img src='images/view.gif' style='cursor:pointer' title=\"Lihat Data Peserta\" '> </a>";	
 	}
 	// }

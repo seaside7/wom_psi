@@ -64,7 +64,7 @@ if($po=="saveHasilPAPI") {
 	echo $qInsert;
 	sql_query($qInsert);
 	unset($_SESSION['anspapi']);
-	sql_query("UPDATE user SET tahapan_tes = '3' WHERE no_ktp = '".$id."'");
+	sql_query("UPDATE user SET tahapan_tes = '4' WHERE no_ktp = '".$id."'");
 	return true;
 	
 }

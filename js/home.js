@@ -41,10 +41,10 @@ function localJsSaveDetail(form)
 				thpn = 1;
 				switch(data.tahapan_tes)
 					{	
-						case '1': window.location.href = 'index.php?act=kraeplin';break; 
-						case '2': window.location.href = 'index.php?act=papi';break;
-						case '3': window.location.href = 'index.php?act=disc';break;
-						case '4': window.location.href = 'index.php?act=wpt';break;
+						case '1': window.location.href = 'index.php?act=wpt';break; 
+						case '2': window.location.href = 'index.php?act=kraeplin';break;
+						case '3': window.location.href = 'index.php?act=papi';break;
+						case '4': window.location.href = 'index.php?act=disc';break;
 						case '5': alert('Peserta dengan nomor KTP '+NoKTP+' sudah menyelesaikan tahapan psikotes.'); break;
 					}
 				}

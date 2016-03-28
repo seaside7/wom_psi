@@ -61,8 +61,9 @@ $( document ).ready(function() {
 	            success: function(data)
 	            {
 					console.log(data);
-					alert("Terima kasih data Anda sudah kami simpan");
-					window.location.href = 'index.php?act=wpt';
+					// alert("Terima kasih data Anda sudah kami simpan");
+					alert("Terima kasih Anda sudah melengkapi rangkaian Psikotes WOM Finance.");
+					window.location.href = 'index.php';
 					window.reload();
 				
 	            }

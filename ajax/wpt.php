@@ -57,7 +57,7 @@ if($po=="nextPage" || $po=="previousPage" || $po=="saveHasilWPT") {
 					);");
 		unset($_SESSION['ans']);
 		unset($_SESSION['benar']);
-		sql_query("UPDATE user SET tahapan_tes = '5' WHERE no_ktp = '".$_GET['id']."'");
+		sql_query("UPDATE user SET tahapan_tes = '2' WHERE no_ktp = '".$_GET['id']."'");
 		echo $totalbenar;
 	}
 	

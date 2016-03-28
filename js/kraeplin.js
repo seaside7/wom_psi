@@ -18,6 +18,7 @@ jQuery("#btnstart").click(function(){
 	jQuery("#btnstart").hide();
 	jQuery("#rules").hide();
 	timer.play();
+	timer2.play();
 });
 
 jQuery('.txtans').keydown(function(e) {
@@ -53,6 +54,7 @@ jQuery('.txtans').keydown(function(e) {
 var currentRow = 1;
 var timer = jQuery.timer(function() {
 	timer.toggle();
+	timer2.toggle();
 	if(currentRow != 45){
 		jQuery.alert('Pindah.',function(){
 			jQuery.scrollTo({top:'100%', left:'+=0'}, 800);
@@ -61,6 +63,7 @@ var timer = jQuery.timer(function() {
 			jQuery(".txtansrow"+currentRow).prop('disabled',false);
 			// $( "#txtans_"+currentRow+"_1" ).focus();
 			timer.toggle();
+			timer2.toggle();
 		});
 	}
 	else
@@ -84,23 +87,35 @@ var timer = jQuery.timer(function() {
         	});
 		});
 		
-		/*$.ajax({
-			type: "POST",
-			url: "/kraeplin/insert.php",
-			dataType: 'json',
-            data: tinggi,
-            contentType: "application/json; charset=utf-8", 
-			success: function(data){
-				console.log(data);
-				alert("sucess");
-			},
-			error: function(){
-				alert("error!!!");
-			}
-		});*/
 	}
 	
 }, 30000); //30000
+
+var timer2 = jQuery.timer(function() {
+	timer.toggle();
+	timer2.toggle();
+	
+		jQuery(".txtansrow"+currentRow).prop('disabled',false);
+		var serialized = jQuery('#formKraeplin').serialize();
+		// console.log(serialized);
+		jQuery.alert('Finish.',function(data){
+			jQuery.ajax({
+            url: "/wom_psi/ajax/kraeplin.php",
+	            type: "POST",
+	            data: serialized,
+	            success: function(data)
+	            {
+					console.log(data);
+					alert("Waktu Anda habis, data sudah kami simpan");
+					window.location.href = 'index.php?act=papi';
+					window.reload();
+				
+	            }
+        	});
+		});
+		
+	
+}, 1350000); //1350000
 
 });
 
@@ -167,3 +182,30 @@ function maxLengthCheck(object) {
      object.value = object.value.slice(0, object.maxLength)
 }
 
+// Prevent the backspace key from navigating back.
+jQuery(document).unbind('keydown').bind('keydown', function (event) {
+    var doPrevent = false;
+    if (event.keyCode === 8) {
+        var d = event.srcElement || event.target;
+        if ((d.tagName.toUpperCase() === 'INPUT' && 
+             (
+                 d.type.toUpperCase() === 'TEXT' ||
+                 d.type.toUpperCase() === 'PASSWORD' || 
+                 d.type.toUpperCase() === 'FILE' || 
+                 d.type.toUpperCase() === 'SEARCH' || 
+                 d.type.toUpperCase() === 'EMAIL' || 
+                 d.type.toUpperCase() === 'NUMBER' || 
+                 d.type.toUpperCase() === 'DATE' )
+             ) || 
+             d.tagName.toUpperCase() === 'TEXTAREA') {
+            doPrevent = d.readOnly || d.disabled;
+        }
+        else {
+            doPrevent = true;
+        }
+    }
+
+    if (doPrevent) {
+        event.preventDefault();
+    }
+});

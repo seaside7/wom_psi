@@ -17,7 +17,7 @@ if($po=="saveHasilDISC") {
 				'".$_GET['SM']."', '".$_GET['SL']."', '".$_GET['CM']."', '".$_GET['CL']."'
 				);";
 	if(sql_query($qSaveDisc)){
-		sql_query("UPDATE user SET tahapan_tes = '4' WHERE no_ktp = '".$id."'");
+		sql_query("UPDATE user SET tahapan_tes = '5' WHERE no_ktp = '".$id."'");
 		echo "0";
 	}
 	else echo "1";
