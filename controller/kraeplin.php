@@ -39,12 +39,12 @@ function LocalKraeplinForm($UsrDef)
 				<center><h4>Ketentuan Pengerjaan Tes Kraepelin</h4></center>
 				<img class='col-md-8 col-md-offset-2' src='images/kraepelin-guide.png' />
 						<div class='col-md-12'><ol>
-							<li>Pengerjaan dilakukan dari bawah ke atas.</li>
-							<li>Tekan panah atas untuk ke field selanjutnya.</li>
+							<li>Jumlahkan angka-angka setiap lajurnya dari bawah ke atas.</li>
+							<li>Tekan panah atas untuk menjumlahkan angka selanjutnya.</li>
 							<li>Misalnya 8+1=9, maka ditulis angka 9.</li>
 							<li>Bila angka yang dijumlahkan lebih dari 10, maka tuliskan angka belakangnya saja. Misalnya 17, tuliskan angka 7.</li>
-							<li>Waktu pengerjaan setiap lajur dibatasi 30 detik.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
+							<li>Jika ada pertanyaan, tanyakan dengan pengawas sebelum menekan tombol start.</li>
 						</ol></div></fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
 	// $content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnup" value="Up" onclick="up();"></div>';

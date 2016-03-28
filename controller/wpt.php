@@ -10,7 +10,7 @@ function loadWPT($UsrDef){
 						<div class='col-md-12'><ol>
 							<li>Tes WPT terdiri dari 50 soal.</li>
 							<li>Tuliskan jawaban setiap pertanyaan pada kotak yang telah disediakan.</li>
-							<li>Waktu pengerjaan tes dibatasi 15 menit.</li>
+							<li>Waktu pengerjaan tes dibatasi 12 menit.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
 						</ol></div></fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';

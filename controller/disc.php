@@ -15,6 +15,7 @@ function loadDISC($UsrDef){
 							<li>Setiap baris yang diisi harus mengandung satu M dan satu L.</li>
 							<li>Bersikaplah spontan karena pemikiran pertama biasanya lebih tepat.</li>
 							<li>Inventori ini sebaiknya diisi dalam jangka waktu 7-10 menit, tanpa interupsi dan sebaiknya dalam situasi tenang.</li>
+							<li>Jadi dalam setiap lajur hanya ada satu M dan satu L, dua kotak lainnya kosong.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
 						</ol></div></fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';

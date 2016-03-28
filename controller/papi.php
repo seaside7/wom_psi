@@ -10,6 +10,7 @@ function loadPAPI($UsrDef){
 						<div class='col-md-12'><ol>
 							<li>Tes PAPI terdiri dari 90 soal.</li>
 							<li>Setiap soal berisi 2 pernyataan, pilih salah satu pernyataan yang paling menggambarkan diri anda.</li>
+							<li>Jika saudara menghadapi pernyataan yang kedua-duanya tidak sesuai dengan diri pribadi saudara tetap harus dipilih salah satunya yang paling mendekati. Sebaliknya jika menemukan pernyataan yang kedua-duanya sangat menggambarkan diri anda tetap harus dipilih salah satunya.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
 						</ol></div></fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
