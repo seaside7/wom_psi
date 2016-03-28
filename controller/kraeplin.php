@@ -58,14 +58,14 @@ function LocalKraeplinForm($UsrDef)
 		for($xp=1;$xp<=$maxX;$xp++){
 			// echo $xp." ".$yp." ".$cell[$xp][$yp]['val']."<br />";
 
-			$content .= "<td>".$cell[$xp][$yp]['val']."</td><td>&nbsp;";
+			$content .= "<td><span style='font-weight:bold'>".$cell[$xp][$yp]['val']."</span></td><td>&nbsp;";
 			if($yp==1) $content .= "<input type=hidden name='hdtinggi_".$xp."' id='hdtinggi_".$xp."' >";
 			$content .= "</td>";
 				if($xp==$maxX && $yp>1){
 				$content .= "</tr><tr>";
 				for($xpp=1;$xpp<=$maxX;$xpp++){ $ypp = $yp-1;
 					$content .= "<td>&nbsp;</td>";
-					$content .= "<td><input tabindex='-1' type='text' style='color: red;' maxlength = '1' data-x='".$xpp."' data-y='".$ypp."' class='txtans txtansrow".$xpp."' name='txtans_".$xpp."_".$ypp."' size=1 id='txtans_".$xpp."_".$ypp."' onkeyup='nextText($xpp, $ypp, (this).value); ' onClick='this.select(); scrollright($xpp);' onfocus='this.oldvalue = this.value;' onChange='check($xpp, $ypp, this)' this.oldvalue = this.value; >";
+					$content .= "<td><input tabindex='-1' type='text' maxlength = '1' data-x='".$xpp."' data-y='".$ypp."' class='txtans txtansrow".$xpp."' name='txtans_".$xpp."_".$ypp."' size=1 id='txtans_".$xpp."_".$ypp."' onkeyup='nextText($xpp, $ypp, (this).value); ' onClick='this.select(); scrollright($xpp);' onfocus='this.oldvalue = this.value;' onChange='check($xpp, $ypp, this)' this.oldvalue = this.value; >";
 					$content .= "<input type=hidden name='hdinput_".$xpp."_".$ypp."' id='hdinput_".$xpp."_".$ypp."' ></td>";
 					$content .= "<input type=hidden name='hdans_".$xpp."_".$ypp."' id='hdans_".$xpp."_".$ypp."' value='".$cell[$xpp][$ypp]['ans']."'></td>";
 					$content .= "<input type=hidden name='hdstatus_".$xpp."_".$ypp."' id='hdstatus_".$xpp."_".$ypp."' value='1'></td>";
