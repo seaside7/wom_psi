@@ -4,7 +4,18 @@
 		.headerLogo img			{ border:none; background:transparent !important}
 		.headerTitle			{ float:left;  padding: 10px 0 0 10px;}
 
-#content						{ font-family: "ARIAL" !important; font-size: 12px;}
+body						{ font-family: "ARIAL" !important; font-size: 12px; 
+								}
+#main						{ width:      100%;
+							  height:     100%; 
+							  z-index:    10;
+							  top:        0; 
+							  left:       0; 
+							  position:   fixed; 
+							  background-image:  url('../images/bg-login.png');
+								background-position: center 60px;
+								background-repeat: no-repeat;
+								}
 .dataTable						{ font-family: "ARIAL" !important; font-size: 14px !important;}
 .contentInfo					{ color:#11A/*#A11*/;background-color:#AFF/*#FFA*/;border:1px inset #A11}
 

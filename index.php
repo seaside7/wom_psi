@@ -75,7 +75,9 @@ require_once('function/mainfunction.php');
 </head>
 
 <body>
-
+	<?php if($act == 'home'){ ?>
+	<div id="main">
+	<?php } ?>
 	<div id="hheaderCont">
 	<div id="hheader">
     <div class="headerLogo" >
@@ -86,5 +88,9 @@ require_once('function/mainfunction.php');
 	<div id="content">
 		<?php showpage('',$act);?>
 	</div>
+	
+	<?php if($act == 'home'){ ?>
+	</div>
+	<?php } ?>
 </body>
 </html>
