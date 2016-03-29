@@ -56,7 +56,18 @@ var timer = jQuery.timer(function() {
 	timer.toggle();
 	timer2.toggle();
 	if(currentRow != 45){
-		jQuery.alert('Pindah.',function(){
+		var konfrm = confirm("PINDAH");
+		if(konfrm == true || konfrm == false){
+			jQuery.scrollTo({top:'100%', left:'+=0'}, 800);
+			jQuery(".txtansrow"+currentRow).prop('disabled',false);
+			currentRow = currentRow + 1;
+			jQuery(".txtansrow"+currentRow).prop('disabled',false);
+			timer.toggle();
+			timer2.toggle();
+		}
+
+		/*jQuery.alert('Pindah.',function(){
+			jQuery('html').keyup(function(e){if(e.keyCode == 8)alert('backspace trapped')})  
 			jQuery.scrollTo({top:'100%', left:'+=0'}, 800);
 			jQuery(".txtansrow"+currentRow).prop('disabled',false);
 			currentRow = currentRow + 1;
@@ -64,7 +75,7 @@ var timer = jQuery.timer(function() {
 			// $( "#txtans_"+currentRow+"_1" ).focus();
 			timer.toggle();
 			timer2.toggle();
-		});
+		});*/
 	}
 	else
 	{	
