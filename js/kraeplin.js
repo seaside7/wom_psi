@@ -11,6 +11,7 @@ jQuery( document ).ready(function() {
 
 
 jQuery("#btnstart").click(function(){
+	jQuery('#btstart').hide();
 	jQuery("#tbSheet").show();
 	jQuery("#countdown").show();
 	jQuery(".txtansrow"+currentRow).prop('disabled',false);
@@ -100,7 +101,7 @@ var timer = jQuery.timer(function() {
 		
 	}
 	
-}, 5000); //30000
+}, 30000); //30000
 
 var timer2 = jQuery.timer(function() {
 	timer.toggle();
