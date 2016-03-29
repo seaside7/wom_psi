@@ -100,7 +100,7 @@ var timer = jQuery.timer(function() {
 		
 	}
 	
-}, 30000); //30000
+}, 5000); //30000
 
 var timer2 = jQuery.timer(function() {
 	timer.toggle();
