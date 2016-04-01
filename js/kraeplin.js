@@ -57,8 +57,9 @@ var timer = jQuery.timer(function() {
 	timer.toggle();
 	timer2.toggle();
 	if(currentRow != 45){
-		var konfrm = confirm("PINDAH");
-		if(konfrm == true || konfrm == false){
+		var konfrm = alert("PINDAH");
+		
+		if(konfrm != "S"){
 			jQuery.scrollTo({top:'100%', left:'+=0'}, 800);
 			jQuery(".txtansrow"+currentRow).prop('disabled',false);
 			currentRow = currentRow + 1;
