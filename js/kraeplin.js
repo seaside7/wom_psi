@@ -11,7 +11,6 @@ jQuery( document ).ready(function() {
 
 
 jQuery("#btnstart").click(function(){
-	jQuery('#btstart').hide();
 	jQuery("#tbSheet").show();
 	jQuery("#countdown").show();
 	jQuery(".txtansrow"+currentRow).prop('disabled',false);
@@ -57,18 +56,9 @@ var timer = jQuery.timer(function() {
 	timer.toggle();
 	timer2.toggle();
 	if(currentRow != 45){
-		var konfrm = confirm("PINDAH");
-		if(konfrm == true || konfrm == false){
-			jQuery.scrollTo({top:'100%', left:'+=0'}, 800);
-			jQuery(".txtansrow"+currentRow).prop('disabled',false);
-			currentRow = currentRow + 1;
-			jQuery(".txtansrow"+currentRow).prop('disabled',false);
-			timer.toggle();
-			timer2.toggle();
-		}
 
-		/*jQuery.alert('Pindah.',function(){
-			jQuery('html').keyup(function(e){if(e.keyCode == 8)alert('backspace trapped')})  
+		jQuery.alert('Pindah.',function(){
+			//jQuery('html').keyup(function(e){if(e.keyCode == 8)alert('backspace trapped')})  
 			jQuery.scrollTo({top:'100%', left:'+=0'}, 800);
 			jQuery(".txtansrow"+currentRow).prop('disabled',false);
 			currentRow = currentRow + 1;
@@ -76,7 +66,7 @@ var timer = jQuery.timer(function() {
 			// $( "#txtans_"+currentRow+"_1" ).focus();
 			timer.toggle();
 			timer2.toggle();
-		});*/
+		});
 	}
 	else
 	{	
@@ -92,8 +82,9 @@ var timer = jQuery.timer(function() {
 	            {
 					console.log(data);
 					alert("Terima kasih data Anda sudah kami simpan");
-					window.location.href = 'index.php?act=papi';
-					window.reload();
+					window.open('index.php?act=papi', '_self');
+					// window.location.href = 'index.php?act=papi';
+					// window.reload();
 				
 	            }
         	});
@@ -119,8 +110,9 @@ var timer2 = jQuery.timer(function() {
 	            {
 					console.log(data);
 					alert("Waktu Anda habis, data sudah kami simpan");
-					window.location.href = 'index.php?act=papi';
-					window.reload();
+					window.open('index.php?act=papi', '_self');
+					// window.location.href = 'index.php?act=papi';
+					// window.reload();
 				
 	            }
         	});

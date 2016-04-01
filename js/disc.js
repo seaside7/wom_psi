@@ -63,8 +63,7 @@ $( document ).ready(function() {
 					console.log(data);
 					// alert("Terima kasih data Anda sudah kami simpan");
 					alert("Terima kasih Anda sudah melengkapi rangkaian Psikotes WOM Finance.");
-					window.location.href = 'index.php';
-					window.reload();
+					window.close();
 				
 	            }
         	});
