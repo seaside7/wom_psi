@@ -75,7 +75,7 @@ function localJsSaveDetail(form)
 				switch(request)
 				{	case '0': alert('Gagal menyimpan data.'); break;	
 					case '1': alert('Sukses menyimpan data'); 
-							  window.location.href = 'index.php?act=kraeplin';
+							  window.location.href = 'index.php?act=wpt';
 							  window.reload();  break;
 				}
 				$('#btnSaveDetail').enable;
