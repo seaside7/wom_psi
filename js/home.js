@@ -41,7 +41,7 @@ function localJsSaveDetail(form)
 				thpn = 1;
 				switch(data.tahapan_tes)
 					{	
-						case '1': window.open('index.php?act=wpt','newtab','toolbar=0,height='+screen.height+',width='+screen.width);break; 
+						case '1': window.open('index.php?act=wpt','newtab','toolbar=0,height='+screen.height+',width='+screen.width); open(location,'_self').close(); break; 
 						case '2': window.open('index.php?act=kraeplin','newtab','toolbar=0,height='+screen.height+',width='+screen.width);break; 
 						case '3': window.open('index.php?act=papi','newtab','toolbar=0,height='+screen.height+',width='+screen.width);break; 
 						case '4': window.open('index.php?act=disc','newtab','toolbar=0,height='+screen.height+',width='+screen.width);break; 
