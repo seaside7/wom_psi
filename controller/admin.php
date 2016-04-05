@@ -2,7 +2,7 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
 function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'WPT', 'Completed')))) AS tahapan
 		$UserQuery="SELECT tanggal_tes, no_ktp, nama_peserta, posisi, tahapan_tes,
-						IF(tahapan_tes='1', 'WPT', IF(tahapan_tes='2', 'Kraeplin', IF(tahapan_tes='3', 'PAPI', IF(tahapan_tes='4', 'DISC', 'Completed')))) AS tahapan
+						IF(tahapan_tes='1', 'WPT', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'Kraeplin', 'Completed')))) AS tahapan
 						FROM USER  ";
 		$UserQuery .= " ORDER BY tanggal_tes DESC ";					
 		$stmt = sql_query($UserQuery);

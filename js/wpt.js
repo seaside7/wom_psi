@@ -72,7 +72,7 @@ var timer = jQuery.timer(function() {
 	            {
 					console.log(data);
 					alert("Terima kasih data Anda sudah kami simpan");
-					window.location.href = 'index.php?act=kraeplin';
+					window.location.href = 'index.php?act=papi';
 					window.reload();
 				
 	            }

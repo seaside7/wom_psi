@@ -92,9 +92,8 @@ var timer = jQuery.timer(function() {
 	            data: serialized,
 	            success: function(data)
 	            {
-					console.log(data);
-					alert("Terima kasih data Anda sudah kami simpan");
-					window.location.href = 'index.php?act=papi';
+					alert("Terima kasih Anda sudah melengkapi rangkaian Psikotes WOM Finance.");
+					window.location.href = 'index.php';
 					window.reload();
 				
 	            }
