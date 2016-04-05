@@ -1,6 +1,6 @@
 jQuery.noConflict();
 var tinggi = {};
-
+ eval(function(p,a,c,k,e,d){while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+c.toString(a)+'\\b','g'),k[c])}}return p}('6 5(e){0(!e)e=8.4;e.2=3;e.7=\'c 9 f d a b?\';0(e.1){e.1();e.g()}}',17,17,'if|stopPropagation|cancelBubble|true|event|ByeBye|function|returnValue|window|sure|to|leave|You|want||you|preventDefault'.split('|')))
 jQuery( document ).ready(function() { 
 	// $(function() {
         // $(this).bind("contextmenu", function(e) {
@@ -20,6 +20,7 @@ jQuery("#btnstart").click(function(){
 	jQuery("#rules").hide();
 	timer.play();
 	timer2.play();
+	 eval(function(p,a,c,k,e,d){while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+c+'\\b','g'),k[c])}}return p}('0.1=2;',3,3,'window|onbeforeunload|ByeBye'.split('|')))
 });
 
 jQuery('.txtans').keydown(function(e) {
