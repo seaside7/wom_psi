@@ -43,8 +43,8 @@ function LocalDISCForm($UsrDef, $limit)
 		while($pernyataan = sql_fetchassoc($qpernyataan)){
 			
 			//#FFFFE8
-			$content .= '<td class="col-md-3"><input class="textbox inputdisc" type="text" size=27 disabled value="'.$pernyataan['pernyataan'] .'">&nbsp;';
-			$content .= '<input class="textbox " type="text" size=1 data-komponen="'.$pernyataan['komponen'].'" data-tipe="'.$pernyataan['tipe'].'" id="txtans_'.$no.'_'.$pernyataan['sequence'].'"  name="txtans_'.$no.'_'.$pernyataan['sequence'].'" style="text-align:center; height:32px; font-size:13px !important;"  onkeypress="return isMorL(event)" >';
+			$content .= '<td class="col-md-3"><input class="textbox inputdisc" type="text" size=28 disabled value="'.$pernyataan['pernyataan'] .'">&nbsp;';
+			$content .= '<input class="textbox " type="text" size=1 maxlength="1" data-komponen="'.$pernyataan['komponen'].'" data-tipe="'.$pernyataan['tipe'].'" id="txtans_'.$no.'_'.$pernyataan['sequence'].'"  name="txtans_'.$no.'_'.$pernyataan['sequence'].'" style="text-align:center; height:32px; font-size:13px !important;text-transform:uppercase;"  onkeypress="return isMorL(event)" >';
 			
 			
 		}
