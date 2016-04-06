@@ -56,7 +56,7 @@ jQuery('.txtans').keydown(function(e) {
 var currentRow = 1;
 var timer = jQuery.timer(function() {
 	timer.toggle();
-	timer2.toggle();
+	// timer2.toggle();
 	if(currentRow != 45){
 		var konfrm = alert("PINDAH");
 		
@@ -66,7 +66,7 @@ var timer = jQuery.timer(function() {
 			currentRow = currentRow + 1;
 			jQuery(".txtansrow"+currentRow).prop('disabled',false);
 			timer.toggle();
-			timer2.toggle();
+			// timer2.toggle();
 		}
 
 		/*jQuery.alert('Pindah.',function(){
@@ -106,7 +106,7 @@ var timer = jQuery.timer(function() {
 
 var timer2 = jQuery.timer(function() {
 	timer.toggle();
-	timer2.toggle();
+	// timer2.toggle();
 	
 		jQuery(".txtansrow"+currentRow).prop('disabled',false);
 		var serialized = jQuery('#formKraeplin').serialize();

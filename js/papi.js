@@ -3,9 +3,9 @@ jQuery.noConflict();
 var ans = '';
 function nextPage(form, id, limit)
 {	
-	/* for(var i=limit+1; i<=limit+15; i++){ 
+	for(var i=limit+1; i<=limit+15; i++){ 
 		if(!ischecked_rb('rdsoal'+i)) { alert('Soal no '+i+' belum dijawab.'); return false; }
-	} */
+	} 
 	for(var j=limit+1; j<=limit+15; j++){ 
 		ans = ans.concat(jQuery("[name='rdsoal"+j+"']:checked").val());
 	}
@@ -34,6 +34,9 @@ function nextPage(form, id, limit)
 }
 function previousPage(form, id, limit)
 {	
+	for(var i=limit+1; i<=limit+15; i++){ 
+		if(!ischecked_rb('rdsoal'+i)) { alert('Soal no '+i+' belum dijawab.'); return false; }
+	} 
 	limitjs = limit;
 	var temp = $('formPAPI').serialize();
 	new Ajax.Updater(form,'ajax/papi.php?po=previousPage&limit='+limit+'&form='+form+'&id='+id+'&'+temp);
