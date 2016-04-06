@@ -43,6 +43,7 @@ function LocalKraeplinForm($UsrDef)
 							<li>Tekan panah atas untuk menjumlahkan angka selanjutnya.</li>
 							<li>Misalnya 8+1=9, maka ditulis angka 9.</li>
 							<li>Bila angka yang dijumlahkan lebih dari 10, maka tuliskan angka belakangnya saja. Misalnya 17, tuliskan angka 7.</li>
+							<li>Jika saudara telah mengerjakan sampai dengan lajur paling atas, tetapi belum ada notifikasi pindah. Maka saudara berhenti sejenak sampai ada notifikasi pindah baru saudara dapat pindah ke lajur berikutnya.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
 							<li>Jika ada pertanyaan, tanyakan dengan pengawas sebelum menekan tombol start.</li>
 						</ol></div></fieldset></div>";

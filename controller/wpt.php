@@ -10,6 +10,7 @@ function loadWPT($UsrDef){
 						<div class='col-md-12'><ol>
 							<li>Tes WPT terdiri dari 50 soal.</li>
 							<li>Tuliskan jawaban setiap pertanyaan pada kotak yang telah disediakan.</li>
+							<li>Jika dalam isi jawaban terdapat jawaban dengan tanda koma (,) maka koma diganti dengan titik (.) Contoh (3.5).</li>
 							<li>Waktu pengerjaan tes dibatasi 12 menit.</li>
 							<li>Dilarang menggunakan alat bantu hitung.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
