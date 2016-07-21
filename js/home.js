@@ -29,7 +29,7 @@ function localJsSaveDetail(form)
 	
 	
 	if(!NoKTP){ alert('Nomor KTP belum diisi!'); return false; }
-	if(NoKTP.length < 16){ alert('Nomor KTP belum lengkap!'); return false; }
+	// if(NoKTP.length < 16){ alert('Nomor KTP belum lengkap!'); return false; }
 		// alert("a"); return false;
 	$.ajax({
 	 type: 'POST',

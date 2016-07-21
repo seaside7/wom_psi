@@ -82,7 +82,7 @@ var timer = jQuery.timer(function() {
 			jQuery(".txtansrow"+currentRow).prop('disabled',false);
 			currentRow = currentRow + 1;
 			jQuery(".txtansrow"+currentRow).prop('disabled',false);
-			// $( "#txtans_"+currentRow+"_1" ).focus();
+			jQuery( "#txtans_"+currentRow+"_1" ).focus();
 			timer.toggle();
 			// timer2.toggle();
 		});
@@ -109,7 +109,7 @@ var timer = jQuery.timer(function() {
 		
 	}
 	
-}, 30000); //30000
+}, 3000); //30000
 
 var timer2 = jQuery.timer(function() {
 	timer.toggle();
@@ -140,7 +140,7 @@ var timer2 = jQuery.timer(function() {
 		// });
 		
 	
-}, 1200000); //1350000
+}, 1320000); //1350000
 
 });
 
@@ -152,9 +152,7 @@ var cursorFocus = function(elem) {
 function scrollright(x){
 	 if(x>=20) {jQuery.scrollTo({top:'+=0', left:'+=500px'}, 800);}
 	return false;
-}
-
-		
+}	
 function nextText(x, y, val, correct){
 	var nextVal = parseInt(y)+1;
 	var prevVal = parseInt(y)-1;

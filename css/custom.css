@@ -222,13 +222,14 @@ body.nav-md .container.body .right_col {
     height: 57px;
 }
 
-.canvasradar {
+ .canvasradar {
 	background-image:url(../images/bg-papi.jpg); 
 	background-repeat: no-repeat; 
 	background-position: center; 
 	
 	height:450px !important;
-}
+} 
+
 #canvasDISC1 {
 	background-image:url(../images/bg-disc-1.jpg); 
 	background-repeat: no-repeat; 
@@ -252,7 +253,7 @@ body.nav-md .container.body .right_col {
 	background-size: cover;
 	height:410px !important;
 	width:240px !important;
-}
+} 
 #canvas_radar {
 	margin-top:77;
 	margin-left:-5px;

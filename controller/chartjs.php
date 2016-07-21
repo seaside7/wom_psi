@@ -3,11 +3,17 @@
 include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/config/conn.php');
 include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
 
-function showChart()
+function showChart($id, $tipe)
 {
+	// $content = '<!doctype html public "-//W3C//DTD HTML 4.0 //EN">';
+	// $content .= '<html>';
+	// $content .= '<head>';
+	// $content .= '</head>';
+	// $content .= "<body oncontextmenu='return false;' >";
+	
 	// $content .= '<form method="post" action="#" enctype="multipart/form-data" class="form" novalidate="novalidate">';
-	$id = $_GET['id'];
-	$content = '<input type="hidden" id="hdid" value="'.$id.'">';
+	// $id = $_GET['id'];
+	$content .= '<input type="hidden" id="hdid" value="'.$id.'">';
 	list($nama) = sql_fetchrow(sql_query("SELECT nama_peserta FROM user WHERE no_ktp = '".$_GET['id']."'"));
 	// $content .= '</form>';
     $content .= '<style>th {text-align:center;} label {font-weight:normal !important;}</style>';
@@ -17,6 +23,18 @@ function showChart()
     $content .= '<div class="title_left">';
     $content .= '<h3>Report Psikotes <small>Peserta: '.$nama.'</small></h3>';
     $content .= '</div>';
+	
+	if($tipe==0){
+		$content .= '<div class="print_right">';
+		$content .= "<a href='javascript:void(0)' onclick=\"localJsPrintReport('".$id."');\" style='padding-left:580'><img src='images/print.gif' style='cursor:pointer' >&nbsp;Print Report</a>";
+		// $content .= "<a href='javascript:void(0)' onclick=\"convertCanvasToImage('canvas000');\" style='padding-left:580'><img src='images/print.gif' style='cursor:pointer' >&nbsp;Print Report</a>";
+		$content .= '</div>';
+		
+		$imghelp = "images/help.png";
+	}else{
+		$imghelp = "../images/help.png";
+	}
+   
                         
     $content .= '</div>';
 	
@@ -47,8 +65,8 @@ function showChart()
 	$content .= '<tr><td style="font-weight:bold;">Kecepatan</td><td><label id="lblPankerScore" /></td><td><label id="lblPankerPP" /></td><td><label id="lblPankerCat" /></td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">Ketelitian</td><td><label id="lblTinkerScore" /></td><td><label id="lblTinkerPP" /></td><td><label id="lblTinkerCat" /></td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">Keajekan</td><td><label id="lblJankerScore" /></td><td><label id="lblJankerPP" /></td><td><label id="lblJankerCat" /></td></tr>';
-	$content .= '<tr><td style="font-weight:bold;">Total&nbsp;&nbsp;<img src="images/help.png" title="Nilai tertinggi + Nilai terendah" style="cursor:pointer;"></td><td><label id="lblTotalScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
-	$content .= '<tr><td style="font-weight:bold;">Kesalahan&nbsp;&nbsp;<img src="images/help.png" title="Lajur 6-10, 21-25, 36-40" style="cursor:pointer;"></td><td><label id="lblKesalahanScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
+	$content .= '<tr><td style="font-weight:bold;">Total&nbsp;&nbsp;<img src="'.$imghelp.'" title="Nilai tertinggi + Nilai terendah" style="cursor:pointer;"></td><td><label id="lblTotalScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
+	$content .= '<tr><td style="font-weight:bold;">Kesalahan&nbsp;&nbsp;<img src="'.$imghelp.'" title="Lajur 6-10, 21-25, 36-40" style="cursor:pointer;"></td><td><label id="lblKesalahanScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
 	$content .= '</tbody>';
 	$content .= '</table>';
 	$content .= '</div>';
@@ -66,7 +84,7 @@ function showChart()
     $content .= '<div class="col-md-6 col-sm-6">';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_content canvasradar">';
-    $content .= '<canvas id="canvas_radar" class=""></canvas>';
+    $content .= '<canvas id="canvas_radar" class="" ></canvas>';
     $content .= '</div>';
     $content .= '</div>';
     $content .= '</div>';
@@ -119,7 +137,7 @@ function showChart()
 	$content .= '<div class="col-md-3 col-sm-3">';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_content">';
-    $content .= '<canvas id="canvasDISC1" height="450" ></canvas>';
+    $content .= '<canvas id="canvasDISC1" height="513"></canvas>';
     $content .= '</div>';
     $content .= '</div>';
     $content .= '</div>';
@@ -127,7 +145,7 @@ function showChart()
     $content .= '<div class="col-md-3 col-sm-3">';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_content">';
-    $content .= '<canvas id="canvasDISC2" height="400" ></canvas>';
+    $content .= '<canvas id="canvasDISC2" height="513" ></canvas>';
     $content .= '</div>';
     $content .= '</div>';
     $content .= '</div>';
@@ -135,7 +153,7 @@ function showChart()
     $content .= '<div class="col-md-3 col-sm-3">';
     $content .= '<div class="x_panel">';
     $content .= '<div class="x_content">';
-    $content .= '<canvas id="canvasDISC3" height="400" ></canvas>';
+    $content .= '<canvas id="canvasDISC3" height="513" ></canvas>';
     $content .= '</div>';
     $content .= '</div>';
     $content .= '</div>';
@@ -177,10 +195,204 @@ function showChart()
 
     $content .= '</div>';
     $content .= '</div>';
-	
+	// $content .= '</body>';
+	// $content .= '</html>';
 	echo $content;
+	// echo "<iframe id='prtspt' name='prtspt' src='$content' width=750 height=600></iframe>";
 }
 
+function localPrintReport($id, $imgkr, $tipe){
+	$printpage = "<page>";
+	$printpage .= "<html>";
+	$printpage .= "<head>";
+	$printpage .= '<link href="css/custom.css" rel="stylesheet" type="text/css" />';
+	$printpage .= '<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">';
+	$printpage .= '<script src="js/bootstrap.min.js"></script>';
+	$printpage .= "</head>";
+	$printpage .= "<body>";
+	
+	list($nama) = sql_fetchrow(sql_query("SELECT nama_peserta FROM user WHERE no_ktp = '".$_GET['id']."'"));
+	// $printpage .= '</form>';
+    $printpage .= '<style>th {text-align:center;} label {font-weight:normal !important;}</style>';
+    $printpage .= '<div class="col-md-12" role="main">';
+    $printpage .= '<div class="col-md-12">';
+    $printpage .= '<div class="page-title">';
+    $printpage .= '<div class="title_left">';
+    $printpage .= '<h3>Report Psikotes <small>Peserta: '.$nama.'</small></h3>';
+    $printpage .= '</div>';
+	
+	if($tipe==0){
+		$printpage .= '<div class="print_right">';
+		$printpage .= "<a href='javascript(0)' onclick=\"localJsPrintReport('".$id."');\" style='padding-left:580'><img src='images/print.gif' style='cursor:pointer' >&nbsp;Print Report</a>";
+		$printpage .= '</div>';
+		
+		$imghelp = "images/help.png";
+	}else{
+		$imghelp = "../images/help.png";
+	}
+   
+                        
+    $printpage .= '</div>';
+	
+	$printpage .= '<div class="clearfix"></div>';
+
+	
+    $printpage .= '<div class="x_title col-md-12">';
+    $printpage .= '<h2>Kraepelin<small>&nbsp;</small></h2>';
+    $printpage .= '<div class="clearfix"></div>';
+    $printpage .= '</div>';
+	
+    $printpage .= '<div class="row">';
+    $printpage .= '<div class="col-md-6 col-sm-6 col-xs-6">';
+    $printpage .= '<div class="x_panel">';
+    $printpage .= '<div class="x_printpage">';
+    $printpage .= '<img src="'.$imgkr.'" width="300"/>';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+	
+	$printpage .= '<div class="col-md-6 col-sm-6 col-xs-6">';
+	$printpage .= '<div class="table-responsive col-md-12">';
+	$printpage .= '<table class="table table-bordered" style="text-align:center;">';
+	$printpage .= '<thead>';
+	$printpage .= '<tr><th class="col-md-4">Aspek</th><th class="col-md-2">Skor</th><th class="col-md-2">PP</th><th class="col-md-4">Klasifikasi</th></tr>';
+	$printpage .= '</thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr><td style="font-weight:bold;">Kecepatan</td><td><label id="lblPankerScore" /></td><td><label id="lblPankerPP" /></td><td><label id="lblPankerCat" /></td></tr>';
+	$printpage .= '<tr><td style="font-weight:bold;">Ketelitian</td><td><label id="lblTinkerScore" /></td><td><label id="lblTinkerPP" /></td><td><label id="lblTinkerCat" /></td></tr>';
+	$printpage .= '<tr><td style="font-weight:bold;">Keajekan</td><td><label id="lblJankerScore" /></td><td><label id="lblJankerPP" /></td><td><label id="lblJankerCat" /></td></tr>';
+	$printpage .= '<tr><td style="font-weight:bold;">Total&nbsp;&nbsp;<img src="'.$imghelp.'" title="Nilai tertinggi + Nilai terendah" style="cursor:pointer;"></td><td><label id="lblTotalScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
+	$printpage .= '<tr><td style="font-weight:bold;">Kesalahan&nbsp;&nbsp;<img src="'.$imghelp.'" title="Lajur 6-10, 21-25, 36-40" style="cursor:pointer;"></td><td><label id="lblKesalahanScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table>';
+	$printpage .= '</div>';
+	$printpage .= '</div>';
+    $printpage .= '</div>';
+	
+    $printpage .= '<div class="clearfix"></div>';
+	
+    $printpage .= '<div class="x_title col-md-12">';
+    $printpage .= '<h2>PAPI<small>&nbsp;</small></h2>';
+    $printpage .= '<div class="clearfix"></div>';
+    $printpage .= '</div>';
+	
+    $printpage .= '<div class="row">';
+    $printpage .= '<div class="col-md-6 col-sm-6">';
+    $printpage .= '<div class="x_panel">';
+    $printpage .= '<div class="x_printpage canvasradar">';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+	
+	$printpage .= '<div class="col-md-6 col-sm-6 col-xs-12">';
+	$printpage .= '<div class="table-responsive col-md-12">';
+	$qPAPI = sql_fetchrow(sql_query("SELECT `G`,`L`,`I`,`T`,`V`,`S`,`R`,`D`,`C`,`E`,`N`,`A`,`P`,`X`,`B`,`O`,`Z`,`K`,`F`,`W`
+									FROM `hasil_papi` WHERE userid = '".$id."'"));
+	$printpage .= '<table class="table table-bordered" style="text-align:center;">';
+	$printpage .= '<thead>';
+	$printpage .= '<tr>';
+	$printpage .= '<th width="10%">G</th><th width="10%">L</th><th width="10%">I</th><th width="10%">T</th><th width="10%">V</th>';
+	$printpage .= '<th width="10%">S</th><th width="10%">R</th><th width="10%">D</th><th width="10%">C</th><th width="10%">E</th>';
+	$printpage .= '</tr>';
+	$printpage .= '</thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr>';
+	$printpage .= '<td>'.$qPAPI['G'].'</td><td>'.$qPAPI['L'].'</td><td>'.$qPAPI['I'].'</td><td>'.$qPAPI['T'].'</td><td>'.$qPAPI['V'].'</td>';
+	$printpage .= '<td>'.$qPAPI['S'].'</td><td>'.$qPAPI['R'].'</td><td>'.$qPAPI['D'].'</td><td>'.$qPAPI['C'].'</td><td>'.$qPAPI['E'].'</td>';
+	$printpage .= '</tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table>';
+	$printpage .= '<table class="table table-bordered" style="text-align:center;">';
+	$printpage .= '<thead>';
+	$printpage .= '<tr>';
+	$printpage .= '<th width="10%">N</th><th width="10%">A</th><th width="10%">P</th><th width="10%">X</th><th width="10%">B</th>';
+	$printpage .= '<th width="10%">O</th><th width="10%">Z</th><th width="10%">K</th><th width="10%">F</th><th width="10%">W</th>';
+	$printpage .= '</tr>';
+	$printpage .= '</thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr>';
+	$printpage .= '<td>'.$qPAPI['N'].'</td><td>'.$qPAPI['A'].'</td><td>'.$qPAPI['P'].'</td><td>'.$qPAPI['X'].'</td><td>'.$qPAPI['B'].'</td>';
+	$printpage .= '<td>'.$qPAPI['O'].'</td><td>'.$qPAPI['Z'].'</td><td>'.$qPAPI['K'].'</td><td>'.$qPAPI['F'].'</td><td>'.$qPAPI['W'].'</td>';
+	$printpage .= '</tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table>';
+	$printpage .= '</div>';
+	$printpage .= '</div>';
+    $printpage .= '</div>';
+    
+	
+    $printpage .= '<div class="clearfix"></div>';
+	$printpage .= '<div class="x_title col-md-12">';
+    $printpage .= '<h2>DISC<small>&nbsp;</small></h2>';
+    $printpage .= '<div class="clearfix"></div>';
+    $printpage .= '</div>';
+	
+	$printpage .= '<div class="row">';
+	
+	$printpage .= '<div class="col-md-3 col-sm-3">';
+    $printpage .= '<div class="x_panel">';
+    $printpage .= '<div class="x_printpage">';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+	
+    $printpage .= '<div class="col-md-3 col-sm-3">';
+    $printpage .= '<div class="x_panel">';
+    $printpage .= '<div class="x_printpage">';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+	
+    $printpage .= '<div class="col-md-3 col-sm-3">';
+    $printpage .= '<div class="x_panel">';
+    $printpage .= '<div class="x_printpage">';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+	
+    $printpage .= '<div class="col-md-3 col-sm-3">';
+    $printpage .= '<table class="table table-bordered" style="text-align:center;">';
+	$rDISC = sql_fetchrow(sql_query("SELECT DM, DL, DM-DL AS D3, IM, IL, IM-IL AS I3, SM, SL, SM-SL AS S3, CM, CL, CM-CL AS C3 FROM hasil_disc WHERE userid='$id'"));
+    $printpage .= '<thead><tr><th width="25%">&nbsp;</th><th width="25%">Graph I</th><th width="25%">Graph II</th><th width="25%">Graph III</th></tr></thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr style="color:purple; font-weight:bold;"><td>D</td><td>'.$rDISC['DM'].'</td><td>'.$rDISC['DL'].'</td><td>'.$rDISC['D3'].'</td></tr>';
+	$printpage .= '<tr style="color:red; font-weight:bold;"><td>I</td><td>'.$rDISC['IM'].'</td><td>'.$rDISC['IL'].'</td><td>'.$rDISC['I3'].'</td></tr>';
+	$printpage .= '<tr style="color:blue; font-weight:bold;"><td>S</td><td>'.$rDISC['SM'].'</td><td>'.$rDISC['SL'].'</td><td>'.$rDISC['S3'].'</td></tr>';
+	$printpage .= '<tr style="color:green; font-weight:bold;"><td>C</td><td>'.$rDISC['CM'].'</td><td>'.$rDISC['CL'].'</td><td>'.$rDISC['C3'].'</td></tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table>';
+    $printpage .= '</div>';
+	
+    $printpage .= '</div>';
+	
+	$printpage .= '</div>';
+	
+	$printpage .= '<div class="row">';
+	$printpage .= '<div class="col-md-6 col-sm-6">';
+    $printpage .= '<div class="x_panel">';
+    $printpage .= '<div class="x_title">';
+    $printpage .= '<h2>WPT<small>&nbsp;</small></h2>';
+    $printpage .= '<div class="clearfix"></div>';
+    $printpage .= '</div>';
+    $printpage .= '<table class="table table-bordered" style="text-align:center;">';
+	$printpage .= '<thead>';
+	$printpage .= '<tr><th class="col-md-2">WPT SKOR</th><th class="col-md-2">WPT IQ</th><th class="col-md-2">WPT CLASSIFICATION</th></tr>';
+	$printpage .= '</thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr><td><label id="lblWptSkor" /></td><td><label id="lblWptIQ" /></td><td><label id="lblWptClass" /></td></tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table>';
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+	
+	$printpage .= "</body>";
+	$printpage .= "</html>";
+	$printpage .= "</page>";
+	return $printpage;
+}
 function getWPTClass($skor){
 	if($skor>=130) {
 		$cat = "Very Superior";

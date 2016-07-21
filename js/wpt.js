@@ -22,7 +22,6 @@ function nextPage(form, id, limit)
 					alert("Terima kasih data Anda sudah kami simpan.");
 					window.location.href = 'index.php?act=papi';
 					window.reload();
-				
 	            }
         	});
 		

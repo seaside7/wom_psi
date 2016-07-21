@@ -1,7 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
 function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'WPT', 'Completed')))) AS tahapan
-		$UserQuery="SELECT tanggal_tes, no_ktp, nama_peserta, posisi, tahapan_tes,
+		$UserQuery="SELECT tanggal_tes, no_ktp, nama_peserta, CONCAT(usia ,' Tahun') AS usia, posisi, tahapan_tes,
 						IF(tahapan_tes='1', 'WPT', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'Kraeplin', 'Completed')))) AS tahapan
 						FROM USER  ";
 		$UserQuery .= " ORDER BY tanggal_tes DESC ";					
@@ -16,6 +16,7 @@ function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAP
 				<th style="text-align:center;">Tanggal Tes</th>
 				<th style="text-align:center;">No. KTP</th>
 				<th style="text-align:center;">Nama Peserta</th>
+				<th style="text-align:center;">Usia</th>
 				<th style="text-align:center;">Posisi yang<br />Dilamar</th>
 				<th style="text-align:center;">Tahapan<br />Tes</th>
 				<th style="text-align:center;">Tindakan</th>
@@ -27,6 +28,7 @@ function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAP
 		$content .="<tr><td align=\"center\">".getDMYFormatDate($row['tanggal_tes'])."</td>
 						<td align=\"center\">".$row['no_ktp']."</td>
 						<td align=\"center\">".$row['nama_peserta']."</td>
+						<td align=\"center\">".$row['usia']."</td>
 						<td align=\"center\">".$row['posisi']."</td>
 						<td align=\"center\">".$row['tahapan']."</td>";
 		$content .= "<td style='text-align:center'>";

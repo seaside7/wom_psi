@@ -15,16 +15,17 @@ function nextPage(form, id, limit)
 		var temp = $('formPAPI').serialize();
 		new Ajax.Updater(form,'ajax/papi.php?po=nextPage&limit='+limit+'&form='+form+'&id='+id+'&'+temp);
 	}else{
+		var temp = $('formPAPI').serialize();
 		jQuery("#btnNext").prop('disabled',true);
 		jQuery.ajax({
-            url: "/wom_psi/ajax/papi.php?po=saveHasilPAPI&ans="+ans+"&id="+jQuery('#hduserid').val(),
+            url: "/wom_psi/ajax/papi.php?po=saveHasilPAPI&limit="+limit+"&id="+jQuery('#hduserid').val()+"&"+temp,
 	            type: "POST",
 	            success: function(data)
 	            {
 					console.log(data);
 					alert("Terima kasih data Anda sudah kami simpan");
-					window.location.href = 'index.php?act=disc';
-					window.reload();
+					//window.location.href = 'index.php?act=disc';
+					//window.reload();
 				
 	            }
         	});
