@@ -3,9 +3,9 @@ jQuery.noConflict();
 var ans = '';
 function nextPage(form, id, limit)
 {	
-	/* for(var i=limit+1; i<=limit+15; i++){ 
+	for(var i=limit+1; i<=limit+15; i++){ 
 		if(!ischecked_rb('rdsoal'+i)) { alert('Soal no '+i+' belum dijawab.'); return false; }
-	} */
+	} 
 	for(var j=limit+1; j<=limit+15; j++){ 
 		ans = ans.concat(jQuery("[name='rdsoal"+j+"']:checked").val());
 	}
@@ -15,17 +15,17 @@ function nextPage(form, id, limit)
 		var temp = $('formPAPI').serialize();
 		new Ajax.Updater(form,'ajax/papi.php?po=nextPage&limit='+limit+'&form='+form+'&id='+id+'&'+temp);
 	}else{
+		var temp = $('formPAPI').serialize();
 		jQuery("#btnNext").prop('disabled',true);
 		jQuery.ajax({
-            url: "/wom_psi/ajax/papi.php?po=saveHasilPAPI&ans="+ans+"&id="+jQuery('#hduserid').val(),
+            url: "/wom_psi/ajax/papi.php?po=saveHasilPAPI&limit="+limit+"&id="+jQuery('#hduserid').val()+"&"+temp,
 	            type: "POST",
 	            success: function(data)
 	            {
 					console.log(data);
 					alert("Terima kasih data Anda sudah kami simpan");
-					window.open('index.php?act=disc', '_self');
-					// window.location.href = 'index.php?act=disc';
-					// window.reload();
+					//window.location.href = 'index.php?act=disc';
+					//window.reload();
 				
 	            }
         	});
@@ -35,6 +35,9 @@ function nextPage(form, id, limit)
 }
 function previousPage(form, id, limit)
 {	
+	for(var i=limit+1; i<=limit+15; i++){ 
+		if(!ischecked_rb('rdsoal'+i)) { alert('Soal no '+i+' belum dijawab.'); return false; }
+	} 
 	limitjs = limit;
 	var temp = $('formPAPI').serialize();
 	new Ajax.Updater(form,'ajax/papi.php?po=previousPage&limit='+limit+'&form='+form+'&id='+id+'&'+temp);

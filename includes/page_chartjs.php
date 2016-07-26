@@ -2,6 +2,7 @@
 global $urlsite;
 
 $localPageName = $_GET['act'];
+$id = $_GET['id'];
 
 include("controller/".$localPageName.".php");
 
@@ -12,7 +13,7 @@ include("controller/".$localPageName.".php");
 ?> 
 	<script>var localPageName = "<?php echo $localPageName; ?>"</script>	
 	<script type="text/javascript" language="JavaScript" src="js/<?php echo $localPageName; ?>.js"></script>
-	<div id="table-list"><?php showChart(); ?></div>
+	<div id="table-list"><?php showChart($id, 0); ?></div>
 
 <?php
 // }

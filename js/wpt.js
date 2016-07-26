@@ -20,9 +20,8 @@ function nextPage(form, id, limit)
 					console.log(data);
 					// alert("Terima kasih Anda sudah melengkapi rangkaian Psikotes WOM Finance.");
 					alert("Terima kasih data Anda sudah kami simpan.");
-					window.open('index.php?act=kraeplin','newtab');
-					setTimeout(window.close, 10);
-				
+					window.location.href = 'index.php?act=papi';
+					window.reload();
 	            }
         	});
 		
@@ -63,29 +62,22 @@ var limitjs = 0;
 var timer = jQuery.timer(function() {
 	timer.toggle();
 	
-	jQuery.alert('Waktu habis, data Anda sudah kami simpan.',function(){
+	jQuery.alert('Waktu habis.',function(){
 		var temp = $('formWPT').serialize();
 		jQuery.ajax({
             url: "/wom_psi/ajax/wpt.php?po=saveHasilWPT&limit="+limitjs+"&id="+idjs+"&"+temp,
 	            type: "POST",
 	            success: function(data)
 	            {
-					// console.log(data);
+					console.log(data);
 					alert("Terima kasih data Anda sudah kami simpan");
-					window.open('index.php?act=kraeplin', '_self');
-					// open(location, '_self').close();
-					// var objWindow = window.open(location.href, "_self");
-					// objWindow.close();
-					// var temp = 1; 
-					// switch (temp){
-						// case 1:	open('index.php', '_self').close(); window.open('index.php?act=kraeplin','newtab'); break;
-					// }
-					
+					window.location.href = 'index.php?act=papi';
+					window.reload();
 				
 	            }
         	});
 	});
 	
 	
-}, 900000);
+}, 720000);
 });	

@@ -48,6 +48,8 @@
 		$result['timbang'] = $qTimbang;
 
 		$result['total'] = $qTotal;
+		list($ss) = sql_fetchrow(sql_query("SELECT kraeplin_ss FROM kraeplinrs_mapping WHERE kraeplin_rs = '$qTotal';"));
+		$result['ss'] = $ss;
 		$result['salah'] = $salah;
 		
 		echo json_encode($result);
@@ -139,5 +141,237 @@
 		
 		
 	}
+
+if($po=="localAjPrintReport") 
+{	
+	$img = json_decode(str_replace ('\"','"', $_POST['img']), true);
+	$id = $_GET['id'];
+		// print_r ($img['imgrd']); die();
 	
+	$printpage = "<page>";
+	$printpage .= "<html>";
+	$printpage .= "<head>";
+	$printpage .= '<link href="css/custom.css" rel="stylesheet" type="text/css" />';
+	$printpage .= '<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">';
+	$printpage .= '<script src="js/bootstrap.min.js"></script>';
+	$printpage .= "</head>";
+	$printpage .= "<body>";
+	
+	$qNama = "SELECT nama_peserta, posisi, usia FROM user WHERE no_ktp = '".$id."'";
+	// echo $qNama;
+	list($nama, $posisi, $usia) = sql_fetchrow(sql_query($qNama));
+	// $printpage .= '</form>';
+    $printpage .= '<style>th {text-align:center;} label {font-weight:normal !important;}</style>';
+    $printpage .= '<div class="col-md-12" role="main">';
+    $printpage .= '<div style="width:100%">';
+    $printpage .= '<table border=0 style="width:100%" cellspacing="0">';
+    $printpage .= '<tr>';
+    $printpage .= '<td style="width:70%;text-align:left; vertical-align:top; "colspan="3"><h4>Report Psikotes</h4></td>';
+    $printpage .= '<td style="width:30%;text-align:right; vertical-align:top;" rowspan="4"><img src="../images/Logo-WOM.png" width="182" height="35"></td>';
+    $printpage .= '</tr>';
+    $printpage .= '<tr>';
+    $printpage .= '<td style="width:15%;">Nama Peserta</td>';
+    $printpage .= '<td style="width:2%;">:</td>';
+    $printpage .= '<td style="width:53%;">'.$nama.'</td>';
+    $printpage .= '</tr>';
+    $printpage .= '<tr>';
+    $printpage .= '<td style="width:15%;">Posisi yang Dituju</td>';
+    $printpage .= '<td style="width:2%;">:</td>';
+    $printpage .= '<td style="width:53%;">'.$posisi.'</td>';
+    $printpage .= '</tr>';
+    $printpage .= '<tr>';
+    $printpage .= '<td style="width:15%;">Usia</td>';
+    $printpage .= '<td style="width:2%;">:</td>';
+    $printpage .= '<td style="width:53%;">'.$usia.' Tahun</td>';
+    $printpage .= '</tr>';
+    $printpage .= '</table>';
+	
+	$printpage .= '<div class="clearfix"></div>';
+
+	
+    $printpage .= '<div class="x_title col-md-12">';
+    $printpage .= '<h4>Kraepelin<small>&nbsp;</small></h4>';
+    $printpage .= '</div>';
+	
+    $printpage .= '<table border=0 style="width:100%" cellspacing="0">';
+    $printpage .= '<tr>';
+    $printpage .= '<td style="width:60%">';
+    $printpage .= '<img src="'.$img['imgkr'].'" width="350"/>';
+    $printpage .= '&nbsp;';
+    $printpage .= '</td>';
+	
+	list($qSpeed, $qTimbang, $qJanker, $qTotal) = sql_fetchrow(sql_query("SELECT ROUND(AVG(Y)) AS speed, ROUND((MAX(Y)+MIN(Y))/2) AS timbang, MAX(Y)-MIN(Y) AS janker, MAX(Y)+MIN(Y) AS total FROM tinggi WHERE userid = '".$id."'; "));
+	list($qSpeed) = sql_fetchrow(sql_query("SELECT ROUND(AVG(Y)) AS speed FROM tinggi WHERE userid = '".$id."' AND x BETWEEN 6 AND 40; "));
+	list($qTinker) = sql_fetchrow(sql_query("SELECT COUNT(1) AS tinker FROM salah WHERE userid = '".$id."' and x BETWEEN 6 AND 40; "));
+	list($salah) = sql_fetchrow(sql_query("select (A.sums+B.sums+C.sums) as jumlahsalah
+					from 
+					(SELECT COUNT(1) as sums FROM `salah` WHERE userid='".$id."' and x BETWEEN 6 and 10) A,
+					(SELECT COUNT(1) as sums FROM `salah` WHERE userid='".$id."' and x BETWEEN 21 and 25) B,
+					(SELECT COUNT(1) as sums FROM `salah` WHERE userid='".$id."' and x BETWEEN 36 and 40) C;"));
+	
+	$speed = getPankerCat($qSpeed);
+	$janker = getJankerCat($qJanker);
+	$tinker = getTinkerCat($qTinker);
+	list($ss) = sql_fetchrow(sql_query("SELECT kraeplin_ss FROM kraeplinrs_mapping WHERE kraeplin_rs = '$qTotal';"));
+	
+	$printpage .= '<td style="width:40%">';
+	$printpage .= '<table style="text-align:center;  border:1px solid #CCC; width:275px;"  cellspacing=0 cellpadding="15">';
+	$printpage .= '<thead>';
+	$printpage .= '<tr><th style="border:1px solid #CCC;  width:100px; ">Aspek</th><th style="border:1px solid #CCC;  width:50px;">Skor</th><th style="border:1px solid #CCC;  width:50px;">PP</th><th style="border:1px solid #CCC;  width:75px;">Klasifikasi</th></tr>';
+	$printpage .= '</thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr><td style="border:1px solid #CCC; font-weight:bold;">Kecepatan</td><td style="border:1px solid #CCC; ">'.$qSpeed.'</td><td style="border:1px solid #CCC; ">'.$speed['PP'].'</td><td style="border:1px solid #CCC; ">'.$speed['cat'].'</td></tr>';
+	$printpage .= '<tr><td style="border:1px solid #CCC; font-weight:bold;">Ketelitian</td><td style="border:1px solid #CCC; ">'.$qTinker.'</td><td style="border:1px solid #CCC; ">'.$tinker['PP'].'</td><td style="border:1px solid #CCC; ">'.$tinker['cat'].'</td></tr>';
+	$printpage .= '<tr><td style="border:1px solid #CCC; font-weight:bold;">Keajekan</td><td style="border:1px solid #CCC; ">'.$qJanker.'</td><td style="border:1px solid #CCC; ">'.$janker['PP'].'</td><td style="border:1px solid #CCC; ">'.$janker['cat'].'</td></tr>';
+	$printpage .= '<tr><td style="border:1px solid #CCC; font-weight:bold;">Total</td><td style="border:1px solid #CCC; ">'.$qTotal.'</td><td style="border:1px solid #CCC; background:#CCC;">&nbsp;</td><td style="border:1px solid #CCC; background:#CCC;">&nbsp;</td></tr>';
+	$printpage .= '<tr><td style="border:1px solid #CCC; font-weight:bold;">SS</td><td style="border:1px solid #CCC; ">'.$ss.'</td><td style="border:1px solid #CCC; background:#CCC;">&nbsp;</td><td style="border:1px solid #CCC; background:#CCC;">&nbsp;</td></tr>';
+	$printpage .= '<tr><td style="border:1px solid #CCC; font-weight:bold;">Kesalahan</td><td style="border:1px solid #CCC; ">'.$salah.'</td><td style="border:1px solid #CCC; background:#CCC;">&nbsp;</td><td style="border:1px solid #CCC; background:#CCC;">&nbsp;</td></tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table>';
+	$printpage .= '</td>';
+	$printpage .= '</tr>';
+    $printpage .= '</table>';
+	
+    $printpage .= '<div class="clearfix"></div>';
+	
+    $printpage .= '<div class="x_title col-md-12">';
+    $printpage .= '<h4>PAPI<small>&nbsp;</small></h4>';
+    $printpage .= '<div class="clearfix"></div>';
+    $printpage .= '</div>';
+	
+    $printpage .= '<table border=0 style="width:100%" cellspacing="0">';
+    $printpage .= '<tr>';
+    $printpage .= '<td style="width:60%; padding-left:100;">';
+	$printpage .= '<img src="'.$img['imgrd'].'" width="220"/>';
+    $printpage .= '&nbsp;';
+    $printpage .= '</td>';
+	
+	$printpage .= '<td style="width:40%">';
+	$qPAPI = sql_fetchrow(sql_query("SELECT `G`,`L`,`I`,`T`,`V`,`S`,`R`,`D`,`C`,`E`,`N`,`A`,`P`,`X`,`B`,`O`,`Z`,`K`,`F`,`W`
+									FROM `hasil_papi` WHERE userid = '".$id."'"));
+	$printpage .= '<table style="text-align:center; width:275px; " border="1px solid #CCC;" cellspacing=0>';
+	$printpage .= '<thead>';
+	$printpage .= '<tr>';
+	$printpage .= '<th style="width:55px;">G</th><th style="width:55px;">L</th><th style="width:55px;">I</th><th style="width:55px;">T</th><th style="width:55px;">V</th>';
+	$printpage .= '</tr>';
+	$printpage .= '</thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr>';
+	$printpage .= '<td>'.$qPAPI['G'].'</td><td>'.$qPAPI['L'].'</td><td>'.$qPAPI['I'].'</td><td>'.$qPAPI['T'].'</td><td>'.$qPAPI['V'].'</td>';
+	$printpage .= '</tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table><br />';
+	$printpage .= '<table style="text-align:center; width:275px; " border="1px solid #CCC;" cellspacing=0>';
+	$printpage .= '<thead>';
+	$printpage .= '<tr>';
+	$printpage .= '<th style="width:55px;">S</th><th style="width:55px;">R</th><th style="width:55px;">D</th><th style="width:55px;">C</th><th  style="width:55px;">E</th>';
+	$printpage .= '</tr>';
+	$printpage .= '</thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr>';
+	$printpage .= '<td>'.$qPAPI['S'].'</td><td>'.$qPAPI['R'].'</td><td>'.$qPAPI['D'].'</td><td>'.$qPAPI['C'].'</td><td>'.$qPAPI['E'].'</td>';
+	$printpage .= '</tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table><br />';
+	$printpage .= '<table style="text-align:center; width:275px; " border="1px solid #CCC;" cellspacing=0>';
+	$printpage .= '<thead>';
+	$printpage .= '<tr>';
+	$printpage .= '<th style="width:55px;">N</th><th style="width:55px;">A</th><th style="width:55px;">P</th><th style="width:55px;">X</th><th style="width:55px;">B</th>';
+	$printpage .= '</tr>';
+	$printpage .= '</thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr>';
+	$printpage .= '<td>'.$qPAPI['N'].'</td><td>'.$qPAPI['A'].'</td><td>'.$qPAPI['P'].'</td><td>'.$qPAPI['X'].'</td><td>'.$qPAPI['B'].'</td>';
+	$printpage .= '</tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table><br />';
+	$printpage .= '<table style="text-align:center; width:275px; " border="1px solid #CCC;" cellspacing=0>';
+	$printpage .= '<thead>';
+	$printpage .= '<tr>';
+	$printpage .= '<th style="width:55px;">O</th><th style="width:55px;">Z</th><th style="width:55px;">K</th><th style="width:55px;">F</th><th style="width:55px;">W</th>';
+	$printpage .= '</tr>';
+	$printpage .= '</thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr>';
+	$printpage .= '<td>'.$qPAPI['O'].'</td><td>'.$qPAPI['Z'].'</td><td>'.$qPAPI['K'].'</td><td>'.$qPAPI['F'].'</td><td>'.$qPAPI['W'].'</td>';
+	$printpage .= '</tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table>';
+	$printpage .= '</td>';
+	$printpage .= '</tr>';
+    $printpage .= '</table>';
+    
+	
+    $printpage .= '<div class="clearfix"></div>';
+	
+	$printpage .= '<div class="x_title col-md-12">';
+    $printpage .= '<h4>DISC<small>&nbsp;</small></h4>';
+    $printpage .= '<div class="clearfix"></div>';
+    $printpage .= '</div>';
+	
+	$printpage .= '<table border=0 style="width:100%" cellspacing="0">';
+    $printpage .= '<tr>';
+    $printpage .= '<td style="width:24%">';
+    $printpage .= '<img width="163" height="265" src="'.$img['imgd1'].'"/>';
+    $printpage .= '&nbsp;';
+    $printpage .= '</td>';
+	
+    $printpage .= '<td style="width:24%">';
+    $printpage .= '<img width="163" height="265" src="'.$img['imgd2'].'"/>';
+    $printpage .= '&nbsp;';
+    $printpage .= '</td>';
+	
+    $printpage .= '<td style="width:24%">';
+    $printpage .= '<img width="163" height="265" src="'.$img['imgd3'].'"/>';
+    $printpage .= '&nbsp;';
+    $printpage .= '</td>';
+	
+    $printpage .= '<td style="width:28%; padding-top:15px;">';
+    $printpage .= '<table style="text-align:center; width:175px; " border="1px solid #CCC;" cellspacing=0>';
+	$rDISC = sql_fetchrow(sql_query("SELECT DM, DL, DM-DL AS D3, IM, IL, IM-IL AS I3, SM, SL, SM-SL AS S3, CM, CL, CM-CL AS C3 FROM hasil_disc WHERE userid='".$id."'"));
+    $printpage .= '<thead><tr><th style="width:25px">&nbsp;</th><th style="width:50px">Graph<br />I</th><th style="width:50px">Graph<br />II</th><th style="width:50px">Graph<br />III</th></tr></thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr style="color:purple; font-weight:bold;"><td>D</td><td>'.$rDISC['DM'].'</td><td>'.$rDISC['DL'].'</td><td>'.$rDISC['D3'].'</td></tr>';
+	$printpage .= '<tr style="color:red; font-weight:bold;"><td>I</td><td>'.$rDISC['IM'].'</td><td>'.$rDISC['IL'].'</td><td>'.$rDISC['I3'].'</td></tr>';
+	$printpage .= '<tr style="color:blue; font-weight:bold;"><td>S</td><td>'.$rDISC['SM'].'</td><td>'.$rDISC['SL'].'</td><td>'.$rDISC['S3'].'</td></tr>';
+	$printpage .= '<tr style="color:green; font-weight:bold;"><td>C</td><td>'.$rDISC['CM'].'</td><td>'.$rDISC['CL'].'</td><td>'.$rDISC['C3'].'</td></tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table>';
+    $printpage .= '</td>';
+    $printpage .= '</tr>';
+	$printpage .= '</table>';
+	
+    $printpage .= '<div class="clearfix"></div>';
+	
+    $printpage .= '<div class="x_title col-md-12">';
+    $printpage .= '<h4>WPT<small>&nbsp;</small></h4>';
+    $printpage .= '<div class="clearfix"></div>';
+    $printpage .= '</div>';
+	
+	list($wptSkor, $wptIQ) = sql_fetchrow(sql_query("SELECT wpt_skor, wpt_iq from hasil_wpt where userid = '".$id."';"));
+		$wptClass = getWPTClass($wptIQ);
+    $printpage .= '<table border="1px solid #CCC" style="width:50%" cellspacing="0">';
+	$printpage .= '<thead>';
+	$printpage .= '<tr><th style="width:90px">WPT SKOR</th><th style="width:90px">WPT IQ</th><th style="width:150px">CLASSIFICATION</th></tr>';
+	$printpage .= '</thead>';
+	$printpage .= '<tbody>';
+	$printpage .= '<tr><td style="text-align:center;">'.$wptSkor.'</td><td style="text-align:center;">'.$wptIQ.'</td><td style="text-align:center;">'.$wptClass.'</td></tr>';
+	$printpage .= '</tbody>';
+	$printpage .= '</table>';
+	
+    $printpage .= '</div>';
+    $printpage .= '</div>';
+	
+	$printpage .= "</body>";
+	$printpage .= "</html>";
+	$printpage .= "</page>";
+	require_once('../function/html2pdf/html2pdf.class.php');
+			$html2pdf = new HTML2PDF('P','A4','en');
+			//$html2pdf->pdf->SetProtection(array('print'),'', 'Orangesystem');
+			// $html2pdf->pdf->SetFont('times', 'BI', 20, '', 'false');;
+			// $html2pdf->WriteHTML(htmlspecialchars ($printpage));
+			$html2pdf->WriteHTML($printpage);
+			$html2pdf->Output($id.'.pdf');
+			
+}
 ?>
