@@ -13,7 +13,7 @@ function showChart($id, $tipe)
 	
 	// $content .= '<form method="post" action="#" enctype="multipart/form-data" class="form" novalidate="novalidate">';
 	// $id = $_GET['id'];
-	$content .= '<input type="hidden" id="hdid" value="'.$id.'">';
+	$content = '<input type="hidden" id="hdid" value="'.$id.'">';
 	list($nama) = sql_fetchrow(sql_query("SELECT nama_peserta FROM user WHERE no_ktp = '".$_GET['id']."'"));
 	// $content .= '</form>';
     $content .= '<style>th {text-align:center;} label {font-weight:normal !important;}</style>';
