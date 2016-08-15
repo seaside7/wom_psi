@@ -24,8 +24,8 @@ function nextPage(form, id, limit)
 	            {
 					console.log(data);
 					alert("Terima kasih data Anda sudah kami simpan");
-					//window.location.href = 'index.php?act=disc';
-					//window.reload();
+					window.location.href = 'index.php?act=disc';
+					window.reload();
 				
 	            }
         	});
