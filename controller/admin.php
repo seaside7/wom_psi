@@ -3,7 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
 
 function adminPage(){
 	// echo $_SESSION['userid'];
-	if(!isset($_SESSION['userid'])){
+	if(!isset($_SESSION['adminuser'])){
     $formName = 'formLogin';
 	$content = '<form action="#" method="post" enctype="multipart/form-data" name="'.$formName.'" id="'.$formName.'">';
 	$content .= "<table id=tbLogin align='center' border='0' width='450px'>";

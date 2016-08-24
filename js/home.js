@@ -14,6 +14,24 @@ function isNumberNoAlert(evt) {
     }
     return true;
 }
+function localJsLogin(form)
+{	
+	var Pass = $('#txtPass').val(); 	
+	
+	
+	if(!Pass) {alert('Password belum diisi!'); return false;}
+	$.ajax({
+	 type: 'POST',
+             dataType: "json",
+             url: 'ajax/home.php?po=localAjLogin&pass='+Pass,
+             success: function(data) { 
+				if(data.row>0){ console.log(data); 
+					window.location.href = 'index.php?act=home'; 
+				 }else {alert('Password salah.'); return false;}
+			}		
+	});
+	
+}
 function localJsSaveDetail(form)
 {	
 	var strConfirm = "Anda yakin akan simpan data ini?";
