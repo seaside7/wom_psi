@@ -2,7 +2,29 @@ var tinggi = {};
 
 $( document ).ready(function() {
 	
-    //$( "#txtans_1_1" ).focus();
+    var oTable = $('#tableuser').dataTable({
+		   "language": {
+					 "lengthMenu": "Tampilkan _MENU_ Data per halaman",
+					 "zeroRecords": "Tidak ada data user",
+					 "info": "",
+					 "infoEmpty": "Tidak ada data yang tersedia",
+					 "infoFiltered": "(Penyaringan data dari _MAX_ total data)"
+				 },
+				 "order": [],
+				 paging: false,
+				 "aoColumnDefs": [
+					{ 'bSortable': false, 'aTargets': [ 1 ] }//,
+					// { "visible": false, "targets": 0 }
+				 ],
+				 scrollY: 400,
+				 searching: false
+				 // "aoColumns": [{ 
+				 //   "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+				 //   $(".titletooltip", this.fnGetNodes()).tooltipster();
+				 // }
+				 // }],
+			  
+			 });
 });
 
 function isNumberNoAlert(evt) {
@@ -14,20 +36,23 @@ function isNumberNoAlert(evt) {
     }
     return true;
 }
-function localJsLogin(form)
+function localJsMpass(form)
 {	
+	var User = $('#txtUsername').val(); 	
 	var Pass = $('#txtPass').val(); 	
+	var Pass2 = $('#txtPass2').val(); 	
 	
 	
 	if(!Pass) {alert('Password belum diisi!'); return false;}
+	if(Pass!=Pass2) {alert('Password tidak sama!'); return false;}
 	$.ajax({
 	 type: 'POST',
              dataType: "json",
-             url: 'ajax/home.php?po=localAjLogin&pass='+Pass,
+             url: 'ajax/mpass.php?po=localAjMpass&user='+User+'&pass='+Pass,
              success: function(data) { 
-				if(data.row>0){ console.log(data); 
-					window.location.href = 'index.php?act=home'; 
-				 }else {alert('Password salah.'); return false;}
+				if(data.success = 'success'){
+					window.location.href = 'index.php?act=mpass'; 
+				}
 			}		
 	});
 	

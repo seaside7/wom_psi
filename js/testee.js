@@ -14,24 +14,6 @@ function isNumberNoAlert(evt) {
     }
     return true;
 }
-function localJsLogin(form)
-{	
-	var Pass = $('#txtPass').val(); 	
-	
-	
-	if(!Pass) {alert('Password belum diisi!'); return false;}
-	$.ajax({
-	 type: 'POST',
-             dataType: "json",
-             url: 'ajax/home.php?po=localAjLogin&pass='+Pass,
-             success: function(data) { 
-				if(data.row>0){ console.log(data); 
-					window.location.href = 'index.php?act=home'; 
-				 }else {alert('Password salah.'); return false;}
-			}		
-	});
-	
-}
 function localJsSaveDetail(form)
 {	
 	var strConfirm = "Anda yakin akan simpan data ini?";
@@ -53,7 +35,7 @@ function localJsSaveDetail(form)
 	 type: 'POST',
              dataType: "json",
              async:false,
-             url: 'ajax/home.php?po=localAjGetRowDetail&id='+$('#txtNoKTP').val(),
+             url: 'ajax/testee.php?po=localAjGetRowDetail&id='+$('#txtNoKTP').val(),
              success: function(data) {
 			if(data.row>0){
 				thpn = 1;
@@ -84,7 +66,7 @@ function localJsSaveDetail(form)
 			console.log($('#'+form).serialize());
 			$.ajax({
 			 type: 'POST',
-			 url: 'ajax/home.php?&po=localAjSaveDetail',
+			 url: 'ajax/testee.php?&po=localAjSaveDetail',
 			 data: $('#'+form).serialize(),
 			
 	        success:function(request){
@@ -108,7 +90,7 @@ function JSlogout(){
 	$.ajax({
 	 type: 'POST',
              dataType: "json",
-             url: 'ajax/home.php?po=AJlogout',
+             url: 'ajax/testee.php?po=AJlogout',
              success: function(data) { 
 				if(data.success = 'success'){
 					window.location.href = 'index.php'; 

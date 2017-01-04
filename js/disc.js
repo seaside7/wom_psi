@@ -31,9 +31,13 @@ $( document ).ready(function() {
 		var CL  = 0;
 	// if($('#txtans_1_1').data("tipe")!="") alert($('#txtans_1_4').data("tipe"));
 		for(var x=1;x<=24;x++){
+			var Mperline = 0;
+			var Lperline = 0;
 			for(var y=1;y<=4;y++){
 				var txt = "txtans_"+x+"_"+y;
 				if($('#'+txt).val()!=""){
+					if($('#'+txt).val().toUpperCase()=="M") Mperline++;
+					else if($('#'+txt).val().toUpperCase()=="L") Lperline++;
 					if(x==21 && y==1){
 						if($('#'+txt).val().toUpperCase()=="M"){SM++; SMno+= x+" "+y+"\n";}
 						else if($('#'+txt).val().toUpperCase()=="L"){IL++; ILno+= x+" "+y+"\n";}
@@ -49,6 +53,8 @@ $( document ).ready(function() {
 					}
 				}
 			}
+			if (Mperline > 1) { alert("Jawaban soal no."+x+" tidak sesuai ketentuan.\nIsi dengan satu \"M\"."); return false;}
+			if (Lperline > 1) { alert("Jawaban soal no."+x+" tidak sesuai ketentuan.\nIsi dengan satu \"L\"."); return false;}
 		}
 		
 		console.log("DM="+DM+"\n"+DMno+"\n"+"DL="+DL+"\n"+DLno+"\n"+"IM="+IM+"\n"+IMno+"\n"+"IL="+IL+"\n"+ILno+"\n"+

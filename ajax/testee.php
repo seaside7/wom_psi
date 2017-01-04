@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('../function/sqlfunction.php');
-require("../controller/home.php");
+require("../controller/testee.php");
 $po=$_GET['po'];
 
 if($po=="localAjSaveDetail"){	echo localSaveDetail(); }
