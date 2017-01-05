@@ -75,7 +75,7 @@ require_once('function/mainfunction.php');
 </head>
 
 <body>
-	<?php if($act == 'home' || $act == 'testee' || $act == 'mpass'){ ?>
+	<?php if($act == 'home' || $act == 'testee' || $act == 'mpass' || $act == 'login'){ ?>
 	<div id="main">
 	<?php } ?>
 	<div id="hheaderCont">
@@ -89,7 +89,7 @@ require_once('function/mainfunction.php');
 		<?php showpage('',$act);?>
 	</div>
 	
-	<?php if($act == 'home' || $act == 'testee' || $act == 'mpass'){ ?>
+	<?php if($act == 'home' || $act == 'testee' || $act == 'mpass' || $act == 'login'){ ?>
 	</div>
 	<?php } ?>
 </body>
