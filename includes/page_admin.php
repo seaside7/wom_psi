@@ -12,7 +12,7 @@ include("controller/".$localPageName.".php");
 ?> 
 	<script>var localPageName = "<?php echo $localPageName; ?>"</script>	
 	<script type="text/javascript" language="JavaScript" src="js/<?php echo $localPageName; ?>.js"></script>
-	<div id="table-list"><?php UserList(); ?></div>
+	<div id="table-list"><?php adminPage(); ?></div>
 
 <?php
 // }

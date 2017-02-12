@@ -30,7 +30,7 @@ function LocalDISCForm($UsrDef, $limit)
 	
 	$content = '<input type="hidden" name="hduserid" id="hduserid" value="'.$_SESSION['userid'].'">';
 	$content .= '<div id="content" class="col-md-12 " >';
-	$content .= '<div id="tableDISC" class="col-md-10 col-md-offset-1" >';
+	$content .= '<div id="tableDISC" class="col-md-12" >';
 	
 	
 	$qsoal = sql_query("SELECT DISTINCT no_soal FROM soal_disc ORDER BY no_soal ");
@@ -38,13 +38,14 @@ function LocalDISCForm($UsrDef, $limit)
 		$no = $soal['no_soal'];
 		$content .= '<table class="table table-bordered" id="tableDISC_'.$no.'">';
 		$content .= '<tr>';
+		$content .= '<td style="text-align:center; vertical-align:middle;">'.$no.'</td>';
 		
 		$qpernyataan = sql_query("SELECT sequence, pernyataan, komponen, tipe FROM soal_disc WHERE no_soal = '$no' ORDER BY sequence ");
 		while($pernyataan = sql_fetchassoc($qpernyataan)){
 			
 			//#FFFFE8
-			$content .= '<td class="col-md-3"><input class="textbox inputdisc" type="text" size=27 disabled value="'.$pernyataan['pernyataan'] .'">&nbsp;';
-			$content .= '<input class="textbox " type="text" size=1 data-komponen="'.$pernyataan['komponen'].'" data-tipe="'.$pernyataan['tipe'].'" id="txtans_'.$no.'_'.$pernyataan['sequence'].'"  name="txtans_'.$no.'_'.$pernyataan['sequence'].'" style="text-align:center; height:32px; font-size:13px !important;"  onkeypress="return isMorL(event)" >';
+			$content .= '<td class="col-md-3"><input class="textbox inputdisc" type="text" size=35 disabled value="'.$pernyataan['pernyataan'] .'">&nbsp;';
+			$content .= '<input class="textbox " type="text" size=1 maxlength="1" data-komponen="'.$pernyataan['komponen'].'" data-tipe="'.$pernyataan['tipe'].'" id="txtans_'.$no.'_'.$pernyataan['sequence'].'"  name="txtans_'.$no.'_'.$pernyataan['sequence'].'" style="text-align:center; height:32px; font-size:13px !important;text-transform:uppercase;"  onkeypress="return isMorL(event)" >';
 			
 			
 		}

@@ -20,9 +20,8 @@ function nextPage(form, id, limit)
 					console.log(data);
 					// alert("Terima kasih Anda sudah melengkapi rangkaian Psikotes WOM Finance.");
 					alert("Terima kasih data Anda sudah kami simpan.");
-					window.location.href = 'index.php?act=kraeplin';
+					window.location.href = 'index.php?act=papi';
 					window.reload();
-				
 	            }
         	});
 		
@@ -72,7 +71,7 @@ var timer = jQuery.timer(function() {
 	            {
 					console.log(data);
 					alert("Terima kasih data Anda sudah kami simpan");
-					window.location.href = 'index.php?act=kraeplin';
+					window.location.href = 'index.php?act=papi';
 					window.reload();
 				
 	            }

@@ -29,7 +29,7 @@ function localJsSaveDetail(form)
 	
 	
 	if(!NoKTP){ alert('Nomor KTP belum diisi!'); return false; }
-	if(NoKTP.length < 16){ alert('Nomor KTP belum lengkap!'); return false; }
+	// if(NoKTP.length < 16){ alert('Nomor KTP belum lengkap!'); return false; }
 		// alert("a"); return false;
 	$.ajax({
 	 type: 'POST',
@@ -42,9 +42,9 @@ function localJsSaveDetail(form)
 				switch(data.tahapan_tes)
 					{	
 						case '1': window.location.href = 'index.php?act=wpt';break; 
-						case '2': window.location.href = 'index.php?act=kraeplin';break;
-						case '3': window.location.href = 'index.php?act=papi';break;
-						case '4': window.location.href = 'index.php?act=disc';break;
+						case '2': window.location.href = 'index.php?act=papi';break;
+						case '3': window.location.href = 'index.php?act=disc';break;
+						case '4': window.location.href = 'index.php?act=kraeplin';break;
 						case '5': alert('Peserta dengan nomor KTP '+NoKTP+' sudah menyelesaikan tahapan psikotes.'); break;
 					}
 				}
@@ -75,7 +75,7 @@ function localJsSaveDetail(form)
 				switch(request)
 				{	case '0': alert('Gagal menyimpan data.'); break;	
 					case '1': alert('Sukses menyimpan data'); 
-							  window.location.href = 'index.php?act=kraeplin';
+							  window.location.href = 'index.php?act=wpt';
 							  window.reload();  break;
 				}
 				$('#btnSaveDetail').enable;

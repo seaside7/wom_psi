@@ -28,7 +28,7 @@ if($po=="saveHasilPAPI") {
 	for($no=1;$no<=90;$no++){
 		$ans .=  $_SESSION['anspapi'][$no];
 	}
-	//$ans = $_GET['ans'];
+	// $ans .= $_GET['ans'];
 	$id = $_GET['id'];
 	$G = substr_count($ans, 'G');
 	$L = substr_count($ans, 'L');
@@ -62,8 +62,9 @@ if($po=="saveHasilPAPI") {
 	'$N', '$A', '$P', '$X', '$B', '$O', '$Z', '$K', '$F', '$W'
 	);";
 	echo $qInsert;
+	print_r($_SESSION);
 	sql_query($qInsert);
-	unset($_SESSION['anspapi']);
+	// unset($_SESSION['anspapi']);
 	sql_query("UPDATE user SET tahapan_tes = '4' WHERE no_ktp = '".$id."'");
 	return true;
 	

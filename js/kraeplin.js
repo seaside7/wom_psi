@@ -1,6 +1,13 @@
 jQuery.noConflict();
 var tinggi = {};
+ //eval(function(p,a,c,k,e,d){while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+c.toString(a)+'\\b','g'),k[c])}}return p}('6 5(e){0(!e)e=8.4;e.2=3;e.7=\'c 9 f d a b?\';0(e.1){e.1();e.g()}}',17,17,'if|stopPropagation|cancelBubble|true|event|ByeBye|function|returnValue|window|sure|to|leave|You|want||you|preventDefault'.split('|')))
+window.onbeforeunload = function() {
+    return "Leaving this page will reset the wizard";
+};
 
+//window.location.hash="no-back-button";
+//window.location.hash="Again-No-back-button";//again because google chrome don't insert first hash into history
+//window.onhashchange=function(){window.location.hash="no-back-button";}
 jQuery( document ).ready(function() { 
 	// $(function() {
         // $(this).bind("contextmenu", function(e) {
@@ -20,6 +27,7 @@ jQuery("#btnstart").click(function(){
 	jQuery("#rules").hide();
 	timer.play();
 	timer2.play();
+	 //eval(function(p,a,c,k,e,d){while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+c+'\\b','g'),k[c])}}return p}('0.1=2;',3,3,'window|onbeforeunload|ByeBye'.split('|')))
 });
 
 jQuery('.txtans').keydown(function(e) {
@@ -55,29 +63,19 @@ jQuery('.txtans').keydown(function(e) {
 var currentRow = 1;
 var timer = jQuery.timer(function() {
 	timer.toggle();
-	timer2.toggle();
+	// timer2.toggle();
 	if(currentRow != 45){
-		var konfrm = alert("PINDAH");
-		
-		if(konfrm != "S"){
-			jQuery.scrollTo({top:'100%', left:'+=0'}, 800);
-			jQuery(".txtansrow"+currentRow).prop('disabled',false);
-			currentRow = currentRow + 1;
-			jQuery(".txtansrow"+currentRow).prop('disabled',false);
-			timer.toggle();
-			timer2.toggle();
-		}
 
-		/*jQuery.alert('Pindah.',function(){
-			jQuery('html').keyup(function(e){if(e.keyCode == 8)alert('backspace trapped')})  
+		jQuery.alert('PINDAH.',function(){
+			// jQuery('html').keyup(function(e){if(e.keyCode == 8)alert('backspace trapped')})  
 			jQuery.scrollTo({top:'100%', left:'+=0'}, 800);
 			jQuery(".txtansrow"+currentRow).prop('disabled',false);
 			currentRow = currentRow + 1;
 			jQuery(".txtansrow"+currentRow).prop('disabled',false);
-			// $( "#txtans_"+currentRow+"_1" ).focus();
+			jQuery( "#txtans_"+currentRow+"_1" ).focus();
 			timer.toggle();
-			timer2.toggle();
-		});*/
+			// timer2.toggle();
+		});
 	}
 	else
 	{	
@@ -91,9 +89,8 @@ var timer = jQuery.timer(function() {
 	            data: serialized,
 	            success: function(data)
 	            {
-					console.log(data);
-					alert("Terima kasih data Anda sudah kami simpan");
-					window.location.href = 'index.php?act=papi';
+					alert("Terima kasih Anda sudah melengkapi rangkaian Psikotes WOM Finance.");
+					window.location.href = 'index.php';
 					window.reload();
 				
 	            }
@@ -106,29 +103,34 @@ var timer = jQuery.timer(function() {
 
 var timer2 = jQuery.timer(function() {
 	timer.toggle();
-	timer2.toggle();
+	// timer2.toggle();
 	
 		jQuery(".txtansrow"+currentRow).prop('disabled',false);
 		var serialized = jQuery('#formKraeplin').serialize();
 		// console.log(serialized);
-		jQuery.alert('Finish.',function(data){
+		// jQuery.alert('Waktu Anda habis, data sudah kami simpan.',function(data){
+		var konfrm = alert("Waktu Anda habis, data sudah kami simpan");
+		window.onbeforeunload = function() {
+		};
+		if(konfrm != "S"){
 			jQuery.ajax({
             url: "/wom_psi/ajax/kraeplin.php",
 	            type: "POST",
 	            data: serialized,
 	            success: function(data)
 	            {
-					console.log(data);
-					alert("Waktu Anda habis, data sudah kami simpan");
-					window.location.href = 'index.php?act=papi';
-					window.reload();
-				
+					// console.log(data);
+					// alert("Waktu Anda habis, data sudah kami simpan");
+					// window.location.href = 'index.php';
+					// window.reload();
+					window.open('index.php','_self','');
 	            }
         	});
-		});
+		}
+		// });
 		
 	
-}, 1350000); //1350000
+}, 1320000); //1350000
 
 });
 
@@ -140,9 +142,7 @@ var cursorFocus = function(elem) {
 function scrollright(x){
 	 if(x>=20) {jQuery.scrollTo({top:'+=0', left:'+=500px'}, 800);}
 	return false;
-}
-
-		
+}	
 function nextText(x, y, val, correct){
 	var nextVal = parseInt(y)+1;
 	var prevVal = parseInt(y)-1;

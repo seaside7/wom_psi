@@ -62,8 +62,8 @@ $( document ).ready(function() {
 	            {
 					console.log(data);
 					// alert("Terima kasih data Anda sudah kami simpan");
-					alert("Terima kasih Anda sudah melengkapi rangkaian Psikotes WOM Finance.");
-					window.location.href = 'index.php';
+					alert("Terima kasih data Anda sudah kami simpan");
+					window.location.href = 'index.php?act=kraeplin';
 					window.reload();
 				
 	            }

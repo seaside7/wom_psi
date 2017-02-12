@@ -10,8 +10,7 @@ function LoginForm()
 	$content .= "<td width='60%'>".getDMYFormatDate(date("Y-m-d H:i:s"))."<input type='hidden' id='hdTanggal' name='hdTanggal' value='".date("Y-m-d H:i:s")."' ></td>";
 	$content .= "</tr>";
 	$content .= "<tr>";
-	$content .= "<tr>";
-	$content .= "<td width='35%'>Nomor KTP</td><td width='5%' style='text-align:center;'>:</td>";
+	$content .= "<td width='35%'>NIK / Nomor KTP</td><td width='5%' style='text-align:center;'>:</td>";
 	$content .= "<td width='60%'><input type='text' id='txtNoKTP' name='txtNoKTP' size='30' maxlength='16' onkeypress='return isNumberNoAlert(event);'></td>";
 	$content .= "</tr>";
 	$content .= "<tr>";
@@ -19,7 +18,7 @@ function LoginForm()
 	$content .= "<td width='60%'><input type='text' id='txtNama' name='txtNama' size='30'></td>";
 	$content .= "</tr>";
 	$content .= "<tr>";
-	$content .= "<td width='35%'>Posisi yang Dilamar</td><td width='5%' style='text-align:center;'>:</td>";
+	$content .= "<td width='35%'>Posisi yang Dituju</td><td width='5%' style='text-align:center;'>:</td>";
 	$content .= "<td width='60%'><input type='text' id='txtPosisi' name='txtPosisi' size='30'></td>";
 	$content .= "</tr>";
 	$content .= "<tr>";

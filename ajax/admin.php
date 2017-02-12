@@ -1,26 +1,23 @@
 <?php
 	// include('../config/conn.php');
-	include('../function/sqlfunction.php');
+include('../function/sqlfunction.php');
+require("../controller/admin.php");
+session_start();
+$po = $_GET['po'];
 
-	$data = $_POST;
-	$userid = $data['hduserid'];
-	$dateNow = date("Y-m-d H:i:s");
-		// echo $_POST['hdmaxX'];
-	for($i=1; $i<=$data['hdmaxX'];  $i++){
-		// $sql = sql_query("INSERT INTO tinggi VALUES ('".$userid."', '$i', '".$data['hdtinggi_'.$i]."')");
-		for($j=1; $j<=$data['hdtinggi_'.$i];  $j++){
-			// echo "z";
-			//if($data['txtans_'.$i.'_'.$j]!=''){
-				// echo "a";
-				if($data['hdstatus_'.$i.'_'.$j]==1 || $data['hdcounter_'.$i.'_'.$j]==1) {
-					// echo "s";
-					sql_query("INSERT INTO salah VALUES ('".$userid."', '$i', '$j', '".$data['hdinput_'.$i.'_'.$j]."', '".$data['hdcounter_'.$i.'_'.$j]."', '".$data['hdstatus_'.$i.'_'.$j]."')");
-				}
-			// }
-		}
-	}
-	return true;
-	// echo "<pre>";
-	// print_r ($_POST);
-	// echo "</pre>";
+if ($po === 'localAjLogin') {
+	$pass = $_GET['pass'];
+	$sql_code = "SELECT COUNT(1) AS row FROM admin WHERE pass = md5('$pass')";
+	// echo $sql_code; 
+	$rs = sql_query($sql_code);
+	$ray_code = sql_fetchassoc($rs);	
+	if($ray_code['row']>0) $_SESSION['userid'] = 'admin';
+	$ray_code['id'] = $_SESSION['userid'];
+	echo json_encode($ray_code);
+}
+if ($po === 'AJlogout') {
+	session_destroy(); 
+	$ray_code['success'] = 'success';
+	echo json_encode($ray_code);
+}
 ?>

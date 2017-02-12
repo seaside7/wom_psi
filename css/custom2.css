@@ -25,3 +25,13 @@ body						{ font-family: "ARIAL" !important; font-size: 12px;
 
 #tableDISC *{font-size: 11px !important; text-align:right; font-weight:bold;}
 .inputdisc:disabled {background-color:rgba(255, 241, 149, 0.43) !important; height:32px;} 
+
+a.logout{ 
+	font-weight: bold;
+    font-size: 11px;
+	color: white;
+    background: #2300a4/*#a40023*/;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+	padding: 4;
+	}
