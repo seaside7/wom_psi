@@ -35,3 +35,55 @@ a.logout{
     border-radius: 6px;
 	padding: 4;
 	}
+	
+div.navigation {
+	margin: 0 auto;
+    max-width: 940px;
+    min-height: 100px;
+    padding: 0 10px;
+	position: relative
+}
+div.navigation nav ul {
+	display: block;
+    right: 130px;
+    list-style: none outside none;
+    margin: 0 auto;
+    max-width: 501px;
+    padding: 0px 0px 0px;
+    text-align: center;
+    position: absolute;
+}
+div.navigation nav ul li {
+	display: inline-block;
+	/*float: left; /* Needed for IE7 and old versions */
+	text-align: left;
+	margin: 0 0 0 37px;
+	padding: 0;
+	width: auto;
+	position:relative;
+}
+
+div.navigation nav ul li a {
+	color: #2300a4;
+	font-family: "Arial Black";
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 14px;
+	margin: 0;
+	padding: 0;
+    line-height:30px;
+	/* text-align: center; */
+	/* text-transform: uppercase; */
+	width: auto;
+}
+div.navigation nav ul li.selected a, #header div ul li.selected a:hover {
+	color: #ed3237; 
+	pointer-events: none;
+   cursor: default;
+}
+div.navigation nav ul li a:hover {
+	color: #16ab88;
+}
+div#logout{
+	padding-top: 10px;
+}

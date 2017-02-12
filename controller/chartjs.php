@@ -13,7 +13,7 @@ function showChart($id, $tipe)
 	
 	// $content .= '<form method="post" action="#" enctype="multipart/form-data" class="form" novalidate="novalidate">';
 	// $id = $_GET['id'];
-	$content .= '<input type="hidden" id="hdid" value="'.$id.'">';
+	$content = '<input type="hidden" id="hdid" value="'.$id.'">';
 	list($nama) = sql_fetchrow(sql_query("SELECT nama_peserta FROM user WHERE no_ktp = '".$_GET['id']."'"));
 	// $content .= '</form>';
     $content .= '<style>th {text-align:center;} label {font-weight:normal !important;}</style>';
@@ -68,6 +68,7 @@ function showChart($id, $tipe)
 	$content .= '<tr><td style="font-weight:bold;">Total&nbsp;&nbsp;<img src="'.$imghelp.'" title="Nilai tertinggi + Nilai terendah" style="cursor:pointer;"></td><td><label id="lblTotalScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">SS</td><td><label id="lblSSScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">Kesalahan&nbsp;&nbsp;<img src="'.$imghelp.'" title="Lajur 6-10, 21-25, 36-40" style="cursor:pointer;"></td><td><label id="lblKesalahanScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
+	$content .= '<tr><td style="font-weight:bold;">Jumlah Lajur<br />yang Dikerjakan</td><td><label id="lblJlhLajur" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
 	$content .= '</tbody>';
 	$content .= '</table>';
 	$content .= '</div>';
@@ -94,34 +95,36 @@ function showChart($id, $tipe)
 	$content .= '<div class="table-responsive col-md-12">';
 	$qPAPI = sql_fetchrow(sql_query("SELECT `G`,`L`,`I`,`T`,`V`,`S`,`R`,`D`,`C`,`E`,`N`,`A`,`P`,`X`,`B`,`O`,`Z`,`K`,`F`,`W`
 									FROM `hasil_papi` WHERE userid = '".$id."'"));
+	$content .= '<div class="table-responsive col-md-6">';
 	$content .= '<table class="table table-bordered" style="text-align:center;">';
-	$content .= '<thead>';
-	$content .= '<tr>';
-	$content .= '<th width="10%">G</th><th width="10%">L</th><th width="10%">I</th><th width="10%">T</th><th width="10%">V</th>';
-	$content .= '<th width="10%">S</th><th width="10%">R</th><th width="10%">D</th><th width="10%">C</th><th width="10%">E</th>';
-	$content .= '</tr>';
-	$content .= '</thead>';
-	$content .= '<tbody>';
-	$content .= '<tr>';
-	$content .= '<td>'.$qPAPI['G'].'</td><td>'.$qPAPI['L'].'</td><td>'.$qPAPI['I'].'</td><td>'.$qPAPI['T'].'</td><td>'.$qPAPI['V'].'</td>';
-	$content .= '<td>'.$qPAPI['S'].'</td><td>'.$qPAPI['R'].'</td><td>'.$qPAPI['D'].'</td><td>'.$qPAPI['C'].'</td><td>'.$qPAPI['E'].'</td>';
-	$content .= '</tr>';
-	$content .= '</tbody>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">G</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Role of hard intense worker</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['G'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">L</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Leadership role</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['L'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">I</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Ease in decision making</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['I'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">T</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Pace</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['T'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">V</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Vigorous type</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['V'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">S</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Social extension</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['S'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">R</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Theoretical type</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['R'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">D</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Interest in working with details</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['D'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">C</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Organized type</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['C'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">E</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Emotional restraint</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['E'].'</td></tr>';
 	$content .= '</table>';
+	$content .= '</div>';
+	
+	$content .= '<div class="table-responsive col-md-6">';
 	$content .= '<table class="table table-bordered" style="text-align:center;">';
-	$content .= '<thead>';
-	$content .= '<tr>';
-	$content .= '<th width="10%">N</th><th width="10%">A</th><th width="10%">P</th><th width="10%">X</th><th width="10%">B</th>';
-	$content .= '<th width="10%">O</th><th width="10%">Z</th><th width="10%">K</th><th width="10%">F</th><th width="10%">W</th>';
-	$content .= '</tr>';
-	$content .= '</thead>';
-	$content .= '<tbody>';
-	$content .= '<tr>';
-	$content .= '<td>'.$qPAPI['N'].'</td><td>'.$qPAPI['A'].'</td><td>'.$qPAPI['P'].'</td><td>'.$qPAPI['X'].'</td><td>'.$qPAPI['B'].'</td>';
-	$content .= '<td>'.$qPAPI['O'].'</td><td>'.$qPAPI['Z'].'</td><td>'.$qPAPI['K'].'</td><td>'.$qPAPI['F'].'</td><td>'.$qPAPI['W'].'</td>';
-	$content .= '</tr>';
-	$content .= '</tbody>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">N</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Need to finish task</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['N'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">A</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Need to achieve</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['A'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">P</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Need to control others</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['P'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">X</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Need to be noticed</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['X'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">B</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Need to belong to groups</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['B'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">O</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Need for closeness and affection</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['O'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">Z</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Need for change</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['Z'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">K</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Need to be forcefull</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['K'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">F</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Need to support authority</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['F'].'</td></tr>';
+	$content .= '<tr><td width="20%" style="vertical-align:middle;">W</td><td width="60%" style="vertical-align:middle; font-size:11px; text-align:left; word-wrap:break-word;">Need for rules and supervision</td><td width="20%" style="vertical-align:middle;">'.$qPAPI['W'].'</td></tr>';
 	$content .= '</table>';
+	$content .= '</div>';
+	
 	$content .= '</div>';
 	$content .= '</div>';
     $content .= '</div>';
@@ -162,7 +165,7 @@ function showChart($id, $tipe)
     $content .= '<div class="col-md-3 col-sm-3">';
     $content .= '<table class="table table-bordered" style="text-align:center;">';
 	$rDISC = sql_fetchrow(sql_query("SELECT DM, DL, DM-DL AS D3, IM, IL, IM-IL AS I3, SM, SL, SM-SL AS S3, CM, CL, CM-CL AS C3 FROM hasil_disc WHERE userid='$id'"));
-    $content .= '<thead><tr><th width="25%">&nbsp;</th><th width="25%">Graph I</th><th width="25%">Graph II</th><th width="25%">Graph III</th></tr></thead>';
+    $content .= '<thead><tr><th width="25%">&nbsp;</th><th width="25%" style="vertical-align:top;">Work<br />Mask</th><th width="25%" style="vertical-align:top; font-size:9px;">Behavior<br />Under<br />Pressure</th><th width="25%" style="vertical-align:top;">Self<br />Image</th></tr></thead>';
 	$content .= '<tbody>';
 	$content .= '<tr style="color:purple; font-weight:bold;"><td>D</td><td>'.$rDISC['DM'].'</td><td>'.$rDISC['DL'].'</td><td>'.$rDISC['D3'].'</td></tr>';
 	$content .= '<tr style="color:red; font-weight:bold;"><td>I</td><td>'.$rDISC['IM'].'</td><td>'.$rDISC['IL'].'</td><td>'.$rDISC['I3'].'</td></tr>';

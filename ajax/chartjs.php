@@ -51,6 +51,8 @@
 		list($ss) = sql_fetchrow(sql_query("SELECT kraeplin_ss FROM kraeplinrs_mapping WHERE kraeplin_rs = '$qTotal';"));
 		$result['ss'] = $ss;
 		$result['salah'] = $salah;
+		list($jlhlajur) = sql_fetchrow(sql_query("SELECT COUNT(X) AS jl FROM tinggi WHERE userid = '".$data['userid']."' AND Y<>'0' GROUP BY userid;"));
+		$result['jlhlajur'] = $jlhlajur;
 		
 		echo json_encode($result);
 	}

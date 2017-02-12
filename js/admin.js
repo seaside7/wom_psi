@@ -19,7 +19,7 @@ $( document ).ready(function() {
 				 "order": [],
 				 pagingType: "simple_numbers",
 				 "aoColumnDefs": [
-					{ 'bSortable': false, 'aTargets': [ 6 ] }//,
+					{ 'bSortable': false, 'aTargets': [ 7 ] }//,
 					// { "visible": false, "targets": 0 }
 				 ],
 				 // "aoColumns": [{ 
@@ -61,7 +61,7 @@ function JSlogout(){
              url: 'ajax/admin.php?po=AJlogout',
              success: function(data) { 
 				if(data.success = 'success'){
-					window.location.href = 'index.php?act=admin'; 
+					window.location.href = 'index.php'; 
 				}
 					
 			}		
