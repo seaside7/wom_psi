@@ -29,6 +29,7 @@ $( document ).ready(function() {
 		var SL  = 0;
 		var CM  = 0;
 		var CL  = 0;
+		var no_salah = "";
 	// if($('#txtans_1_1').data("tipe")!="") alert($('#txtans_1_4').data("tipe"));
 		for(var x=1;x<=24;x++){
 			var Mperline = 0;
@@ -53,9 +54,11 @@ $( document ).ready(function() {
 					}
 				}
 			}
-			if (Mperline > 1) { alert("Jawaban soal no."+x+" tidak sesuai ketentuan.\nIsi dengan satu \"M\"."); return false;}
-			if (Lperline > 1) { alert("Jawaban soal no."+x+" tidak sesuai ketentuan.\nIsi dengan satu \"L\"."); return false;}
-		}
+			// if (Mperline > 1 || Lperline > 1) { alert("Jawaban soal no."+x+" tidak sesuai ketentuan.\nIsi dengan satu \"M\"."); return false;}
+			if (Mperline > 1 || Lperline > 1 || Mperline == 0 || Lperline == 0) { no_salah = no_salah + x + "\n";}
+		} 
+		// alert(no_salah); return false;
+		if(no_salah != ""){alert("Jawaban soal no.:\n"+no_salah+" tidak sesuai ketentuan.\nIsi dengan satu \"M\" atau \"L\" ."); return false;}
 		
 		console.log("DM="+DM+"\n"+DMno+"\n"+"DL="+DL+"\n"+DLno+"\n"+"IM="+IM+"\n"+IMno+"\n"+"IL="+IL+"\n"+ILno+"\n"+
 					"SM="+SM+"\n"+SMno+"\n"+"SL="+SL+"\n"+SLno+"\n"+"CM="+CM+"\n"+CMno+"\n"+"CL="+CL+"\n"+CLno+"\n");

@@ -33,6 +33,8 @@ $(document).ready(function () {
 					$('#lblTotalScore').text(data.total);
 					$('#lblSSScore').text(data.ss);
 					$('#lblKesalahanScore').text(data.salah);
+					$('#lblKesalahanPP').text(data.salahPP);
+					$('#lblKesalahanCat').text(data.salahCat);
 					$('#lblJlhLajur').text(data.jlhlajur);
 					// console.log(data);
 				}

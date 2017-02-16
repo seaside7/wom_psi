@@ -17,12 +17,10 @@
 		$qCell = sql_query("SELECT x,y FROM tinggi WHERE userid = '".$data['userid']."' order by x;");
 		list($qSpeed, $qTimbang, $qJanker, $qTotal) = sql_fetchrow(sql_query("SELECT ROUND(AVG(Y)) AS speed, ROUND((MAX(Y)+MIN(Y))/2) AS timbang, MAX(Y)-MIN(Y) AS janker, MAX(Y)+MIN(Y) AS total FROM tinggi WHERE userid = '".$data['userid']."'; "));
 		list($qSpeed) = sql_fetchrow(sql_query("SELECT ROUND(AVG(Y)) AS speed FROM tinggi WHERE userid = '".$data['userid']."' AND x BETWEEN 6 AND 40; "));
-		list($qTinker) = sql_fetchrow(sql_query("SELECT COUNT(1) AS tinker FROM salah WHERE userid = '".$data['userid']."' and x BETWEEN 6 AND 40; "));
-		list($salah) = sql_fetchrow(sql_query("select (A.sums+B.sums+C.sums) as jumlahsalah
+		list($qTinker) = sql_fetchrow(sql_query("SELECT COUNT(1) AS tinker FROM salah WHERE userid = '".$data['userid']."' and sequence = 1 and x BETWEEN 6 AND 40; "));
+		list($salah) = sql_fetchrow(sql_query("select (A.sums) as jumlahsalah
 						from 
-						(SELECT COUNT(1) as sums FROM `salah` WHERE userid='".$data['userid']."' and x BETWEEN 6 and 10) A,
-						(SELECT COUNT(1) as sums FROM `salah` WHERE userid='".$data['userid']."' and x BETWEEN 21 and 25) B,
-						(SELECT COUNT(1) as sums FROM `salah` WHERE userid='".$data['userid']."' and x BETWEEN 36 and 40) C;"));
+						(SELECT COUNT(1) as sums FROM `salah` WHERE userid='".$data['userid']."' and x BETWEEN 6 and 40) A;"));
 
 		$result = array();
 		$i = 1;
@@ -50,7 +48,12 @@
 		$result['total'] = $qTotal;
 		list($ss) = sql_fetchrow(sql_query("SELECT kraeplin_ss FROM kraeplinrs_mapping WHERE kraeplin_rs = '$qTotal';"));
 		$result['ss'] = $ss;
+		
 		$result['salah'] = $salah;
+		$qSalah = getSalahCat($salah);
+		$result['salahPP'] = $qSalah['PP'];
+		$result['salahCat'] = $qSalah['cat'];
+		
 		list($jlhlajur) = sql_fetchrow(sql_query("SELECT COUNT(X) AS jl FROM tinggi WHERE userid = '".$data['userid']."' AND Y<>'0' GROUP BY userid;"));
 		$result['jlhlajur'] = $jlhlajur;
 		

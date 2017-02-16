@@ -10,7 +10,7 @@ if($po=="nextPage" || $po=="previousPage" || $po=="saveHasilWPT") {
 	for($x=$limit+1;$x<=$limit+10;$x++){
 		$_SESSION['ans'][$x] = $_GET['txtans'.$x];
 		if($_GET['hdmulti_'.$x]){
-
+			
 			$ans = explode(',', $_GET['hdans_'.$x]);
 			$user_ans = explode(',', $_GET['txtans'.$x]);
 			// echo count(array_diff($ans, $user_ans));
@@ -18,7 +18,8 @@ if($po=="nextPage" || $po=="previousPage" || $po=="saveHasilWPT") {
 				$benar = $benar + 1;
 			}
 		}else{
-			if(str_replace(' ','',strtolower($_GET['txtans'.$x])) == str_replace(' ','',strtolower($_GET['hdans_'.$x]))){
+			$ans = str_replace(",",".",$_GET['txtans'.$x]);
+			if(str_replace(' ','',strtolower($ans)) == str_replace(' ','',strtolower($_GET['hdans_'.$x]))){
 				$benar = $benar + 1;
 			}
 		}

@@ -1,7 +1,7 @@
 <?php
 
 include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/config/conn.php');
-include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
+// include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
 
 function showChart($id, $tipe)
 {
@@ -62,13 +62,12 @@ function showChart($id, $tipe)
 	$content .= '<tr><th class="col-md-4">Aspek</th><th class="col-md-2">Skor</th><th class="col-md-2">PP</th><th class="col-md-4">Klasifikasi</th></tr>';
 	$content .= '</thead>';
 	$content .= '<tbody>';
+	$content .= '<tr><td style="font-weight:bold;">Jumlah Lajur<br />yang Dikerjakan</td><td><label id="lblJlhLajur" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">Kecepatan</td><td><label id="lblPankerScore" /></td><td><label id="lblPankerPP" /></td><td><label id="lblPankerCat" /></td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">Ketelitian</td><td><label id="lblTinkerScore" /></td><td><label id="lblTinkerPP" /></td><td><label id="lblTinkerCat" /></td></tr>';
+	$content .= '<tr><td style="font-weight:bold;">Kesalahan&nbsp;&nbsp;<img src="'.$imghelp.'" title="Lajur 6-10, 21-25, 36-40" style="cursor:pointer;"></td><td><label id="lblKesalahanScore" /></td><td><label id="lblKesalahanPP" /></td><td><label id="lblKesalahanCat" /></td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">Keajekan</td><td><label id="lblJankerScore" /></td><td><label id="lblJankerPP" /></td><td><label id="lblJankerCat" /></td></tr>';
-	$content .= '<tr><td style="font-weight:bold;">Total&nbsp;&nbsp;<img src="'.$imghelp.'" title="Nilai tertinggi + Nilai terendah" style="cursor:pointer;"></td><td><label id="lblTotalScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
-	$content .= '<tr><td style="font-weight:bold;">SS</td><td><label id="lblSSScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
-	$content .= '<tr><td style="font-weight:bold;">Kesalahan&nbsp;&nbsp;<img src="'.$imghelp.'" title="Lajur 6-10, 21-25, 36-40" style="cursor:pointer;"></td><td><label id="lblKesalahanScore" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
-	$content .= '<tr><td style="font-weight:bold;">Jumlah Lajur<br />yang Dikerjakan</td><td><label id="lblJlhLajur" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
+	$content .= '<tr><td style="font-weight:bold;">Total&nbsp;&nbsp;<img src="'.$imghelp.'" title="Nilai tertinggi + Nilai terendah" style="cursor:pointer;"></td><td><label id="lblTotalScore" /></td><td><label id="lblSSScore" /></td><td style="background:#CCC;">&nbsp;</td></tr>';
 	$content .= '</tbody>';
 	$content .= '</table>';
 	$content .= '</div>';
@@ -442,13 +441,23 @@ function getJankerCat($skor){
 	else {$cat['PP'] = '99'; $cat['cat'] = 'Tinggi';}
 	return $cat;
 }
-function getTinkerCat($skor){
+function getSalahCat($skor){
 	if($skor>=31) {$cat['PP'] = '10'; $cat['cat'] = 'Rendah';}
 	else if($skor>=23 && $skor<=30) {$cat['PP'] = '25'; $cat['cat'] = 'Rendah';}
 	else if($skor>=12 && $skor<=22) {$cat['PP'] = '50'; $cat['cat'] = 'Sedang';}
 	else if($skor>=6 && $skor<=11) {$cat['PP'] = '75'; $cat['cat'] = 'Sedang';}
 	else if($skor>=3 && $skor<=5) {$cat['PP'] = '90'; $cat['cat'] = 'Tinggi';}
 	else if($skor>=1 && $skor<=2) {$cat['PP'] = '95'; $cat['cat'] = 'Tinggi';}
+	else {$cat['PP'] = '99'; $cat['cat'] = 'Tinggi';}
+	return $cat;
+}
+function getTinkerCat($skor){
+	if($skor>=7) {$cat['PP'] = '10'; $cat['cat'] = 'Rendah';}
+	else if($skor==6) {$cat['PP'] = '25'; $cat['cat'] = 'Rendah';}
+	else if($skor==5) {$cat['PP'] = '50'; $cat['cat'] = 'Sedang';}
+	else if($skor>=3 && $skor<=4) {$cat['PP'] = '75'; $cat['cat'] = 'Sedang';}
+	else if($skor>=1 && $skor<=2) {$cat['PP'] = '90'; $cat['cat'] = 'Tinggi';}
+	else if($skor==0) {$cat['PP'] = '95'; $cat['cat'] = 'Tinggi';}
 	else {$cat['PP'] = '99'; $cat['cat'] = 'Tinggi';}
 	return $cat;
 }

@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
+// include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
 function LocalKraeplinForm($UsrDef)
 {	
 	$max = sql_fetchrow(sql_query("SELECT DISTINCT MAX(x) as maxX, MAX(y) as maxY FROM template"));
