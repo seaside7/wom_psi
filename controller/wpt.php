@@ -15,7 +15,10 @@ function loadWPT($UsrDef){
 							<li>Waktu pengerjaan tes dibatasi 12 menit.</li>
 							<li>Dilarang menggunakan alat bantu hitung.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
-						</ol></div></fieldset></div>";
+						</ol></div>
+						<center><h4>Contoh Pengerjaan Tes WPT</h4></center>
+						<img class='col-md-8 col-md-offset-2' src='images/wpt-guide.png' style='padding-bottom: 10px;'/>
+						</fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formWPT" name="formWPT">';
 	$content .= LocalWPTForm($UsrDef, '0');

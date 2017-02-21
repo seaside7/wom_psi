@@ -37,7 +37,6 @@ function LocalKraeplinForm($UsrDef)
 	$content .= '<div id="title" align="center"><h3>Kraepelin</h3></div>';
 	$content .= "<div class='col-md-6 col-md-offset-3' style='padding-bottom: 10px;' id='rules'><fieldset class=contentInfo style='margin-top:0 '>
 				<center><h4>Ketentuan Pengerjaan Tes Kraepelin</h4></center>
-				<img class='col-md-8 col-md-offset-2' src='images/kraepelin-guide.png' />
 						<div class='col-md-12'><ol>
 							<li>Jumlahkan angka-angka setiap lajurnya dari bawah ke atas.</li>
 							<li>Tekan panah atas untuk menjumlahkan angka selanjutnya.</li>
@@ -46,7 +45,9 @@ function LocalKraeplinForm($UsrDef)
 							<li>Jika saudara telah mengerjakan sampai dengan lajur paling atas, tetapi belum ada notifikasi pindah. Maka saudara berhenti sejenak sampai ada notifikasi pindah baru saudara dapat pindah ke lajur berikutnya.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
 							<li>Jika ada pertanyaan, tanyakan dengan pengawas sebelum menekan tombol start.</li>
-						</ol></div></fieldset></div>";
+						</ol></div>
+				<img class='col-md-8 col-md-offset-2' src='images/kraepelin-guide.png' style='padding-bottom: 10px;'/><br />
+						</fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
 	// $content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnup" value="Up" onclick="up();"></div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formKraeplin">';

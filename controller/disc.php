@@ -17,7 +17,10 @@ function loadDISC($UsrDef){
 							<li>Inventori ini sebaiknya diisi dalam jangka waktu 7-10 menit, tanpa interupsi dan sebaiknya dalam situasi tenang.</li>
 							<li>Jadi dalam setiap lajur hanya ada satu M dan satu L, dua kotak lainnya kosong.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
-						</ol></div></fieldset></div>";
+						</ol></div>
+						<img class='col-md-12' src='images/disc-guide-benar.png' style='padding-bottom: 10px;'/>
+						<img class='col-md-12' src='images/disc-guide-salah.png' style='padding-bottom: 10px;'/>
+						</fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formDISC" name="formDISC">';
 	$content .= LocalDISCForm($UsrDef, '0');

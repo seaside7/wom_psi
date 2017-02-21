@@ -48,6 +48,7 @@
 		$result['total'] = $qTotal;
 		list($ss) = sql_fetchrow(sql_query("SELECT kraeplin_ss FROM kraeplinrs_mapping WHERE kraeplin_rs = '$qTotal';"));
 		$result['ss'] = $ss;
+		if($ss>=11) $result['sscat'] = "Tinggi"; else if($ss<9) $result['sscat'] = "Rendah"; else $result['sscat'] = "Sedang";
 		
 		$result['salah'] = $salah;
 		$qSalah = getSalahCat($salah);
@@ -56,6 +57,9 @@
 		
 		list($jlhlajur) = sql_fetchrow(sql_query("SELECT COUNT(X) AS jl FROM tinggi WHERE userid = '".$data['userid']."' AND Y<>'0' GROUP BY userid;"));
 		$result['jlhlajur'] = $jlhlajur;
+		$jlhlajurPP = $jlhlajur-41;
+		$result['jlhlajurPP'] = $jlhlajurPP;
+		if($jlhlajurPP>=0) $result['jlhlajurCat'] = "Tinggi"; else if($jlhlajurPP==-1) $result['jlhlajurCat'] = "Sedang"; else $result['jlhlajurCat'] = "Rendah";
 		
 		echo json_encode($result);
 	}

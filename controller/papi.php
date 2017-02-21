@@ -9,10 +9,13 @@ function loadPAPI($UsrDef){
 				<center><h4>Ketentuan Pengerjaan Tes PAPI</h4></center>
 						<div class='col-md-12'><ol>
 							<li>Tes PAPI terdiri dari 90 soal.</li>
-							<li>Setiap soal berisi 2 pernyataan, pilih salah satu pernyataan yang paling menggambarkan diri anda.</li>
+							<li>Setiap soal berisi 2 pernyataan, pilih salah satu pernyataan yang paling menggambarkan diri anda. Klik pada pernyataan atau lingkaran yang ingin dipilih.</li>
 							<li>Jika saudara menghadapi pernyataan yang kedua-duanya tidak sesuai dengan diri pribadi saudara tetap harus dipilih salah satunya yang paling mendekati. Sebaliknya jika menemukan pernyataan yang kedua-duanya sangat menggambarkan diri anda tetap harus dipilih salah satunya.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
-						</ol></div></fieldset></div>";
+						</ol></div>
+						<center><h4>Contoh Pengerjaan Tes PAPI</h4></center>
+						<img class='col-md-8 col-md-offset-2' src='images/papi-guide.png' style='padding-bottom: 10px;'/>
+						</fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formPAPI">';
 	$content .= LocalPAPIForm($UsrDef, '0');

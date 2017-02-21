@@ -62,12 +62,12 @@ function showChart($id, $tipe)
 	$content .= '<tr><th class="col-md-4">Aspek</th><th class="col-md-2">Skor</th><th class="col-md-2">PP</th><th class="col-md-4">Klasifikasi</th></tr>';
 	$content .= '</thead>';
 	$content .= '<tbody>';
-	$content .= '<tr><td style="font-weight:bold;">Jumlah Lajur<br />yang Dikerjakan</td><td><label id="lblJlhLajur" /></td><td style="background:#CCC;">&nbsp;</td><td style="background:#CCC;">&nbsp;</td></tr>';
+	$content .= '<tr><td style="font-weight:bold;">Jumlah Lajur<br />yang Dikerjakan</td><td><label id="lblJlhLajur" /></td><td><label id="lblJlhLajurPP" /></td><td><label id="lblJlhLajurCat" /></td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">Kecepatan</td><td><label id="lblPankerScore" /></td><td><label id="lblPankerPP" /></td><td><label id="lblPankerCat" /></td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">Ketelitian</td><td><label id="lblTinkerScore" /></td><td><label id="lblTinkerPP" /></td><td><label id="lblTinkerCat" /></td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">Kesalahan&nbsp;&nbsp;<img src="'.$imghelp.'" title="Lajur 6-10, 21-25, 36-40" style="cursor:pointer;"></td><td><label id="lblKesalahanScore" /></td><td><label id="lblKesalahanPP" /></td><td><label id="lblKesalahanCat" /></td></tr>';
 	$content .= '<tr><td style="font-weight:bold;">Keajekan</td><td><label id="lblJankerScore" /></td><td><label id="lblJankerPP" /></td><td><label id="lblJankerCat" /></td></tr>';
-	$content .= '<tr><td style="font-weight:bold;">Total&nbsp;&nbsp;<img src="'.$imghelp.'" title="Nilai tertinggi + Nilai terendah" style="cursor:pointer;"></td><td><label id="lblTotalScore" /></td><td><label id="lblSSScore" /></td><td style="background:#CCC;">&nbsp;</td></tr>';
+	$content .= '<tr><td style="font-weight:bold;">Total&nbsp;&nbsp;<img src="'.$imghelp.'" title="Nilai tertinggi + Nilai terendah" style="cursor:pointer;"></td><td><label id="lblTotalScore" /></td><td><label id="lblSSScore" /></td><td><label id="lblSSCat" /></td></tr>';
 	$content .= '</tbody>';
 	$content .= '</table>';
 	$content .= '</div>';

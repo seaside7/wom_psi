@@ -32,10 +32,16 @@ $(document).ready(function () {
 
 					$('#lblTotalScore').text(data.total);
 					$('#lblSSScore').text(data.ss);
+					$('#lblSSCat').text(data.sscat);
+					
+					
 					$('#lblKesalahanScore').text(data.salah);
 					$('#lblKesalahanPP').text(data.salahPP);
 					$('#lblKesalahanCat').text(data.salahCat);
+					
 					$('#lblJlhLajur').text(data.jlhlajur);
+					$('#lblJlhLajurPP').text(data.jlhlajurPP);
+					$('#lblJlhLajurCat').text(data.jlhlajurCat);
 					// console.log(data);
 				}
 			}
