@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
+// include_once($_SERVER['DOCUMENT_ROOT'].'/wom_psi/function/sqlfunction.php');
 
 function adminPage(){
 	// echo $_SESSION['userid'];
