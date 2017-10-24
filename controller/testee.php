@@ -30,15 +30,15 @@ function TesteeForm()
 	$content .= "</tr>";
 	$content .= "<tr>";
 	$content .= "<td width='35%'>Nama Lengkap</td><td width='5%' style='text-align:center;'>:</td>";
-	$content .= "<td width='60%'><input type='text' id='txtNama' name='txtNama' size='30'></td>";
+	$content .= "<td width='60%'><input type='text' id='txtNama' name='txtNama' size='30' maxlength='30'></td>";
 	$content .= "</tr>";
 	$content .= "<tr>";
 	$content .= "<td width='35%'>Posisi yang Dituju</td><td width='5%' style='text-align:center;'>:</td>";
-	$content .= "<td width='60%'><input type='text' id='txtPosisi' name='txtPosisi' size='30'></td>";
+	$content .= "<td width='60%'><input type='text' id='txtPosisi' name='txtPosisi' size='30' maxlength='30'></td>";
 	$content .= "</tr>";
 	$content .= "<tr>";
 	$content .= "<td width='35%'>Usia</td><td width='5%' style='text-align:center;'>:</td>";
-	$content .= "<td width='60%'><input type='text' id='txtUsia' name='txtUsia' size='23' maxlength='16' onkeypress='return isNumberNoAlert(event);'>&nbsp;Tahun</td>";
+	$content .= "<td width='60%'><input type='text' id='txtUsia' name='txtUsia' size='23' maxlength='2' onkeypress='return isNumberNoAlert(event);'>&nbsp;Tahun</td>";
 	$content .= "</tr>";
 	$content .= "<tr>";
 	$content .= "<td width='35%'>Alamat</td><td width='5%' style='text-align:center;'>:</td>";

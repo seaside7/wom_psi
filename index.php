@@ -24,11 +24,15 @@ require_once('function/mainfunction.php');
 	<link href="css/custom2.css" rel="stylesheet" type="text/css">
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+	<link href="css/buttons.dataTables.min.css" rel="stylesheet" type="text/css">
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/jquery.timer.js"></script>
 	<script type="text/javascript" src="js/jquery.msgbox.js"></script>
-	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/datatables.min.js"></script>
+	<script type="text/javascript" src="js/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="js/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+	<script type="text/javascript" src="js/JSZip-2.5.0/jszip.min.js"></script>
 	<script type="text/javascript" src="js/jquery.scrollTo-2.1.2/jquery.scrollTo.js"></script>
 	<script type="text/javascript" src="js/jquery.scrollTo-2.1.2/jquery.scrollTo.min.js"></script>
 	<!--<script type="text/javascript" src="js/dataTables.tableTools.js"></script>-->

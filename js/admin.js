@@ -17,16 +17,15 @@ $( document ).ready(function() {
 					 "infoFiltered": "(Penyaringan data dari _MAX_ total data)"
 				 },
 				 "order": [],
+				 dom: 'Bfrtip',
+				 buttons: [
+					 'excelHtml5'
+				 ],
 				 pagingType: "simple_numbers",
 				 "aoColumnDefs": [
-					{ 'bSortable': false, 'aTargets': [ 7 ] }//,
+					{ 'bSortable': false, 'aTargets': [ 8 ] }//,
 					// { "visible": false, "targets": 0 }
 				 ],
-				 // "aoColumns": [{ 
-				 //   "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-				 //   $(".titletooltip", this.fnGetNodes()).tooltipster();
-				 // }
-				 // }],
 			  aLengthMenu: [
 				 [10, 25, 50, 100, -1],
 				 [10, 25, 50, 100, "All"]

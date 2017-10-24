@@ -16,9 +16,9 @@ function adminPage(){
 	}
 }
 function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'WPT', 'Completed')))) AS tahapan
-		$UserQuery="SELECT tanggal_tes, no_ktp, nama_peserta, CONCAT(usia ,' Tahun') AS usia, posisi, regional, tahapan_tes,
+		$UserQuery="SELECT tanggal_tes, no_ktp, nama_peserta, CONCAT(usia ,' Tahun') AS usia, posisi, regional, tahapan_tes, b.wpt_iq as iq,
 						IF(tahapan_tes='1', 'WPT', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'Kraeplin', 'Completed')))) AS tahapan
-						FROM USER  ";
+						FROM USER a left join hasil_wpt b on a.no_ktp = b.userid ";
 		if($_SESSION['adminrole'] == '2')
 		$UserQuery .= "WHERE regional='".$_SESSION['adminreg']."'";
 		$UserQuery .= " ORDER BY tanggal_tes DESC ";					
@@ -45,6 +45,7 @@ function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAP
 				<th style="text-align:center;">Posisi yang<br />Dilamar</th>
 				<th style="text-align:center;">Regional</th>
 				<th style="text-align:center;">Tahapan<br />Tes</th>
+				<th style="text-align:center;">IQ</th>
 				<th style="text-align:center;">Tindakan</th>
 			</tr></thead>';
 			$content .= '<tbody>';
@@ -57,7 +58,8 @@ function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAP
 						<td align=\"center\">".$row['usia']."</td>
 						<td align=\"center\">".$row['posisi']."</td>
 						<td align=\"center\">".$row['regional']."</td>
-						<td align=\"center\">".$row['tahapan']."</td>";
+						<td align=\"center\">".$row['tahapan']."</td>
+						<td align=\"center\">".$row['iq']."</td>";
 		$content .= "<td style='text-align:center'>";
 		$content .= UserAction($row['no_ktp'],$row['tahapan_tes']);
 		$content .= "</td>";
