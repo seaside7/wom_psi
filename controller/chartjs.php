@@ -163,13 +163,17 @@ function showChart($id, $tipe)
 	
     $content .= '<div class="col-md-3 col-sm-3">';
     $content .= '<table class="table table-bordered" style="text-align:center;">';
-	$rDISC = sql_fetchrow(sql_query("SELECT DM, DL, DM-DL AS D3, IM, IL, IM-IL AS I3, SM, SL, SM-SL AS S3, CM, CL, CM-CL AS C3 FROM hasil_disc WHERE userid='$id'"));
+	$rDISC = sql_fetchrow(sql_query("SELECT DM, DL, DM-DL AS D3, IM, IL, IM-IL AS I3, SM, SL, SM-SL AS S3, CM, CL, CM-CL AS C3, DM+IM+SM+CM AS MTot, DL+IL+SL+CL AS LTot, 24-(DM+IM+SM+CM) AS MCircle, 24-(DL+IL+SL+CL) AS LCircle FROM hasil_disc WHERE userid='$id'"));
+	$CircleTot = $rDISC['MCircle'] + $rDISC['LCircle'];
     $content .= '<thead><tr><th width="25%">&nbsp;</th><th width="25%" style="vertical-align:top;">Work<br />Mask</th><th width="25%" style="vertical-align:top; font-size:9px;">Behavior<br />Under<br />Pressure</th><th width="25%" style="vertical-align:top;">Self<br />Image</th></tr></thead>';
 	$content .= '<tbody>';
 	$content .= '<tr style="color:purple; font-weight:bold;"><td>D</td><td>'.$rDISC['DM'].'</td><td>'.$rDISC['DL'].'</td><td>'.$rDISC['D3'].'</td></tr>';
 	$content .= '<tr style="color:red; font-weight:bold;"><td>I</td><td>'.$rDISC['IM'].'</td><td>'.$rDISC['IL'].'</td><td>'.$rDISC['I3'].'</td></tr>';
 	$content .= '<tr style="color:blue; font-weight:bold;"><td>S</td><td>'.$rDISC['SM'].'</td><td>'.$rDISC['SL'].'</td><td>'.$rDISC['S3'].'</td></tr>';
 	$content .= '<tr style="color:green; font-weight:bold;"><td>C</td><td>'.$rDISC['CM'].'</td><td>'.$rDISC['CL'].'</td><td>'.$rDISC['C3'].'</td></tr>';
+	$content .= '<tr style="font-weight:bold;"><td>Sub</td><td>'.$rDISC['MTot'].'</td><td>'.$rDISC['LTot'].'</td><td>&nbsp;</td></tr>';
+	$content .= '<tr style="font-weight:bold;"><td>Circle</td><td>'.$rDISC['MCircle'].'</td><td>'.$rDISC['LCircle'].'</td><td>'.$CircleTot.'</td></tr>';
+	$content .= '<tr style="font-weight:bold;"><td>Total</td><td>24</td><td>24</td><td>48</td></tr>';
 	$content .= '</tbody>';
 	$content .= '</table>';
     $content .= '</div>';
