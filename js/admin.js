@@ -1,6 +1,19 @@
 
 $( document ).ready(function() { 
 	// alert("a");
+	// var buttonCommon = {
+    //     exportOptions: {
+    //         format: {
+    //             body: function ( data, row, column, node ) {
+    //                 // Strip $ from salary column to make it numeric
+	// 				return column === 1 ?
+					 
+    //                     "'".concat( data ) :
+    //                     data;
+    //             }
+    //         }
+	// 	}
+	// };
 	 $(window).keydown(function(event){
     if(event.keyCode == 13) {
       event.preventDefault();
@@ -19,11 +32,29 @@ $( document ).ready(function() {
 				 "order": [],
 				 dom: 'Bfrtip',
 				 buttons: [
-					 'excelHtml5'
+					 {
+						 extend: 'excel',
+						 exportOptions: {
+							columns: [0,1,2,3,4,5,6,7,8],
+							orthogonal: 'sort'
+						},
+						customize: function( xlsx ) {
+							var sheet = xlsx.xl.worksheets['sheet1.xml'];
+			 
+							$('row c[r^="B"]', sheet).attr( 's', '51' );
+						},
+						customizeData: function ( data ) {
+							for (var i=0; i<data.body.length; i++){
+								for (var j=0; j<data.body[i].length; j++ ){
+									data.body[i][j] = '\u200C' + data.body[i][j];
+								}
+							}
+						}    
+					 }
 				 ],
 				 pagingType: "simple_numbers",
 				 "aoColumnDefs": [
-					{ 'bSortable': false, 'aTargets': [ 8 ] }//,
+					{ 'bSortable': false, 'aTargets': [ 9 ] }//,
 					// { "visible": false, "targets": 0 }
 				 ],
 			  aLengthMenu: [
