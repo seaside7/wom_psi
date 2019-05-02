@@ -28,24 +28,24 @@
 			$result['cell'][] = $tcell['y'];
 			$i++;
 		}
-		$result['speed'] = $qSpeed;
+		$result['speed'] = $qSpeed; // rerata tinggi (kecepatan)
 		$speed = getPankerCat($qSpeed);
 		$result['speedPP'] = $speed['PP'];
 		$result['speedCat'] = $speed['cat'];
 		
-		$result['janker'] = $qJanker;
+		$result['janker'] = $qJanker; // titik tertinggi - terendah (konsistensi)
 		$janker = getJankerCat($qJanker);
 		$result['jankerPP'] = $janker['PP'];
 		$result['jankerCat'] = $janker['cat'];
 		
-		$result['tinker'] = $qTinker;
+		$result['tinker'] = $qTinker; // jumlah kesalahan antara kolom 6 dan 40
 		$tinker = getTinkerCat($qTinker);
 		$result['tinkerPP'] = $tinker['PP'];
 		$result['tinkerCat'] = $tinker['cat'];
 		
-		$result['timbang'] = $qTimbang;
+		$result['timbang'] = $qTimbang; // titik tertinggi + terendah / 2
 
-		$result['total'] = $qTotal;
+		$result['total'] = $qTotal; // titik tertinggi + terendah
 		list($ss) = sql_fetchrow(sql_query("SELECT kraeplin_ss FROM kraeplinrs_mapping WHERE kraeplin_rs = '$qTotal';"));
 		$result['ss'] = $ss;
 		if($ss>=11) $result['sscat'] = "Tinggi"; else if($ss<9) $result['sscat'] = "Rendah"; else $result['sscat'] = "Sedang";
@@ -176,7 +176,9 @@ if($po=="localAjPrintReport")
     $printpage .= '<table border=0 style="width:100%" cellspacing="0">';
     $printpage .= '<tr>';
     $printpage .= '<td style="width:70%;text-align:left; vertical-align:top; "colspan="3"><h4>Report Psikotes</h4></td>';
-    $printpage .= '<td style="width:30%;text-align:right; vertical-align:top;" rowspan="4"><img src="../images/Logo-WOM.png" width="182" height="35"></td>';
+    $printpage .= '<td style="width:30%;text-align:right; vertical-align:top;" rowspan="4">';
+    // $printpage .= '<img src="../images/Logo-WOM.png" width="182" height="35">';
+    $printpage .= '</td>';
     $printpage .= '</tr>';
     $printpage .= '<tr>';
     $printpage .= '<td style="width:15%;">Nama Peserta</td>';

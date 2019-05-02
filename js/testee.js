@@ -22,8 +22,7 @@ function localJsSaveDetail(form)
 	var tahapan_tes;
 	var NoKTP = $('#txtNoKTP').val(); 		
 	var Nama = $('#txtNama').val(); 		
-	var Posisi = $('#txtPosisi').val(); 	
-	var Sumber = $('#slcSumber').val(); 	 
+	var Posisi = $('#txtPosisi').val(); 	 
 	var Usia = $('#txtUsia').val(); 		
 	var Alamat = $('#txtAlamat').val(); 		
 	var NoHP = $('#txtNoHP').val(); 	

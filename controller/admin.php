@@ -16,19 +16,20 @@ function adminPage(){
 	}
 }
 function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'WPT', 'Completed')))) AS tahapan
-		$UserQuery="SELECT tanggal_tes, no_ktp, nama_peserta, CONCAT(usia ,' Tahun') AS usia, posisi, sumber, regional, tahapan_tes, b.wpt_iq as iq,
+		$UserQuery="SELECT tanggal_tes, no_ktp, nama_peserta, CONCAT(usia ,' Tahun') AS usia, posisi, tahapan_tes, b.wpt_iq as iq,
 						IF(tahapan_tes='1', 'WPT', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'Kraeplin', 'Completed')))) AS tahapan
 						FROM USER a left join hasil_wpt b on a.no_ktp = b.userid ";
-		if($_SESSION['adminrole'] == '2')
-		$UserQuery .= "WHERE regional='".$_SESSION['adminreg']."'";
 		$UserQuery .= " ORDER BY tanggal_tes DESC ";					
 		$stmt = sql_query($UserQuery);
 		
 	$content = '<div id="navigation" class="navigation">';
 	$content .= '<nav><ul>';
-	if($_SESSION['adminrole'] == 1 || $_SESSION['adminrole'] == 2) $content .= '<li class="selected"><a href="?act=admin">Testee List</a></li>';
-	if($_SESSION['adminrole'] == 1 || $_SESSION['adminrole'] == 2 || $_SESSION['adminrole'] == 3) $content .= '<li><a href="?act=testee">Start Test</a></li>';
-	if($_SESSION['adminrole'] == 1) $content .= '<li><a href="?act=mpass">Manage Passwords</a></li>';
+	if($_SESSION['adminrole'] == 1) 
+		{
+			$content .= '<li><a href="?act=admin">Testee List</a></li>';
+			$content .= '<li><a href="?act=testee">Start Test</a></li>';
+			$content .= '<li><a href="?act=mpass&userid=admin">Change Password</a></li>';
+		}
 	$content .= '</ul></nav>';
 	$content .= '<div id="logout" align="center" style="width: 900px; margin: auto; text-align:right;"><a href="javascript:void(0)" onclick="JSlogout();"class="logout">Logout
 				<img src="images/icon-logout.gif" width="9" height="9" 
@@ -43,8 +44,6 @@ function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAP
 				<th style="text-align:center;">Nama Peserta</th>
 				<th style="text-align:center;">Usia</th>
 				<th style="text-align:center;">Posisi yang<br />Dilamar</th>
-				<th style="text-align:center;">Sumber</th>
-				<th style="text-align:center;">Regional</th>
 				<th style="text-align:center;">Tahapan<br />Tes</th>
 				<th style="text-align:center;">IQ</th>
 				<th style="text-align:center;">Tindakan</th>
@@ -58,8 +57,6 @@ function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAP
 						<td align=\"center\">".$row['nama_peserta']."</td>
 						<td align=\"center\">".$row['usia']."</td>
 						<td align=\"center\">".$row['posisi']."</td>
-						<td align=\"center\">".$row['sumber']."</td>
-						<td align=\"center\">".$row['regional']."</td>
 						<td align=\"center\">".$row['tahapan']."</td>
 						<td align=\"center\">".$row['iq']."</td>";
 		$content .= "<td style='text-align:center'>";

@@ -12,6 +12,7 @@ $(document).ready(function () {
 			{
 				if(data)
 				{
+					// console.log(data);
 					dataLine = data.cell;
 					dataTimbang = data.timbang;
 					

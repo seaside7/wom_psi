@@ -35,7 +35,7 @@ $( document ).ready(function() {
 					 {
 						 extend: 'excel',
 						 exportOptions: {
-							columns: [0,1,2,3,4,5,6,7,8],
+							columns: [0,1,2,3,4,5,6],
 							orthogonal: 'sort'
 						},
 						customize: function( xlsx ) {
@@ -54,14 +54,14 @@ $( document ).ready(function() {
 				 ],
 				 pagingType: "simple_numbers",
 				 "aoColumnDefs": [
-					{ 'bSortable': false, 'aTargets': [ 9 ] }//,
+					{ 'bSortable': false, 'aTargets': [ 7 ] }//,
 					// { "visible": false, "targets": 0 }
 				 ],
 			  aLengthMenu: [
 				 [10, 25, 50, 100, -1],
 				 [10, 25, 50, 100, "All"]
 			  ],
-			  iDisplayLength:10
+			  iDisplayLength:8
 			 });
 });
 

@@ -51,7 +51,7 @@ function localJsMpass(form)
              url: 'ajax/mpass.php?po=localAjMpass&user='+User+'&pass='+Pass,
              success: function(data) { 
 				if(data.success = 'success'){
-					window.location.href = 'index.php?act=mpass'; 
+					window.location.href = 'index.php?act=mpass&userid=admin'; 
 				}
 			}		
 	});

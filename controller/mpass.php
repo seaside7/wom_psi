@@ -21,9 +21,12 @@ function PasswordForm()
 	// $content = '<div id="title" align="center">Login</div>';
 	$content = '<div id="navigation" class="navigation">';
 	$content .= '<nav><ul>';
-	if($_SESSION['adminrole'] == 1 || $_SESSION['adminrole'] == 2) $content .= '<li><a href="?act=admin">Testee List</a></li>';
-	if($_SESSION['adminrole'] == 1 || $_SESSION['adminrole'] == 2 || $_SESSION['adminrole'] == 3) $content .= '<li><a href="?act=testee">Start Test</a></li>';
-	if($_SESSION['adminrole'] == 1) $content .= '<li class="selected"><a href="?act=mpass">Manage Passwords</a></li>';
+	if($_SESSION['adminrole'] == 1) 
+		{
+			$content .= '<li><a href="?act=admin">Testee List</a></li>';
+			$content .= '<li><a href="?act=testee">Start Test</a></li>';
+			$content .= '<li><a href="?act=mpass&userid=admin">Change Password</a></li>';
+		}
 	$content .= '</ul></nav>';
 	$content .= '<div id="logout" align="center" style="width: 900px; margin: auto; text-align:right;"><a href="javascript:void(0)" onclick="JSlogout();"class="logout">Logout
 				<img src="images/icon-logout.gif" width="9" height="9" 
@@ -52,21 +55,11 @@ function PasswordForm()
 		$content .= "<tr>";
 		$content .= "<td colspan=3 style='text-align:center;'>";
 		$content .= '<input style="width:80px;" type="button" id="btnLogin" value="Simpan" class="btn btnLogin" onclick=\'localJsMpass("'.$formName.'");\'>&nbsp;';
-		$content .= '<input style="width:80px;" type="button" id="btnCancel" value="Batal" class="btn btnLogin" onclick=\'location.href="?act=mpass";\'>';
+		$content .= '<input style="width:80px;" type="button" id="btnCancel" value="Batal" class="btn btnLogin" onclick=\'location.href="?act=home";\'>';
 		$content .= "</td>";
 		$content .= "</tr>";
 		$content .= "</table>";
 		$content .= "</form>";
-	}else{
-		$qUser = sql_query("SELECT userid FROM adminuser ORDER BY role;");
-		$content .= '<table width="400px" class="display" id="tableuser">';
-		$content .= '<thead><tr><th style="text-align:center; width:80%;">Username</th><th style="text-align:center; width:20%;">Action</th></tr></thead>';
-		$content .= '<tbody>';
-		while($rowUser=sql_fetchrow($qUser)){
-			$content .= '<tr><td>'.$rowUser['userid'].'</td><td style="text-align:center;">'.UserAction($rowUser['userid']).'</td></tr>';
-		}
-		$content .= '</tbody>';
-		$content .= '</table>';
 	}
 	
 	

@@ -99,7 +99,7 @@ var timer = jQuery.timer(function() {
 		
 	}
 	
-}, 30000); //30000
+}, 3000); //30000
 
 var timer2 = jQuery.timer(function() {
 	timer.toggle();
@@ -130,7 +130,7 @@ var timer2 = jQuery.timer(function() {
 		// });
 		
 	
-}, 1320000); //1350000
+}, 1350000); //1350000
 
 });
 
@@ -174,6 +174,7 @@ function nextText(x, y, val, correct){
 
 		jQuery("#hdinput_"+x+"_"+y).val(jQuery("#txtans_"+x+"_"+y).val());
 		jQuery("#hdtinggi_"+x).val(y);
+		// alert(jQuery('#hdtinggi_'+x).val())
 		if(jQuery("#txtans_"+x+"_"+y).val() != jQuery("#hdans_"+x+"_"+y).val()){
 			jQuery("#hdstatus_"+x+"_"+y).val("1");
 		}

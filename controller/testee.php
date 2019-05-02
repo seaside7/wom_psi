@@ -37,10 +37,6 @@ function TesteeForm()
 	$content .= "<td width='60%'><input type='text' id='txtPosisi' name='txtPosisi' size='30' maxlength='30'></td>";
 	$content .= "</tr>";
 	$content .= "<tr>";
-	$content .= "<td width='35%'>Sumber</td><td width='5%' style='text-align:center;'>:</td>";
-	$content .= "<td width='60%'><select id='slcSumber' name='slcSumber'><option value='Eksternal'>Eksternal</option><option value='Internal'>Internal</option></select></td>";
-	$content .= "</tr>";
-	$content .= "<tr>";
 	$content .= "<td width='35%'>Usia</td><td width='5%' style='text-align:center;'>:</td>";
 	$content .= "<td width='60%'><input type='text' id='txtUsia' name='txtUsia' size='23' maxlength='2' onkeypress='return isNumberNoAlert(event);'>&nbsp;Tahun</td>";
 	$content .= "</tr>";
@@ -53,7 +49,7 @@ function TesteeForm()
 	$content .= "<td width='60%'><input type='text' id='txtNoHP' name='txtNoHP' size='30' maxlength='12' onkeypress='return isNumberNoAlert(event);'></td>";
 	$content .= "</tr>";
 	$content .= "<tr>";
-	$content .= "<td colspan=3 style='text-align:center;'><input type='hidden' name='txtRegional' id='txtRegional' value='".$_SESSION['adminreg']."'>";
+	$content .= "<td colspan=3 style='text-align:center;'>";
 	$content .= '<input type="button" id="btnSaveDetail" value="Simpan" class="btn btnSave" onclick=\'localJsSaveDetail("'.$formName.'");\'>';
 	$content .= "</td>";
 	$content .= "</tr>";
@@ -69,13 +65,13 @@ function localSaveDetail()
 		
 		$query = "INSERT INTO user
 				(`no_ktp`, `tanggal_tes`, `nama_peserta`, 
-				`posisi`, `sumber`, `usia`, `alamat`, `no_hp`, 
+				`posisi`, `usia`, `alamat`, `no_hp`, 
 				`tahapan_tes`, `regional`
 				)
 				VALUES
 				('".$_POST['txtNoKTP']."', '".$_POST['hdTanggal']."', '".$_POST['txtNama']."', 
-				'".$_POST['txtPosisi']."', '".$_POST['slcSumber']."', '".$_POST['txtUsia']."', '".$_POST['txtAlamat']."', '".$_POST['txtNoHP']."', 
-				'1', '".$_POST['txtRegional']."'
+				'".$_POST['txtPosisi']."', '".$_POST['txtUsia']."', '".$_POST['txtAlamat']."', '".$_POST['txtNoHP']."', 
+				'1', ''
 				); ";
 				// echo $query;
 				
@@ -102,12 +98,10 @@ function localEditDetail()
 				SET `tanggal_tes` = '".$_POST['hdTanggal']."', 
 				`nama_peserta` = '".$_POST['txtNama']."', 
 				`posisi` = '".$_POST['txtPosisi']."', 
-				`sumber` = '".$_POST['slcSumber']."', 
 				`usia` = '".$_POST['txtUsia']."', 
 				`alamat` = '".$_POST['txtAlamat']."', 
 				`no_hp` = '".$_POST['txtNoHP']."', 
-				`tahapan_tes` = '1', 
-				`regional` = '".$_POST['txtRegional']."'
+				`tahapan_tes` = '1'
 				WHERE `no_ktp` = '".$_POST['txtNoKTP']."';";
 		
 		$query[] = "DELETE FROM hasil_wpt WHERE userid = '".$_POST['txtNoKTP']."'";
