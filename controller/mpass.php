@@ -24,7 +24,7 @@ function PasswordForm()
 	if($_SESSION['adminrole'] == 1) 
 		{
 			$content .= '<li><a href="?act=admin">Testee List</a></li>';
-			$content .= '<li><a href="?act=testee">Start Test</a></li>';
+			$content .= '<li><a href="?act=testee">Add Testee</a></li>';
 			$content .= '<li><a href="?act=mpass&userid=admin">Change Password</a></li>';
 		}
 	$content .= '</ul></nav>';

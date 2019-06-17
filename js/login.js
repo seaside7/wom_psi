@@ -1,4 +1,8 @@
-var tinggi = {};
+$(document).on('keypress', function(e) {
+    if(e.which == 13) {
+        $( "#btnLogin" ).click();
+    }
+});
 
 function localJsLogin(form)
 {	
@@ -14,7 +18,8 @@ function localJsLogin(form)
              url: 'ajax/login.php?po=localAjLogin&user='+User+'&pass='+Pass,
              success: function(data) { console.log(data);
 				if(data.success!=''){ // console.log(data); 
-					window.location.href = 'index.php?act=home'; 
+					if(data.success=='admin') { window.location.href = 'index.php?act=home'; }
+					else if(data.success=='testee') { window.location.href = 'index.php?act=wpt'; }
 				 }else {alert('Username atau Password salah.'); return false;}
 			}		
 	});

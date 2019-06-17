@@ -65,24 +65,6 @@ $( document ).ready(function() {
 			 });
 });
 
-function localJsLogin(form)
-{	
-	var Pass = $('#txtPass').val(); 	
-	
-	
-	if(!Pass) {alert('Password belum diisi!'); return false;}
-	$.ajax({
-	 type: 'POST',
-             dataType: "json",
-             url: 'ajax/admin.php?po=localAjLogin&pass='+Pass,
-             success: function(data) { 
-				if(data.row>0){ console.log(data); 
-					window.location.href = 'index.php?act=admin'; 
-				 }else {alert('Password salah.'); return false;}
-			}		
-	});
-	
-}
 
 function JSlogout(){
 	$.ajax({

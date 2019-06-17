@@ -18,17 +18,12 @@ if ($po === 'localAjLogin') {
 }
 if ($po === 'localAjGetRowDetail') { //echo $_GET['id'];
 	$id = $_GET['id'];
-	$sql_code = "SELECT COUNT(1) AS row, IFNULL(tahapan_tes,0) AS tahapan_tes, tanggal_tes FROM user WHERE no_ktp = '$id'";
+	$uname = $_GET['uname'];
+	$sql_code = "SELECT COUNT(1) AS row, test_taken, tanggal_tes FROM user WHERE no_ktp = '$id'";
 	$rs = sql_query($sql_code);
-	$ray_code = sql_fetchassoc($rs);	
-	if($ray_code['row']>0) 
-	{
-		$_SESSION['userid'] = $id;
-		// $tgl_tes = date('d-m-Y',$ray_code['tanggal_tes']);
-		// $tgl_valid = strtotime('+2 years',$tgl_tes);
-		// if(date('d-m-Y') > $tgl_valid) $ray_code['tahapan_tes'] = 6;
-		// $ray_code['tanggal_valid'] = getDMYFormatDate($tgl_valid);
-	}
+	$ray_code = sql_fetchassoc($rs);
+	list($unameExist) = sql_fetchrow(sql_query("SELECT COUNT(1) AS uname FROM user WHERE username = '$uname'"));
+	$ray_code['unameExist'] = $unameExist;
 	echo json_encode($ray_code);
 }
 if ($po === 'AJlogout') {

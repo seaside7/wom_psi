@@ -15,8 +15,8 @@ function adminPage(){
 		}
 	}
 }
-function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'WPT', 'Completed')))) AS tahapan
-		$UserQuery="SELECT tanggal_tes, no_ktp, nama_peserta, CONCAT(usia ,' Tahun') AS usia, posisi, tahapan_tes, b.wpt_iq as iq,
+function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'WPT', 'Completed')))) AS tahapan IF('0000-00-00 00:00:00', '', tanggal_tes) as 
+		$UserQuery="SELECT IFNULL(tanggal_tes, '') AS tanggal_tes, no_ktp, nama_peserta, CONCAT(usia ,' Tahun') AS usia, posisi, tahapan_tes, b.wpt_iq as iq,
 						IF(tahapan_tes='1', 'WPT', IF(tahapan_tes='2', 'PAPI', IF(tahapan_tes='3', 'DISC', IF(tahapan_tes='4', 'Kraeplin', 'Completed')))) AS tahapan
 						FROM USER a left join hasil_wpt b on a.no_ktp = b.userid ";
 		$UserQuery .= " ORDER BY tanggal_tes DESC ";					
@@ -27,7 +27,7 @@ function UserList() { //IF(tahapan_tes='1', 'Kraeplin', IF(tahapan_tes='2', 'PAP
 	if($_SESSION['adminrole'] == 1) 
 		{
 			$content .= '<li><a href="?act=admin">Testee List</a></li>';
-			$content .= '<li><a href="?act=testee">Start Test</a></li>';
+			$content .= '<li><a href="?act=testee">Add Testee</a></li>';
 			$content .= '<li><a href="?act=mpass&userid=admin">Change Password</a></li>';
 		}
 	$content .= '</ul></nav>';

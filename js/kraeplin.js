@@ -140,7 +140,7 @@ var cursorFocus = function(elem) {
   window.scrollTo(x, y);
 }
 function scrollright(x){
-	 if(x>=20) {jQuery.scrollTo({top:'+=0', left:'+=500px'}, 800);}
+	 if(x>=18) {jQuery.scrollTo({top:'+=0', left:'+=500px'}, 800);}
 	return false;
 }	
 function nextText(x, y, val, correct){
