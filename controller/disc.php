@@ -14,7 +14,7 @@ function loadDISC($UsrDef){
 							<li>Dari setiap baris, pilih satu kata / pernyataan yang PALING TIDAK SESUAI dengan diri Anda dalam situasi kerja dan tulislah \"L\" pada kotak di belakang kata / pernyataan tersebut.</li>
 							<li>Setiap baris yang diisi harus mengandung satu M dan satu L.</li>
 							<li>Bersikaplah spontan karena pemikiran pertama biasanya lebih tepat.</li>
-							<li>Inventori ini sebaiknya diisi dalam jangka waktu 7-10 menit, tanpa interupsi dan sebaiknya dalam situasi tenang.</li>
+							<li>Waktu pengerjaan tes dibatasi 15 menit.</li>
 							<li>Jadi dalam setiap lajur hanya ada satu M dan satu L, dua kotak lainnya kosong.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
 						</ol></div>
@@ -22,6 +22,10 @@ function loadDISC($UsrDef){
 						<img class='col-md-12' src='images/disc-guide-salah.png' style='padding-bottom: 10px;'/>
 						</fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
+	$content .= '<div class="col-md-12" id="txtTimer" align="right">
+				<span id="minute"></span>:
+				<span id="second"></span>
+				</div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formDISC" name="formDISC">';
 	$content .= LocalDISCForm($UsrDef, '0');
 	$content .= "</form>";

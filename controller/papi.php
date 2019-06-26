@@ -11,12 +11,17 @@ function loadPAPI($UsrDef){
 							<li>Tes PAPI terdiri dari 90 soal.</li>
 							<li>Setiap soal berisi 2 pernyataan, pilih salah satu pernyataan yang paling menggambarkan diri anda. Klik pada pernyataan atau lingkaran yang ingin dipilih.</li>
 							<li>Jika saudara menghadapi pernyataan yang kedua-duanya tidak sesuai dengan diri pribadi saudara tetap harus dipilih salah satunya yang paling mendekati. Sebaliknya jika menemukan pernyataan yang kedua-duanya sangat menggambarkan diri anda tetap harus dipilih salah satunya.</li>
+							<li>Waktu pengerjaan tes dibatasi 15 menit.</li>
 							<li>Klik tombol start untuk memulai tes.</li>
 						</ol></div>
 						<center><h4>Contoh Pengerjaan Tes PAPI</h4></center>
 						<img class='col-md-8 col-md-offset-2' src='images/papi-guide.png' style='padding-bottom: 10px;'/>
 						</fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
+	$content .= '<div class="col-md-12" id="txtTimer" align="right">
+				<span id="minute"></span>:
+				<span id="second"></span>
+				</div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formPAPI">';
 	$content .= LocalPAPIForm($UsrDef, '0');
 	$content .= "</form>";
@@ -27,6 +32,7 @@ function LocalPAPIForm($UsrDef, $limit)
 {	
 	// print_r($_SESSION);
 	$content = '<input type="hidden" name="hduserid" id="hduserid" value="'.$_SESSION['userid'].'">';
+	$content .= '<input type="hidden" name="hdlimit" id="hdlimit" value="'.$limit.'">';
 	$content .= '<div id="content" class="col-md-6 col-md-offset-3" role="main">';
 	$content .= '<table class="table table-bordered" id="tablePAPI">';
 	

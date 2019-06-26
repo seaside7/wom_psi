@@ -17,10 +17,67 @@ $( document ).ready(function() {
 		$("#btnSave").show();
 		$("#btnstart").hide();
 		$("#rules").hide();
+
+		var start = new Date();
+		// frontTimer(start);
+		var timerInterval = setInterval(function() {
+			var time = 900000 - (new Date() - start); // 900000
+			if(time < 1) {
+				jQuery("#minute").text('00');
+				jQuery("#second").text('00');
+				clearInterval(timerInterval);
+				jQuery.alert('Waktu habis.',function(){
+					var id = jQuery('#hduserid').val();
+					var DM  = 0;
+					var DL  = 0;
+					var IM  = 0;
+					var IL  = 0;
+					var SM  = 0;
+					var SL  = 0;
+					var CM  = 0;
+					var CL  = 0;
+					for(var x=1;x<=24;x++){
+						for(var y=1;y<=4;y++){
+							var txt = "txtans_"+x+"_"+y;
+							if(x==21 && y==1){
+								if($('#'+txt).val().toUpperCase()=="M"){SM++; SMno+= x+" "+y+"\n";}
+								else if($('#'+txt).val().toUpperCase()=="L"){IL++; ILno+= x+" "+y+"\n";}
+							}else{
+								if($('#'+txt).data("komponen")=="D" && $('#'+txt).val().toUpperCase()=="M" && ($('#'+txt).data("tipe")=="P" || $('#'+txt).data("tipe")=="A")) {DM++; DMno+= x+" "+y+"\n";}
+								if($('#'+txt).data("komponen")=="D" && $('#'+txt).val().toUpperCase()=="L" && ($('#'+txt).data("tipe")=="P" || $('#'+txt).data("tipe")=="B")) {DL++; DLno+= x+" "+y+"\n";}
+								if($('#'+txt).data("komponen")=="I" && $('#'+txt).val().toUpperCase()=="M" && ($('#'+txt).data("tipe")=="P" || $('#'+txt).data("tipe")=="A")) {IM++; IMno+= x+" "+y+"\n";}
+								if($('#'+txt).data("komponen")=="I" && $('#'+txt).val().toUpperCase()=="L" && ($('#'+txt).data("tipe")=="P" || $('#'+txt).data("tipe")=="B")) {IL++; ILno+= x+" "+y+"\n";}
+								if($('#'+txt).data("komponen")=="S" && $('#'+txt).val().toUpperCase()=="M" && ($('#'+txt).data("tipe")=="P" || $('#'+txt).data("tipe")=="A")) {SM++; SMno+= x+" "+y+"\n";}
+								if($('#'+txt).data("komponen")=="S" && $('#'+txt).val().toUpperCase()=="L" && ($('#'+txt).data("tipe")=="P" || $('#'+txt).data("tipe")=="B")) {SL++; SLno+= x+" "+y+"\n";}
+								if($('#'+txt).data("komponen")=="C" && $('#'+txt).val().toUpperCase()=="M" && ($('#'+txt).data("tipe")=="P" || $('#'+txt).data("tipe")=="A")) {CM++; CMno+= x+" "+y+"\n";}
+								if($('#'+txt).data("komponen")=="C" && $('#'+txt).val().toUpperCase()=="L" && ($('#'+txt).data("tipe")=="P" || $('#'+txt).data("tipe")=="B")) {CL++; CLno+= x+" "+y+"\n";}
+							}
+						}
+					}
+					jQuery("#btnSave").prop('disabled',true);
+					jQuery.ajax({
+			            url: "/wom_psi/ajax/disc.php?po=saveHasilDISC&id="+id+"&DM="+DM+"&DL="+DL+"&IM="+IM+"&IL="+IL+"&SM="+SM+"&SL="+SL+"&CM="+CM+"&CL="+CL,
+				            type: "POST",
+				            success: function(data)
+				            {
+								alert("Terima kasih data Anda sudah kami simpan");
+								window.location.href = 'index.php?act=kraeplin';
+								window.reload();
+							
+				            }
+			        	});
+				});
+			} else {
+				var minute = '0' + Math.floor((time/1000/60)%60);
+				var second = '0' + Math.floor((time/1000)%60);
+				jQuery("#minute").text(minute.slice(-2));
+				jQuery("#second").text(second.slice(-2));
+			}
+		}, 100);
 	});
 
 	$("#btnSave").click(function(){ 
-	var id = jQuery('#hduserid').val();
+		var id = jQuery('#hduserid').val();
 		var DM  = 0;
 		var DL  = 0;
 		var IM  = 0;

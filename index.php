@@ -65,7 +65,7 @@ require_once('function/mainfunction.php');
     <link href="css/icheck/flat/green.css" rel="stylesheet">
 
 
-    <script src="js/jquery.min.js"></script>
+    <!-- <script src="js/jquery.min.js"></script> -->
 	
 	<script src="js/bootstrap.min.js"></script>
 

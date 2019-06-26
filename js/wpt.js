@@ -54,7 +54,38 @@ jQuery( document ).ready(function() {
 		jQuery("#btnPrevious").show();
 		jQuery("#btnstart").hide();
 		jQuery("#rules").hide();
-		timer.play();
+		// timer.play();
+
+		var start = new Date();
+		// frontTimer(start);
+		var timerInterval = setInterval(function() {
+			var time = 720000 - (new Date() - start);
+			if(time < 1) {
+				jQuery("#minute").text('00');
+				jQuery("#second").text('00');
+				jQuery.alert('Waktu habis.',function(){
+					var temp = $('formWPT').serialize();
+					jQuery.ajax({
+			            url: "/wom_psi/ajax/wpt.php?po=saveHasilWPT&limit="+limitjs+"&id="+idjs+"&"+temp,
+				            type: "POST",
+				            success: function(data)
+				            {
+								console.log(data);
+								alert("Terima kasih data Anda sudah kami simpan");
+								window.location.href = 'index.php?act=papi';
+								window.reload();
+							
+				            }
+			        	});
+				});
+				clearInterval(timerInterval);
+			} else {
+				var minute = '0' + Math.floor((time/1000/60)%60);
+				var second = '0' + Math.floor((time/1000)%60);
+				jQuery("#minute").text(minute.slice(-2));
+				jQuery("#second").text(second.slice(-2));
+			}
+		}, 100);
 	});
 
 var idjs = jQuery('#hduserid').val();
@@ -81,3 +112,35 @@ var timer = jQuery.timer(function() {
 	
 }, 720000);
 });	
+
+
+function frontTimer(start){
+	var timerInterval = setInterval(function() {
+		var time = 72000 - (new Date() - start);
+		if(time < 1) {
+			jQuery("#minute").text('00');
+			jQuery("#second").text('00');
+			jQuery.alert('Waktu habis.',function(){
+				var temp = $('formWPT').serialize();
+				jQuery.ajax({
+		            url: "/wom_psi/ajax/wpt.php?po=saveHasilWPT&limit="+limitjs+"&id="+idjs+"&"+temp,
+			            type: "POST",
+			            success: function(data)
+			            {
+							console.log(data);
+							alert("Terima kasih data Anda sudah kami simpan");
+							window.location.href = 'index.php?act=papi';
+							window.reload();
+						
+			            }
+		        	});
+			});
+			clearInterval(timerInterval);
+		} else {
+			var minute = '0' + Math.floor((time/1000/60)%60);
+			var second = '0' + Math.floor((time/1000)%60);
+			jQuery("#minute").text(minute.slice(-2));
+			jQuery("#second").text(second.slice(-2));
+		}
+	}, 100);
+}

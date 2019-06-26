@@ -20,12 +20,12 @@ if($po=="nextPage" || $po=="previousPage") {
 }
 if($po=="saveHasilPAPI") {
 	$ans='';
-	$limit = $_GET['limit'];
+	$limit = $_GET['hdlimit'];
 	for($x=$limit+1;$x<=$limit+15;$x++){
 		$_SESSION['anspapi'][$x] = $_GET['rdsoal'.$x];
 	}
 	
-	for($no=1;$no<=90;$no++){
+	for($no=1;$no<=count($_SESSION['anspapi']);$no++){
 		$ans .=  $_SESSION['anspapi'][$no];
 	}
 	// $ans .= $_GET['ans'];

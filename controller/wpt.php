@@ -20,6 +20,10 @@ function loadWPT($UsrDef){
 						<img class='col-md-8 col-md-offset-2' src='images/wpt-guide.png' style='padding-bottom: 10px;'/>
 						</fieldset></div>";
 	$content .= '<div class="col-md-12" id="btstart" align="center"><input type=button id="btnstart" tabindex="-1" value="Start"></div>';
+	$content .= '<div class="col-md-12" id="txtTimer" align="right">
+				<span id="minute"></span>:
+				<span id="second"></span>
+				</div>';
 	$content .= '<form action="" method="post" enctype="multipart/form-data" id="formWPT" name="formWPT">';
 	$content .= LocalWPTForm($UsrDef, '0');
 	$content .= "</form>";

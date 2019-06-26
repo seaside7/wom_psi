@@ -1,6 +1,7 @@
 jQuery.noConflict();
 
 var ans = '';
+var limitjs = 0;
 function nextPage(form, id, limit)
 {	
 	for(var i=limit+1; i<=limit+15; i++){ 
@@ -74,6 +75,37 @@ jQuery( document ).ready(function() {
 		jQuery("#btnPrevious").show();
 		jQuery("#btnstart").hide();
 		jQuery("#rules").hide();
+		var start = new Date();
+		// frontTimer(start);
+		var timerInterval = setInterval(function() {
+			var time = 900000 - (new Date() - start); // 900000
+			if(time < 1) {
+				jQuery("#minute").text('00');
+				jQuery("#second").text('00');
+				clearInterval(timerInterval);
+				jQuery.alert('Waktu habis.',function(){
+					var temp = $('formPAPI').serialize();
+					jQuery("#btnNext").prop('disabled',true);
+					jQuery.ajax({
+			            url: "/wom_psi/ajax/papi.php?po=saveHasilPAPI&id="+jQuery('#hduserid').val()+"&"+temp,
+				            type: "POST",
+				            success: function(data)
+				            {
+								console.log(data);
+								alert("Terima kasih data Anda sudah kami simpan");
+								window.location.href = 'index.php?act=disc';
+								window.reload();
+							
+				            }
+			        	});
+				});
+			} else {
+				var minute = '0' + Math.floor((time/1000/60)%60);
+				var second = '0' + Math.floor((time/1000)%60);
+				jQuery("#minute").text(minute.slice(-2));
+				jQuery("#second").text(second.slice(-2));
+			}
+		}, 100);
 	});
 });
 
